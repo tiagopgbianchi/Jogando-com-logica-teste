@@ -1,9 +1,5 @@
-
-
 const assa = () => {
-  return (
-    <div>assa</div>
-  )
-}
+  return <div>AAAAAAA</div>;
+};
 
-export default assa
+export default assa;
