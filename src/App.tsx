@@ -1,21 +1,20 @@
-import MainMenu from "./mainMenu";
-const projetoLogo = "./public/Logo png (2).png";
-import "./App.css";
+import Home from "./Pages/Home";
+import Jogos from "./Pages/Jogos";
+import Contato from "./Pages/Contato";
+import MudarPagina from "./Components/MudarPagina";
+//import "./CSS/App.css";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  
-
   return (
-    <>
-      <div>
-          <img src={projetoLogo} className="logo react" alt="React logo" />
-      </div>
-      <h1>Jogando com Lógica</h1>
-      <MainMenu />
-      <p className="read-the-docs">
-        Dont click
-      </p>
-    </>
+    <main>
+      <MudarPagina />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/jogos" element={<Jogos />} />
+        <Route path="/contato" element={<Contato />} />
+      </Routes>
+    </main>
   );
 }
 
