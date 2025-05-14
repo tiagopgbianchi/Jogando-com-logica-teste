@@ -27,6 +27,13 @@ function MudarPagina() {
           </button>
           <button
             className="botao-personalizado"
+            onClick={() => mudar_pagina("sobre")}
+          >
+            {" "}
+            Sobre
+          </button>
+          <button
+            className="botao-personalizado"
             onClick={() => mudar_pagina("contato")}
           >
             {" "}
