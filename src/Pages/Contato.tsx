@@ -1,7 +1,10 @@
+import "../CSS/SobreContato.css";
 function Contato() {
-    return <div className="contact-page">
+    return <div className="contato">
       <h2>Contato</h2>
-
+      <h3 style={{ fontSize: "20px", marginBottom: "4 0px"}}>
+        Se você quiser entrar em contato com a gente, pode usar o nosso e-mail ou Instagram abaixo — ou, se preferir, envie seu feedback preenchendo o formulário logo abaixo!
+      </h3>
       <p>
         <strong>Email:</strong> jogandocomlogica@gmail.com<br />
         <strong>Instagram:</strong>{" "}

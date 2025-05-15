@@ -1,0 +1,31 @@
+.sobre{
+    font-family: "Cherry Bomb One", system-ui;
+    font-weight: 200;
+    font-style: normal;
+    color: #555555;
+    margin: 0 100px 0 100px;
+}
+
+.contato{
+    font-family: "Cherry Bomb One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: #555555;
+    margin: 0 100px 0 100px;
+}
+
+
+h3{
+    color:#141414;
+}
+
+h2{
+    color: #141414;
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+}   
+
+strong {
+  font-weight: normal;
+}

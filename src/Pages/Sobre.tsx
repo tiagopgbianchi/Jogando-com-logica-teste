@@ -1,8 +1,9 @@
+import "../CSS/SobreContato.css";
 function Sobre() {
-  return <section id="sobre-nos">
+  return <section className="sobre" id="sobre-nos">
   <h2>Sobre Nós</h2>
 
-  <h3>O que é o Jogando com Lógica?</h3>
+  <h3 className="topic">O que é o Jogando com Lógica?</h3>
   <p>
     O <strong>Jogando com Lógica</strong> é um projeto educacional que utiliza jogos de lógica e raciocínio, como cubos mágicos, xadrez e atividades criativas, para ensinar conceitos matemáticos de forma divertida e acessível. Voltado para estudantes do <strong>1º ao 6º ano</strong> do ensino fundamental, o projeto promove o pensamento crítico e o interesse pela matemática por meio da ludicidade. 
     Sabemos que a matemática e o raciocínio lógico nem sempre estão entre as matérias preferidas das crianças na escola — por isso, buscamos transformar esse cenário com atividades mais envolventes e significativas. 
@@ -37,8 +38,8 @@ function Sobre() {
 
   <h3>Quem faz o projeto acontecer?</h3>
   <p>
-    O projeto foi idealizado por <strong>Bruno da Silva Hofstatter</strong>, estudante de Engenharia de Energia e apaixonado por matemática e educação. 
-    Além dele, o time conta com colaboradores que ajudam na criação, programação e design da plataforma digital, todos comprometidos em tornar o aprendizado mais acessível e estimulante para crianças.
+  O projeto foi idealizado por <strong>Bruno da Silva Hofstatter</strong>. 
+  Além dele, o time conta com <div style={{fontSize:'30px', color:'red'}}><strong>Gabriel</strong>, <strong>Tiago</strong> e <strong>Rodrigo</strong></div>, que colaboram na criação, programação e design da plataforma digital — todos comprometidos em tornar o aprendizado mais acessível e estimulante para crianças.
   </p>
 </section>
 ;
