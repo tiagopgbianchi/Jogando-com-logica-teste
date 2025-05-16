@@ -1,31 +1,41 @@
-.sobre{
+section{
     font-family: "Cherry Bomb One", system-ui;
     font-weight: 200;
     font-style: normal;
-    color: #555555;
+    font-size: 25px;
+    color: #eeeeee;
     margin: 0 100px 0 100px;
+    -webkit-text-stroke: 1.25px #000000;
+}
+
+/*.sobre{
+    
 }
 
 .contato{
-    font-family: "Cherry Bomb One", system-ui;
-    font-weight: 400;
-    font-style: normal;
-    color: #555555;
-    margin: 0 100px 0 100px;
-}
-
+    
+}*/
 
 h3{
-    color:#141414;
+    font-size: 40px;
+    color: #eeeeee;
+    -webkit-text-stroke: 2px #9b0b16;
 }
 
 h2{
-    color: #141414;
-    font-size: 50px;
+    color: #eeeeee;
+    font-size: 80px;
     text-align: center;
     margin-bottom: 50px;
+    -webkit-text-stroke: 4px #9b0b16;
 }   
 
 strong {
   font-weight: normal;
+}
+
+.contText{
+    font-size: 30px; 
+    margin-bottom: 30px;
+    -webkit-text-stroke: 1.5px #000000;
 }

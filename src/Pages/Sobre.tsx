@@ -1,6 +1,6 @@
 import "../CSS/SobreContato.css";
 function Sobre() {
-  return <section className="sobre" id="sobre-nos">
+  return <section className="sobre">
   <h2>Sobre Nós</h2>
 
   <h3 className="topic">O que é o Jogando com Lógica?</h3>

@@ -1,7 +1,12 @@
 body {
-    background-color: #3491bb;
+    background: linear-gradient(to right, #2b83aa, #4cb0dc);
 }
 
+.body {
+    background: #3f9bc9;
+}
+
+
 .my-element {
-    background-color: #47abd7;
+    background-color: #000000
 }
