@@ -1,0 +1,62 @@
+
+.digBox {
+    border: 10px solid #159230;
+    background-color:  #15923050;
+}
+
+.digSection {
+    -webkit-text-stroke: 2px #147228;
+}
+
+.equBox {
+    border: 10px solid #a24503;
+    background-color:  #a2450350;    
+}
+
+.equSection {
+    -webkit-text-stroke: 2px #a24503;
+}
+
+.objBox {
+    border: 10px solid #9b0b16;
+    background-color:  #9b0b1650;
+}
+
+.objSection {
+    -webkit-text-stroke: 2px #9b0b16;
+}
+
+.oqeBox {
+    border: 10px solid #159230;
+    background-color:  #15923050;
+    
+}
+
+.oqeSection {
+    -webkit-text-stroke: 2px #147228;
+}
+
+.presBox {
+    border: 10px solid #a24503;
+    background-color:  #a2450350;
+    
+}
+
+.presSection {
+    -webkit-text-stroke: 2px #a24503;
+}
+
+.surgBox {
+    border: 10px solid #14474c;
+    background-color:  #14474c50;
+}
+
+.surgSection {
+    -webkit-text-stroke: 2px #14474c;
+}
+
+.digBox,.equBox,.objBox,.oqeBox,.presBox,.surgBox{
+    border-radius: 35px;
+    padding: 16px;
+    box-sizing: border-box;
+}
