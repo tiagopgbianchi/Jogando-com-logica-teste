@@ -1,5 +1,40 @@
-.cherryText{
+.jogosPg{
   font-family: "Cherry Bomb One", system-ui;
-  font-weight: 400;
+  font-weight: 200;
   font-style: normal;
+  font-size: 25px;
+  color: #eeeeee;
+  margin: 0 200px 0 200px;
+  -webkit-text-stroke: 1.25px #000000;
+}
+h2{
+    color: #eeeeee;
+    font-size: 80px;
+    text-align: center;
+    margin-bottom: 100px;
+    -webkit-text-stroke: 4px #000000;
+}   
+.game-button {
+  all: unset; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  transition: transform 0.2s;
+}
+
+.game-button:hover {
+  transform: scale(1.05); 
+}
+
+.game-icon {
+  width: 120px; 
+  height: 120px;
+  object-fit: contain;
+}
+
+.game-label {
+  font-size: 25px;
+  text-align: center;
 }
