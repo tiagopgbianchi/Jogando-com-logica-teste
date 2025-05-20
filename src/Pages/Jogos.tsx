@@ -1,5 +1,5 @@
 import "../CSS/Jogos.css";
-import GameButton from "../Components/gameButton";
+import GameButton from "../Components/GameButton";
 
 function Jogos() {
   return (
