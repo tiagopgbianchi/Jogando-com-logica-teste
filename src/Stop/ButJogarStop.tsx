@@ -9,7 +9,7 @@ function jogarStop() {
   }
 
   return (
-    <button onClick={jogarStop}>
+    <button className='button'onClick={jogarStop}>
       Jogar
     </button>
   );

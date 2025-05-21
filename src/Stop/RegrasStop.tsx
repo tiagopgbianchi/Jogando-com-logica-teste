@@ -1,20 +1,22 @@
-import JogarStop from "../Components/JogarStop";
-import "../CSS/Stop.css";
+import JogarStop from "./ButJogarStop";
+import "./Stop.css";
 function jogoStop(){
     return (
         <div className="regras">
-  <h2> Como jogar o Stop Matemático</h2>
+  
     <JogarStop></JogarStop>
+    <h2> Regras do Stop Matemático</h2>
+  <div className="boxRegras">
   <ul>
     <li>
-      <strong>Um número vai aparecer na tela:</strong><br />
-      Esse número será usado para todas as contas do jogo.
+      <strong>O número mágico vai aparecer na tela:</strong><br />
+      O número mágico será usado para todas as contas do jogo.
     </li>
 
     <li>
       <strong>Várias contas vão aparecer:</strong><br />
       Você vai ver contas como <code>+4</code>, <code>-2</code>, <code>×3</code>, <code>÷2</code>, e deve resolver todas usando o número que apareceu.<br />
-      Por exemplo, se o número for <strong>6</strong>:<br />
+      Por exemplo, se o número mágico for <strong><code>6</code></strong>:<br />
       <ul>
         <li><code>6 + 4 = 10</code></li>
         <li><code>6 × 3 = 18</code></li>
@@ -36,6 +38,7 @@ function jogoStop(){
       No final, o jogo mostra quantas você acertou e sua pontuação!
     </li>
   </ul>
+  </div>
 </div>
     )
 }

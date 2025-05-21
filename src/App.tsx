@@ -1,9 +1,9 @@
-import StopPage from "./Pages/StopPage";
+import StopPage from "./Stop/PageStop";
 import Home from "./Pages/Home";
 import Jogos from "./Pages/Jogos";
 import Sobre from "./Pages/Sobre";
 import Contato from "./Pages/Contato";
-import JogoStop from "./Pages/JogoStop";
+import JogoStop from "./Stop/RegrasStop";
 import MudarPagina from "./Components/MudarPagina";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
