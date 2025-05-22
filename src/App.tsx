@@ -4,14 +4,26 @@ import Jogos from "./Pages/Jogos";
 import Sobre from "./Pages/Sobre";
 import Contato from "./Pages/Contato";
 import JogoStop from "./Stop/RegrasStop";
-import MudarPagina from "./Components/MudarPagina";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route, useLocation, Link } from "react-router-dom";
+
+function BackButton() {
+  const location = useLocation();
+
+  // Don't show on homepage
+  if (location.pathname === "/") return null;
+
+  return (
+    <Link to="/">
+      <button className="back-button">Voltar para o Início</button>
+    </Link>
+  );
+}
 
 function App() {
   return (
     <main>
-      <MudarPagina />
+      <BackButton /> 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jogos" element={<Jogos />} />

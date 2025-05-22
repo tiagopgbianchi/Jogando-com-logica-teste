@@ -1,29 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import "../CSS/MudarPagina.css";
 function MudarPagina() {
-  const [mostrar, setmostrar] = useState(false);
   const navigate = useNavigate();
   const mudar_pagina = (pagina: string) => {
     navigate(`/${pagina}`);
   };
+  /*const [mostrar, setmostrar] = useState(false);
+  <button onClick={() => setmostrar(!mostrar)}> Menu </button>
+      {mostrar && ()*/
   return (
     <>
-      <button onClick={() => setmostrar(!mostrar)}> Menu </button>
-      {mostrar && (
-        <div>
-          <button
-            className="botao-personalizado"
-            onClick={() => mudar_pagina("")}
-          >
-            Casa
-          </button>
+      
+        <div className="buttonsHome">
           <button
             className="botao-personalizado"
             onClick={() => mudar_pagina("jogos")}
           >
             {" "}
-            Jogos
+            Jogar
           </button>
           <button
             className="botao-personalizado"
@@ -40,7 +34,7 @@ function MudarPagina() {
             Contato
           </button>
         </div>
-      )}
+      
     </>
   );
 }

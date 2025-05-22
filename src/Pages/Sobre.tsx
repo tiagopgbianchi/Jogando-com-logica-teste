@@ -6,6 +6,7 @@ function Sobre() {
   return (
     <section className="sobre">
       <h2>Sobre Nós</h2>
+      <div className="boxBoxes">
 
       <SectionBox
         title="O que é o Jogando com Lógica?"
@@ -19,6 +20,24 @@ function Sobre() {
           tanto presencialmente quanto agora em uma nova versão digital.
         </p>
       </SectionBox>
+
+
+      <SectionBox
+        title="Equipe do projeto"
+        sectionClassName="equSection"
+        boxClassName="equBox"
+      >
+        <p>
+          O projeto foi idealizado por <strong>Bruno da Silva Hofstatter</strong>. Além
+          dele, o time conta com{" "}
+          <span style={{ fontSize: "30px", color: "red" }}>
+            <strong>Gabriel</strong>, <strong>Tiago</strong> e <strong>Rodrigo</strong>
+          </span>, que colaboram na criação, programação e design da plataforma digital —
+          todos comprometidos em tornar o aprendizado mais acessível e estimulante para
+          crianças.
+        </p>
+      </SectionBox>
+
 
       <SectionBox
         title="Como surgiu?"
@@ -34,6 +53,7 @@ function Sobre() {
           didáticas para ensinar lógica de forma simples e envolvente.
         </p>
       </SectionBox>
+
 
       <SectionBox
         title="Objetivo"
@@ -52,6 +72,7 @@ function Sobre() {
         </p>
       </SectionBox>
 
+
       <SectionBox
         title="Parte presencial do projeto"
         sectionClassName="presSection"
@@ -68,6 +89,7 @@ function Sobre() {
         </p>
       </SectionBox>
 
+
       <SectionBox
         title="Expansão para o digital"
         sectionClassName="digSection"
@@ -82,21 +104,8 @@ function Sobre() {
         </p>
       </SectionBox>
 
-      <SectionBox
-        title="Quem faz o projeto acontecer?"
-        sectionClassName="equSection"
-        boxClassName="equBox"
-      >
-        <p>
-          O projeto foi idealizado por <strong>Bruno da Silva Hofstatter</strong>. Além
-          dele, o time conta com{" "}
-          <span style={{ fontSize: "30px", color: "red" }}>
-            <strong>Gabriel</strong>, <strong>Tiago</strong> e <strong>Rodrigo</strong>
-          </span>, que colaboram na criação, programação e design da plataforma digital —
-          todos comprometidos em tornar o aprendizado mais acessível e estimulante para
-          crianças.
-        </p>
-      </SectionBox>
+
+      </div>
     </section>
   );
 }

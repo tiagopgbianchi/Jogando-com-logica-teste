@@ -10,3 +10,17 @@ body {
 .my-element {
     background-color: #000000
 }
+
+.logoTexto{
+    width: 800px;
+}
+
+.logo {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    margin-left: -30px;
+}
+.back-button{
+    
+}
