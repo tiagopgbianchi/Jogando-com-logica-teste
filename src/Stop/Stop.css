@@ -17,16 +17,34 @@
     margin-bottom: 30px;
 }
 .regras h2 {
-    font-size: 60px ;
-    -webkit-text-stroke: 3.5px #9b0b16;
+    font-size: 50px ;
+    -webkit-text-stroke: 3px #9b0b16;
     margin-bottom: 27px;
+    cursor: pointer;
+}
+.regras h2:hover{
+    color: #d1d0d0;
+    -webkit-text-stroke: 3px #800a14;
+    transform: scale(1.03);
 }
 .boxRegras {
     border: 10px solid #9b0b16;
-    background-color:  #9b0b1650;
+    background-color:  #6d0912b0;
     border-radius: 35px;
     padding: 16px;
     box-sizing: border-box;
+}
+.boxRegrasOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.1); /* translucent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 code{
     font-family: "Cherry Bomb One", system-ui;
@@ -59,22 +77,33 @@ code{
     margin-top: -60px;
 }
 .button {
-  border: 8px solid #07643d;
-  background-color: #0b9b5f50;
+  border: 10px solid #4b0606 ;
+  background: 
+    radial-gradient(circle,#e21e1ea0,#751111a0);
   border-radius: 120px;
   padding: 0 20px;
   box-sizing: border-box;
-  color: #eeeeee;
-  -webkit-text-stroke: 5px #000000;
-  font-size: 150px;
-  display: flex;              /* changed */
-  align-items: center;        /* added */
-  justify-content: center;    /* added */
+  color: #e9c3c3;
+  -webkit-text-stroke: 6.5px #4b0606;
+  font-size: 160px;
+  display: flex;            
+  align-items: center;        
+  justify-content: center;    
   margin: 0 auto;
-  width: 500px;
-  height: 200px;
+  width: 550px;
+  height: 230px;
   text-align: center;
   padding-bottom: 35px;
-  margin-top: 150px;
-  margin-bottom: 150px;
+  margin-top: 130px;
+  margin-bottom: 100px;
 }
+.button:hover {
+    border: 10px solid #300404 ;
+    background: 
+     radial-gradient(circle,#be1a1aa0,#570c0ca0);
+    transform: scale(1.03);
+    -webkit-text-stroke: 6.5px #300404;
+    color: #caa8a8;
+}
+
+
