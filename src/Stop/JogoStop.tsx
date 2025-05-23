@@ -3,7 +3,7 @@ import "./Stop.css";
 import "./JogoStop.css";
 import CaixaStop from "./CaixaStop";
 const contas: string[] = ["*", "/", "+", "-"];
-const numeros: number[] = [9, 2, 4, 5, 2, 5];
+const numeros: number[] = [9, 5, 4, 5, 2, 5];
 const NumGenerator = () => {
   const num = Math.floor(Math.random() * 6) + 4;
   return num;
