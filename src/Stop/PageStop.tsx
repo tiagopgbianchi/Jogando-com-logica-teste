@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import "./Stop.css";
-import StopJogo from './JogoStop';
-
+import StopJogo from "./JogoStop";
+const NumGenerator = () => {
+  const num = Math.floor(Math.random() * 6) + 4;
+  return num;
+};
 function StopPage() {
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
   const [displayedNumber, setDisplayedNumber] = useState<number>(4); // initial display
@@ -13,10 +16,11 @@ function StopPage() {
     let stopTimeout: ReturnType<typeof setTimeout>;
     let gameTimeout: ReturnType<typeof setTimeout>;
 
-   
     animationInterval = setInterval(() => {
-      const num = Math.floor(Math.random() * 6) + 4; 
-      setDisplayedNumber(num);
+      const num = NumGenerator();
+      if (num !== null) {
+        setDisplayedNumber(num);
+      }
     }, 50);
 
     stopTimeout = setTimeout(() => {
@@ -42,12 +46,12 @@ function StopPage() {
     <div>
       {showNumber && (
         <div>
-          <h2 className='sort'>O número mágico é</h2>
-          <p className='numero'>{displayedNumber}</p>
+          <h2 className="sort">O número mágico é</h2>
+          <p className="numero">{displayedNumber}</p>
         </div>
       )}
 
-      {showGame && <StopJogo /*randomNumber={randomNumber!}*/ />}
+      <StopJogo />
     </div>
   );
 }

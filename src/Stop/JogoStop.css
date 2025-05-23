@@ -1,0 +1,38 @@
+.tabela {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.cell {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+.header {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+.row-header {
+  font-weight: bold;
+  color: #ff0000;
+  background-color: #e27874;
+}
+
+.input-cell {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.verde {
+  background-color: #2fc436;
+}
+
+.vermelho {
+  background-color: #992521;
+}

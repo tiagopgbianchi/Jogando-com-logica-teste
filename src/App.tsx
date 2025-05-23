@@ -1,4 +1,5 @@
 import StopPage from "./Stop/PageStop";
+import StopJogo from "./Stop/JogoStop";
 import Home from "./Pages/Home";
 import Jogos from "./Pages/Jogos";
 import Sobre from "./Pages/Sobre";
@@ -23,14 +24,14 @@ function BackButton() {
 function App() {
   return (
     <main>
-      <BackButton /> 
+      <BackButton />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jogos" element={<Jogos />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/contato" element={<Contato />} />
         <Route path="/jogoStop" element={<JogoStop />} />
-        <Route path="/stoppage" element={<StopPage />} />
+        <Route path="/stoppage" element={<StopJogo />} />
       </Routes>
     </main>
   );
