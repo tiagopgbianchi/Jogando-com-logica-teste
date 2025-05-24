@@ -51,7 +51,7 @@ function StopPage() {
         </div>
       )}
 
-      <StopJogo />
+      {showGame && <StopJogo randomNumber={randomNumber!} />}
     </div>
   );
 }
