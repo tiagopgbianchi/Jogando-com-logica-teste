@@ -10,7 +10,7 @@ interface caixaStopProp {
 function CaixaStop(props: caixaStopProp) {
 
 
-  const [certo, setCerto] = useState(false);
+  const [, setCerto] = useState(false);
   const [valorInput, setValorInput] = useState("");
   const [color, setColor] = useState("");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

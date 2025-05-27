@@ -42,7 +42,7 @@ function StopJogo({ randomNumber }: JogoStopProps) {
   >([]);
 
   const [count, setCount] = useState(0);
-  const [showGame, setShowGame] = useState(true);
+  const [showGame] = useState(true);
   const [pararJogo, setPararJogo] = useState(false);
 
   useEffect(() => {
