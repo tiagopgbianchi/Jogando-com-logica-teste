@@ -8,7 +8,7 @@ function Jogos() {
       <GameButton
         pagina="jogoStop"
         label="Stop Matemático"
-        imageSrc="../public/vite.svg"
+        imageSrc="public/vite.svg"
       />
     </div>
   );

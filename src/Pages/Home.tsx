@@ -5,7 +5,7 @@ function Home() {
   return (
     <>
       <div className="logo">
-        <img src="../public/logoTexto+.png" className="logoTexto"  />
+        <img src="public/logoTexto+.png" className="logoTexto"  />
       </div>
       <MudarPagina />
       
