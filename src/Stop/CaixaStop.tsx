@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-interface Prop {
+
+interface caixaStopProp {
   numero_base: number;
   numero: number;
   conta: string;
   checar: boolean;
 }
-function CaixaStop(props: Prop) {
+
+function CaixaStop(props: caixaStopProp) {
+
+
   const [certo, setCerto] = useState(false);
   const [valorInput, setValorInput] = useState("");
   const [color, setColor] = useState("");
@@ -15,27 +19,51 @@ function CaixaStop(props: Prop) {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
   };
+
+
   useEffect(() => {
-    if (!props.checar) return;
-    const resultado = eval(
-      `${props.numero_base} ${props.conta} ${props.numero}`
-    );
-    console.log(resultado);
-    console.log(Number(valorInput));
-    if (Number(valorInput) === resultado) setCerto(true);
-    if (certo) setColor("verde");
-    else setColor("vermelho");
-  }, [props.checar, color]);
+  if (!props.checar) return;
+
+  let resultado: number;
+
+  switch (props.conta) {
+    case "+":
+      resultado = props.numero_base + props.numero;
+      break;
+    case "-":
+      resultado = props.numero_base - props.numero;
+      break;
+    case "x":
+      resultado = props.numero_base * props.numero;
+      break;
+    case "÷":
+      resultado = props.numero_base / props.numero;
+      break;
+    default:
+      resultado = NaN;
+  }
+
+  if (Number(valorInput) === resultado) {
+    setCerto(true);
+    setColor("verde");
+  } else {
+    setCerto(false);
+    setColor("vermelho");
+  }
+}, [props.checar]);
 
   return (
-    <form className={`cell ${color}`} onSubmit={handleSubmit}>
-      <input
-        className="input-cell"
-        type="number"
-        value={valorInput}
-        onChange={handleChange}
-      ></input>
-    </form>
+    <div>
+      <span>  {props.conta}{props.numero}</span>
+      <form className={`cell ${color}`} onSubmit={handleSubmit}>
+        <input
+          className="input-cell"
+          type="number"
+          value={valorInput}
+          onChange={handleChange}
+        ></input>
+      </form>
+    </div>
   );
 }
 

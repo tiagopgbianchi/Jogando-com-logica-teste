@@ -1,5 +1,5 @@
 import StopPage from "./Stop/PageStop";
-import StopJogo from "./Stop/JogoStop";
+/*import StopJogo from "./Stop/JogoStop";*/
 import Home from "./Pages/Home";
 import Jogos from "./Pages/Jogos";
 import Sobre from "./Pages/Sobre";
