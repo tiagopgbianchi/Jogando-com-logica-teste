@@ -1,46 +1,64 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Stop.css";
 import StopJogo from "./JogoStop";
+
 const NumGenerator = () => {
-  const num = Math.floor(Math.random() * 6) + 4;
-  return num;
+  return Math.floor(Math.random() * 6) + 4;
 };
+
 function StopPage() {
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
-  const [displayedNumber, setDisplayedNumber] = useState<number>(4); // initial display
+  const [displayedNumber, setDisplayedNumber] = useState<number>(4);
   const [showGame, setShowGame] = useState(false);
   const [showNumber, setShowNumber] = useState(true);
+  const [resetTrigger, setResetTrigger] = useState(0); // Triggers re-run
 
-  useEffect(() => {
-    let animationInterval: ReturnType<typeof setInterval>;
-    let stopTimeout: ReturnType<typeof setTimeout>;
-    let gameTimeout: ReturnType<typeof setTimeout>;
+  // Use browser-safe types
+  const animationIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const stopTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const gameTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    animationInterval = setInterval(() => {
+  const startGame = () => {
+    // Reset states
+    setShowGame(false);
+    setShowNumber(true);
+    setDisplayedNumber(4);
+    setRandomNumber(null);
+
+    // Start rolling animation
+    animationIntervalRef.current = setInterval(() => {
       const num = NumGenerator();
-      if (num !== null) {
-        setDisplayedNumber(num);
-      }
+      setDisplayedNumber(num);
     }, 50);
 
-    stopTimeout = setTimeout(() => {
-      clearInterval(animationInterval);
-      const finalNum = Math.floor(Math.random() * 6) + 4;
+    // Stop animation and fix number
+    stopTimeoutRef.current = setTimeout(() => {
+      if (animationIntervalRef.current) clearInterval(animationIntervalRef.current);
+      const finalNum = NumGenerator();
       setDisplayedNumber(finalNum);
       setRandomNumber(finalNum);
     }, 2000);
 
-    gameTimeout = setTimeout(() => {
+    // Show game after delay
+    gameTimeoutRef.current = setTimeout(() => {
       setShowNumber(false);
       setShowGame(true);
     }, 3500);
+  };
+
+  useEffect(() => {
+    startGame();
 
     return () => {
-      clearInterval(animationInterval);
-      clearTimeout(stopTimeout);
-      clearTimeout(gameTimeout);
+      if (animationIntervalRef.current) clearInterval(animationIntervalRef.current);
+      if (stopTimeoutRef.current) clearTimeout(stopTimeoutRef.current);
+      if (gameTimeoutRef.current) clearTimeout(gameTimeoutRef.current);
     };
-  }, []);
+  }, [resetTrigger]); // re-run when resetTrigger changes
+
+  const handleReset = () => {
+    setResetTrigger((prev) => prev + 1);
+  };
 
   return (
     <div>
@@ -51,7 +69,11 @@ function StopPage() {
         </div>
       )}
 
-      {showGame && <StopJogo randomNumber={randomNumber!} />}
+      {showGame && randomNumber !== null && <StopJogo randomNumber={randomNumber} />}
+
+      <button onClick={handleReset} className="reset-button">
+        Reiniciar Jogo
+      </button>
     </div>
   );
 }
