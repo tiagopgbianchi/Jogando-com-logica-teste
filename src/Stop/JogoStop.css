@@ -3,9 +3,20 @@
   grid-template-columns: repeat(10, 1fr);
   gap: 8px;
   max-width: 1000px;
-  margin: 20px auto;
+  margin: 50px auto;
+  -webkit-text-stroke: 2.3px #000000;
+  color: #eeeeee;
+}
+.jogoStop h2 {
+  
+  top: 60px;
+  right: 200px;
+  position: fixed;
+  font-size: 60px;
+  -webkit-text-stroke: 3.5px #640909
 }
 .jogoStop{
+  position: relative;
   font-family: "Cherry Bomb One", system-ui;
     font-weight: 200;
     font-style: normal;
@@ -14,55 +25,99 @@
     margin: 0 200px 0 200px;
     -webkit-text-stroke: 1.5px #000000;
 }
-.cell {
-  padding: 8px;
-  text-align: center;
-  border: 1px solid #ccc;
-}
-
-.header {
-  font-weight: bold;
-  background-color: #f0f0f0;
-}
 
 .numMagico {
-  font-size: 40px;
+  display: flex;
+  align-items: center;        
+  justify-content: center;  
+  font-size: 45px;
   font-weight: bold;
-  color: #ff0000;
-  background-color: #e27874;
+  color: #f8eaea; 
   padding: 8px;
   text-align: center;
-  border: 1px solid #ccc;
-  width: 500px;
-  margin: auto;
   border-radius: 20px;
-  -webkit-text-stroke: 1.2px #000000;
+  -webkit-text-stroke: 1.5px #330404;
   margin-top: 70px;
+}
+.randomNumber {
+  display: flex;
+  align-items: center;        
+  justify-content: center; 
+  color: #d60202; 
+  font-size: 75px;
+  background: 
+    radial-gradient(circle,#d86262,#b83d3d);
+  border: 2.3px solid #eee;
+  border-radius: 20px;
+  padding: 0 20px 10px 20px;
+  height: 100px;
+  margin-left: 30px;
 }
 
 .pararJogo{
-  border: 3px solid #e4dddd ;
+  border: 4px solid #e4dddd ;
   background: 
-    radial-gradient(circle,#e21e1ea0,#751111a0);
-  border-radius: 20px;
+    radial-gradient(circle,#d64545,#a71e1e);
+  border-radius: 40px;
   box-sizing: border-box;
   color: #e6e6e6;
-  -webkit-text-stroke: 2.5px #4b0606;
-  font-size: 30px;
+  -webkit-text-stroke: 4px #920c0c;
+  font-size: 50px;
   display: flex;            
   align-items: center;        
   justify-content: center;    
-  width: 100px;
+  width: 190px;
+  height: 100px;
+  text-align: center;
+  margin: auto;
+  margin-top: 80px;
+  padding-bottom: 7px;
+}
+.pararJogo:hover {
+    border: 4px solid #bdb6b6 ;
+    background: 
+      radial-gradient(circle,#c53f3f,#991b1b);
+    transform: scale(1.03);
+    -webkit-text-stroke: 4px #7e0a0a;
+    color: #c0bebe;
+}
+.cell {
+  background: 
+      radial-gradient(circle,#771919,#940909);
+  border: 2.5px solid #570707;
+  border-radius: 10px;
+  padding: 7px;
   text-align: center;
   
-  
-
 }
 
-.input-cell {
+
+.header {
+  display: flex;            
+  align-items: center;        
+  justify-content: center;   
+  border: 4px solid #570707;
+  border-radius: 10px;
+  background: 
+      radial-gradient(circle,#cf7070,#be4949);
+  margin-bottom: 7px;
+}
+
+.input-cell { 
+  font-size: 25px;
+  color: #e9e8e8; 
+   background: 
+      radial-gradient(circle,#cf7070,#be4949);
+  border: 2.5px solid #570707;
+  border-radius: 10px;
   width: 100%;
   padding: 4px;
   box-sizing: border-box;
+}
+
+.input-cell:focus {
+  border-color: #991010;
+  box-shadow: 0 0 5px rgba(153, 16, 16, 0.5);
 }
 
 .verde {
@@ -73,6 +128,3 @@
   background-color: #992521;
 }
 
-.randomNumber {
-  font-size: 50px;
-}
