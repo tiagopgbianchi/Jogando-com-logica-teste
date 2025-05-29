@@ -1,11 +1,19 @@
 .tabela {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   gap: 8px;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 20px auto;
 }
-
+.jogoStop{
+  font-family: "Cherry Bomb One", system-ui;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 25px;
+    color: #eeeeee;
+    margin: 0 200px 0 200px;
+    -webkit-text-stroke: 1.5px #000000;
+}
 .cell {
   padding: 8px;
   text-align: center;
@@ -17,10 +25,38 @@
   background-color: #f0f0f0;
 }
 
-.row-header {
+.numMagico {
+  font-size: 40px;
   font-weight: bold;
   color: #ff0000;
   background-color: #e27874;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+  width: 500px;
+  margin: auto;
+  border-radius: 20px;
+  -webkit-text-stroke: 1.2px #000000;
+  margin-top: 70px;
+}
+
+.pararJogo{
+  border: 3px solid #e4dddd ;
+  background: 
+    radial-gradient(circle,#e21e1ea0,#751111a0);
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: #e6e6e6;
+  -webkit-text-stroke: 2.5px #4b0606;
+  font-size: 30px;
+  display: flex;            
+  align-items: center;        
+  justify-content: center;    
+  width: 100px;
+  text-align: center;
+  
+  
+
 }
 
 .input-cell {
@@ -35,4 +71,8 @@
 
 .vermelho {
   background-color: #992521;
+}
+
+.randomNumber {
+  font-size: 50px;
 }

@@ -7,6 +7,7 @@ type JogoStopProps = {
   randomNumber: number;
 };
 
+
 function StopJogo({ randomNumber }: JogoStopProps) {
   const possibleNumbersByBox = [
     [5, 6, 7, 8, 9, 10],
@@ -36,6 +37,9 @@ function StopJogo({ randomNumber }: JogoStopProps) {
     const index = Math.floor(Math.random() * validOptions.length);
     return validOptions[index];
   }
+
+
+
 
   const [caixasData, setCaixasData] = useState<
     { numero: number; conta: string; checar: boolean }[]
@@ -69,10 +73,11 @@ function StopJogo({ randomNumber }: JogoStopProps) {
   }, [showGame, pararJogo]);
 
   return (
-    <div className="regras">
+    <div className="jogoStop">
       <h2>{count}</h2>
+      
       <div className="tabela">
-        <div className="cell row-header">{randomNumber}</div>
+        
         {caixasData.map((data, i) => (
           <CaixaStop
             key={`caixa-${i}`}
@@ -83,7 +88,11 @@ function StopJogo({ randomNumber }: JogoStopProps) {
           />
         ))}
       </div>
-      <button onClick={() => setPararJogo(true)}>STOP</button>
+      
+      <button className='pararJogo' onClick={() => setPararJogo(true)}>STOP</button>
+
+      <div className="numMagico">Seu número mágico é <span className="randomNumber">{randomNumber}</span></div>
+      
       {pararJogo && <h1>Tempo Final: {count} segundos</h1>}
     </div>
   );
