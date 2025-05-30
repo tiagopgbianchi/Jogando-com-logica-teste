@@ -1,5 +1,5 @@
 import "../CSS/SobreContato.css";
-import "../CSS/SobreSections.css";
+//import "../CSS/SobreSections.css";
 import SectionBox from "../Components/sectionBox";
 
 function Sobre() {
