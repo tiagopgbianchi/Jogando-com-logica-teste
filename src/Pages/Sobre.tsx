@@ -1,4 +1,4 @@
-import "../CSS/SobreContato.css";
+import "../CSS/Sobre.css";
 //import "../CSS/SobreSections.css";
 import SectionBox from "../Components/sectionBox";
 
