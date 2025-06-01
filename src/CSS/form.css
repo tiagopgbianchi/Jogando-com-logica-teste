@@ -1,11 +1,16 @@
 .form-wrapper {
-  width: clamp(0px, 70vw, 2000px);
   margin: auto;
   padding: clamp(1rem, 3vw, 3rem);
-  border: clamp(6px, 0.75vw, 40px) solid #000000;
+  border: clamp(6px, 0.75vw, 40px) solid #051314;
   border-radius: clamp( 15px, 2vw, 1000px);
   background: radial-gradient(circle, #1f7077, #2a6a70);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  margin: 3vw 10vw;
+}
+@media (max-width: 600px){
+  .form-wrapper{
+    margin: 3vw 3vw
+  }
 }
 .topRow{
   display: grid;
@@ -22,7 +27,7 @@
   font-size: clamp(1.7rem, 4vw, 6.5rem);
   text-align: center;
   margin-bottom: 1.5rem;
-  -webkit-text-stroke: clamp(1.7px, 0.3vw, 10px) #000000;
+  -webkit-text-stroke: clamp(1.7px, 0.3vw, 10px) #051314;
 }
 
 .feedback-form {
@@ -34,29 +39,40 @@
   color: #fff;
 }
 
-.feedback-form input,
-.feedback-form textarea {
+
+.feedback-form input {
+  outline: none;
+  color: #ffffff;
   width: 100%;
-  padding: 0.75rem;
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  border: 1px solid #ccc;
+  padding: 1vw;
+  font-size: clamp(18px, 1.7vw, 5.5rem);
+  border: 0px solid #ccc;
   border-radius: clamp( 7px, 0.8vw, 1000px);
   resize: vertical;
   height: clamp(36px,4vw,10rem);
   background: radial-gradient(circle, #abd4d8, #89babe);
+  -webkit-text-stroke: clamp(1.5px, 0.13vw, 10px) #000000;
+}
+.feedback-form input:focus{
+  border: clamp(3px, 0.3vw, 2000px) solid #051314;
+  box-shadow: 0 0 40px #051314;
+  background: radial-gradient(circle, #84acaf, #75a4a8);
 }
 
 .feedback-form button {
-  background-color: black;
+  background: radial-gradient(circle, #1b6066, #1a5053);
   color: white;
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
+  font-size: clamp(1rem, 2vw, 1000px);
+  padding: 0.5vw 1vw;
+  border: clamp(4px, 0.5vw, 2000px) solid #051314;
+  border-radius: clamp( 10px, 1vw, 1000px);
   cursor: pointer;
   transition: background 0.3s;
+  margin: 2vw 20vw 0 20vw;
+  outline: none;
 }
 
 .feedback-form button:hover {
-  background-color: #333;
+  background: radial-gradient(circle, #18545e, #13383a);
+  transform: scale(1.04);
 }

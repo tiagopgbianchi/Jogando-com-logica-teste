@@ -10,11 +10,7 @@ p {
   -webkit-text-stroke: clamp(1px, 0.13vw, 10px) #000000;
 }
 
-.formBox{
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
-}
+
 iframe{
   width: clamp(300px, 80vw, 800px);
   aspect-ratio: 3 / 4;

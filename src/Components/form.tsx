@@ -34,11 +34,11 @@ export default function CustomFeedbackForm() {
         <div className="topRow">
             <label>
               Nome:
-              <input type="text" name="nome" onChange={handleChange} required />
+              <input type="text" name="nome" onChange={handleChange} />
             </label>
             <label>
               Idade:
-              <input type="number" name="idade" onChange={handleChange} required />
+              <input type="number" name="idade" onChange={handleChange}  />
             </label>
         </div>
 
@@ -69,7 +69,7 @@ export default function CustomFeedbackForm() {
 
         <label>
           Se você fosse dar uma nota para o site de 1 a 10, qual seria?
-          <input type="number" name="nota" min="1" max="10" onChange={handleChange} required />
+          <input type="number" name="nota" min="1" max="10" onChange={handleChange}  />
         </label>
 
         <button type="submit">Enviar</button>
