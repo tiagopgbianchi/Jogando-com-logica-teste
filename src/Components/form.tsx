@@ -9,7 +9,6 @@ export default function CustomFeedbackForm() {
     maisGostou: "",
     melhorar: "",
     jogoBugado: "",
-    sugestao: "",
     mensagem: "",
     nota: ""
   });
@@ -21,10 +20,38 @@ export default function CustomFeedbackForm() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Formulário enviado:", formData);
-    // Envio futuro para planilha
-  };
+  e.preventDefault();
+
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbyqWQf6a6VrJ6hBaiHnxelo32iKjTuEYaM7MqFSxz7lhy0PtBYczvMnuSNQZCtlA7xNKA/exec", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const result = await response.json();
+    if (result.status === "success") {
+      alert("Feedback enviado com sucesso!");
+      setFormData({
+        nome: "",
+        idade: "",
+        comoConheceu: "",
+        maisGostou: "",
+        melhorar: "",
+        jogoBugado: "",
+        mensagem: "",
+        nota: ""
+      });
+    } else {
+      alert("Algo deu errado ao enviar o formulário.");
+    }
+  } catch (error) {
+    console.error("Erro ao enviar:", error);
+    alert("Erro de conexão ao enviar o formulário.");
+  }
+};
 
   return (
     <div className="form-wrapper">
