@@ -1,4 +1,5 @@
-import "../CSS/SobreContato.css";
+import "../CSS/Contato.css";
+import Form from "../Components/form";
 function Contato() {
     return <section className="contato">
       <h2>Contato</h2>
@@ -12,18 +13,19 @@ function Contato() {
           @jogandocomlogica
         </a>
       </p>
-
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSc3EG0F9zWgaMV9wXa8MAIVKCvnfZDMSy-cIm7o5-JV9pkt0w/viewform?embedded=true"
-        width="100%"
-        height="800"
-        frameBorder="0"
-        marginHeight={0}
-        marginWidth={0}
-        title="Formulário de Feedback"
-      >
-        Carregando…
-      </iframe>
+      
+      <div className="formBox">
+        {/*<iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSc3EG0F9zWgaMV9wXa8MAIVKCvnfZDMSy-cIm7o5-JV9pkt0w/viewform?embedded=true"
+          width="100%"
+          height="800"
+          loading="lazy"
+          title="Formulário de Feedback"
+        >
+          Carregando…
+        </iframe>*/}
+        <Form />
+      </div>
     </section>
 
 }

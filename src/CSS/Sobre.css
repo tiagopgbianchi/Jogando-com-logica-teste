@@ -5,6 +5,9 @@ section {
   color: #eee;
   margin: 0 auto;
   -webkit-text-stroke: clamp(1px, 0.1vw, 10px) #000000;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
 }
 
 .boxBoxes {
@@ -102,21 +105,7 @@ h2 {
   font-size: clamp(45px, 6vw, 200px);
   text-align: center;
   margin-bottom: 3rem;
-  -webkit-text-stroke: clamp(2px, 0.35vw, 10px) #000000;
+  -webkit-text-stroke: clamp(3px, 0.35vw, 14px) #000000;
 }
 
-.contText {
-  -webkit-text-stroke: 1.25px #000000;
-  margin-bottom: 1.5rem;
-}
 
-strong {
-  font-weight: 400;
-}
-
-.sobre,
-.contato {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1rem;
-}
