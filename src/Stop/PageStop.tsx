@@ -63,9 +63,11 @@ function StopPage() {
   return (
     <div>
       {showNumber && (
-        <div>
+        <div className="divSort">
           <h2 className="sort">O número mágico é</h2>
-          <p className="numero">{displayedNumber}</p>
+          <div className="numeroBox">
+            <span className="numero">{displayedNumber}</span>
+          </div>
         </div>
       )}
 

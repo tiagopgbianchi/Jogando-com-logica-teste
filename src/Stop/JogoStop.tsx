@@ -76,7 +76,7 @@ function StopJogo({ randomNumber }: JogoStopProps) {
     <div className="jogoStop">
       <h2>{count}</h2>
 
-      <div className="numMagico">Seu número mágico é <span className="randomNumber">{randomNumber}</span></div>
+      <div className="numMagico"><span className="randomNumber">{randomNumber}</span></div>
       
       <div className="tabela">
         

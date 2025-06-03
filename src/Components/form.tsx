@@ -65,7 +65,7 @@ export default function CustomFeedbackForm() {
   return (
     <div className="form-wrapper">
       <h2 className="form-title">Formulário de Feedback</h2>
-      <form onSubmit={handleSubmit} className="feedback-form">
+      <form autoComplete="off" onSubmit={handleSubmit} className="feedback-form">
 
         <div className="topRow">
             <label>

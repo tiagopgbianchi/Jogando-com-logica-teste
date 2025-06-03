@@ -1,45 +1,37 @@
-import { useState } from "react";
 import JogarStop from "./ButJogarStop";
-import "./Stop.css";
+import "./Regras.css";
 
 function JogoStop() {
-  const [showRules, setShowRules] = useState(false);
-
-  const toggleRules = () => setShowRules(prev => !prev);
-
   return (
-    <div className="regras">
-      <JogarStop />
-      
-      <h2 className="toggleButton" onClick={toggleRules}>
-        Regras do Stop Matemático {showRules ? "▲" : "▼"}
-      </h2>
+    <div className="regrasPage">
+      {/* Left Side - Rules */}
+      <div className="boxRegras">
+        <h2>Regras do Stop Matemático</h2>
+        <ul  className='regras'>
+          <li>
+            <strong>O número mágico vai aparecer na tela:</strong><br />
+            O número mágico será usado para todas as contas do jogo.
+          </li>
+          <li>
+            <strong>Várias contas vão aparecer:</strong><br />
+            Você vai ver contas como <code>+4</code>, <code>-2</code>, <code>×3</code>, <code>÷2</code>, e deve resolver todas usando o número que apareceu.
+          </li>
+          <li>
+            <strong>Temporizador!</strong><br />
+            Você tem um tempo para responder o máximo que conseguir. Quando o tempo acabar, o jogo termina.
+          </li>
+          <li>
+            <strong>Veja sua pontuação:</strong><br />
+            No final, o jogo mostra quantas você acertou e sua pontuação!
+          </li>
+        </ul>
+      </div>
 
-      {showRules && (
-  <div className="boxRegrasOverlay" onClick={toggleRules}>
-    <div className="boxRegras" onClick={(e) => e.stopPropagation()}>
-      <ul>
-        <li>
-          <strong>O número mágico vai aparecer na tela:</strong><br />
-          O número mágico será usado para todas as contas do jogo.
-        </li>
-        <li>
-          <strong>Várias contas vão aparecer:</strong><br />
-          Você vai ver contas como <code>+4</code>, <code>-2</code>, <code>×3</code>, <code>÷2</code>, e deve resolver todas usando o número que apareceu.<br />
-        </li>
-    
-        <li>
-          <strong>Temporizador! </strong><br />
-          Você tem um tempo para responder o máximo que conseguir. Quando o tempo acabar, o jogo termina.
-        </li>
-        <li>
-          <strong>Veja sua pontuação:</strong><br />
-          No final, o jogo mostra quantas você acertou e sua pontuação!
-        </li>
-      </ul>
-    </div>
-  </div>
-)}
+      {/* Right Side - Game Controls */}
+      <div className="botoes">
+        <JogarStop />
+        <p className="difficultyPlaceholder">[Escolha a dificuldade - em breve]</p>
+      </div>
     </div>
   );
 }

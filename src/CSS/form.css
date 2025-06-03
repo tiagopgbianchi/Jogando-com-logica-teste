@@ -38,7 +38,11 @@
   -webkit-text-stroke: clamp(1.5px, 0.15vw, 10px) #000000;
   color: #fff;
 }
-
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  
+}
 
 .feedback-form input {
   outline: none;
@@ -52,6 +56,15 @@
   height: clamp(36px,4vw,10rem);
   background: radial-gradient(circle, #abd4d8, #89babe);
   -webkit-text-stroke: clamp(1.5px, 0.13vw, 10px) #000000;
+  text-shadow:
+  -0.09vw 0 0 #000,
+   0.09vw 0 0 #000,
+   0 -0.09vw 0 #000,
+   0 0.09vw 0 #000,
+  -0.09vw -0.09vw 0 #000,
+   0.09vw -0.09vw 0 #000,
+  -0.09vw  0.09vw 0 #000,
+   0.09vw  0.09vw 0 #000;
 }
 .feedback-form input:focus{
   border: clamp(3px, 0.3vw, 2000px) solid #051314;
