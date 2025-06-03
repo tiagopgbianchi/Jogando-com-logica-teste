@@ -23,16 +23,25 @@ export default function CustomFeedbackForm() {
   e.preventDefault();
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbyqWQf6a6VrJ6hBaiHnxelo32iKjTuEYaM7MqFSxz7lhy0PtBYczvMnuSNQZCtlA7xNKA/exec", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch("https://script.google.com/macros/s/AKfycbwbWoE0fvFX7YY23nhthasnPdk_HLdDRnFZs6FUZDAcGaXDYyI23_VvMjj71uLfeCmNlg/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+  body: new URLSearchParams({
+    nome: formData.nome,
+    idade: formData.idade,
+    comoConheceu: formData.comoConheceu,
+    maisGostou: formData.maisGostou,
+    melhorar: formData.melhorar,
+    jogoBugado: formData.jogoBugado,
+    mensagem: formData.mensagem,
+    nota: formData.nota
+  }),
+});
 
     const result = await response.json();
-    if (result.status === "success") {
+    if (result.status === true) {
       alert("Feedback enviado com sucesso!");
       setFormData({
         nome: "",
