@@ -1,0 +1,45 @@
+.centralizar {
+  display: flex;
+  flex-direction: column; /* ou row se quiser lado a lado */
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* ocupa a altura total da tela */
+}
+
+.botao-personalizado {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 10px; /* bordas arredondadas */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.botao-personalizado:hover {
+  background-color: #333; /* tom mais claro ao passar o mouse */
+}
+
+.buttonsHome{
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.buttonsHome button {
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: 200;
+  font-style: normal;
+  -webkit-text-stroke: 1.25px #000000;
+  font-size: 45px;
+  color: #eeeeee;
+}
+
+.botao-jogar{
+  
+}
