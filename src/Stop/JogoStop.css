@@ -1,92 +1,97 @@
 .tabela {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 8px;
-  max-width: 1000px;
-  margin: 50px auto;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
   -webkit-text-stroke: 2.3px #000000;
   color: #eeeeee;
+  width:50vw; 
 }
 .jogoStop h2 {
-  
-  top: 60px;
-  right: 200px;
-  position: fixed;
-  font-size: 60px;
+  top: 6dvh;
+  right: 8vw;
+  position: absolute;
+  font-size: 4vw;
   -webkit-text-stroke: 3.5px #640909
 }
-.jogoStop{
+.jogoStop {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; /* Center children vertically */
+  padding: 0 8vw 0 3vw;
   position: relative;
   font-family: "Cherry Bomb One", system-ui;
-    font-weight: 200;
-    font-style: normal;
-    font-size: 25px;
-    color: #eeeeee;
-    margin: 0 200px 0 200px;
-    -webkit-text-stroke: 1.5px #000000;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 25px;
+  color: #eeeeee;
+  -webkit-text-stroke: 1.5px #000000;
 }
 
 .numMagico {
   display: flex;
-  align-items: center;        
+  flex-direction: column;
+  align-items: flex-start;  
   justify-content: center;  
   font-size: 45px;
   font-weight: bold;
-  color: #f8eaea; 
-  padding: 8px;
+  height: 100%;
   text-align: center;
   border-radius: 20px;
   -webkit-text-stroke: 1.5px #330404;
-  margin-top: 70px;
+  width: 39vw;
+  gap: 40px;
 }
 .randomNumber {
   display: flex;
   align-items: center;        
   justify-content: center; 
-  color: #d60202; 
-  font-size: 75px;
+  color: #940909; 
+  font-size: 15vw;
   background: 
     radial-gradient(circle,#d86262,#b83d3d);
-  border: 2.3px solid #eee;
-  border-radius: 20px;
-  padding: 0 20px 10px 20px;
-  height: 100px;
-  margin-left: 30px;
+  border: 8.3px solid #570707;
+  border-radius: 40px;
+  padding: 0 30px 30px 30px;
+  height: 16vw;
+  margin:auto;
+  cursor: pointer;
 }
 
 .pararJogo{
-  border: 4px solid #e4dddd ;
+  border: 6px solid #e4dddd ;
   background: 
     radial-gradient(circle,#d64545,#a71e1e);
-  border-radius: 40px;
+  border-radius: 60px;
   box-sizing: border-box;
   color: #e6e6e6;
-  -webkit-text-stroke: 4px #920c0c;
-  font-size: 50px;
+  -webkit-text-stroke: 6px #7e0b0b;
+  font-size: 75px;
   display: flex;            
   align-items: center;        
   justify-content: center;    
-  width: 190px;
-  height: 100px;
+  width: 285px;
+  height: 150px;
   text-align: center;
   margin: auto;
   margin-top: 80px;
   padding-bottom: 7px;
 }
 .pararJogo:hover {
-    border: 4px solid #bdb6b6 ;
+    border: 6px solid #bdb6b6 ;
     background: 
       radial-gradient(circle,#c53f3f,#991b1b);
     transform: scale(1.03);
-    -webkit-text-stroke: 4px #7e0a0a;
+    -webkit-text-stroke: 6px #7e0a0a;
     color: #c0bebe;
 }
 .cell {
   background: 
       radial-gradient(circle,#771919,#940909);
-  border: 2.5px solid #570707;
+  border: 4.5px solid #570707;
   border-radius: 10px;
-  padding: 7px;
+  padding: 11px;
   text-align: center;
   
 }
@@ -96,22 +101,23 @@
   display: flex;            
   align-items: center;        
   justify-content: center;   
-  border: 4px solid #570707;
+  border: 5.3px solid #570707;
   border-radius: 10px;
   background: 
       radial-gradient(circle,#cf7070,#be4949);
   margin-bottom: 7px;
+  font-size: 30px;
 }
 
 .input-cell { 
-  font-size: 25px;
+  font-size: 30px;
   color: #e9e8e8; 
    background: 
       radial-gradient(circle,#cf7070,#be4949);
-  border: 2.5px solid #570707;
+  border: 4.5px solid #570707;
   border-radius: 10px;
   width: 100%;
-  padding: 4px;
+  padding: 15px 0 15px 5px;
   box-sizing: border-box;
 }
 
@@ -128,3 +134,7 @@
   background-color: #992521;
 }
 
+.tabelaWrap{
+  position: relative;
+  display: inline-block;
+}

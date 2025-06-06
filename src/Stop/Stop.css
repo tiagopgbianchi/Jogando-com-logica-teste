@@ -4,8 +4,8 @@
     font-family: "Cherry Bomb One", system-ui;
     font-weight: 200;
     font-style: normal;
-    font-size: 80px;
-    color: #eeeeee;
+    font-size: 7vw;
+    color: #d88282;
     -webkit-text-stroke: 4px #330404;
     text-align: center;
     
@@ -27,7 +27,7 @@
   align-items: center;
   justify-content: center;
   background: radial-gradient(circle, #d86262, #b83d3d);
-  border: 2.3px solid #eee;
+  border: 0.6vw solid #570707;
   border-radius: 3vw;
   padding: 0 2vw;
   width: fit-content;
@@ -42,7 +42,7 @@
   font-family: "Cherry Bomb One", system-ui;
   font-weight: 200;
   font-style: normal;
-  color: #d60202;
+  color: #940909;
   -webkit-text-stroke: 7px #330404;
   display: block;
 
@@ -54,5 +54,25 @@
 
   /* Extra tweak to fix stubborn font padding */
   transform: translateY(-1.2vw);
+}
+
+.reset-button{
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: 200;
+  font-style: normal;
+  position: absolute;
+  bottom:6dvh;
+  right: 8vw;
+  -webkit-text-stroke: 0.15vw #330404;
+  color: #eee;
+  font-size: 2vw;
+  background: radial-gradient(circle, #d86262, #b83d3d);
+  border-radius: 1vw;
+  border: 0.2vw solid #eee;
+  padding: 0 0.6vw;
+}
+
+.reset-button:hover{
+  transform: scale(1.02);
 }
 

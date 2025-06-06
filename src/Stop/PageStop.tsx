@@ -71,11 +71,15 @@ function StopPage() {
         </div>
       )}
 
-      {showGame && randomNumber !== null && <StopJogo randomNumber={randomNumber} />}
-
-      <button onClick={handleReset} className="reset-button">
-        Reiniciar Jogo
-      </button>
+      {showGame && randomNumber !== null && (
+  <>
+    <StopJogo randomNumber={randomNumber} />
+    <button onClick={handleReset} className="reset-button">
+      Reiniciar
+    </button>
+  </>
+)}
+      
     </div>
   );
 }

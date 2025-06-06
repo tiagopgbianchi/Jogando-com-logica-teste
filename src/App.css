@@ -23,4 +23,14 @@ body {
 }
 .back-button{
     position: absolute;
+    background: none;
+    border: none;
+    z-index: 9999;
+}
+
+.homeButton{
+    height: 90px;
+}
+.homeButton:hover {
+  transform: scale(1.05); 
 }

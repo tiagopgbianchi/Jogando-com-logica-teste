@@ -16,7 +16,9 @@ function BackButton() {
 
   return (
     <Link to="/">
-      <button className="back-button">Voltar para o Início</button>
+      <button className="back-button"> 
+        <img src='public/homeButton.png' className="homeButton"/>
+      </button>
     </Link>
   );
 }

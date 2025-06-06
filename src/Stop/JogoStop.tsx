@@ -76,22 +76,29 @@ function StopJogo({ randomNumber }: JogoStopProps) {
     <div className="jogoStop">
       <h2>{count}</h2>
 
-      <div className="numMagico"><span className="randomNumber">{randomNumber}</span></div>
-      
-      <div className="tabela">
+      <div className="numMagico">
         
-        {caixasData.map((data, i) => (
-          <CaixaStop
-            key={`caixa-${i}`}
-            numero_base={randomNumber}
-            numero={data.numero}
-            conta={data.conta}
-            checar={pararJogo}
-          />
-        ))}
+        <span className="randomNumber">{randomNumber}</span>
+        <button className='pararJogo' onClick={() => setPararJogo(true)}>STOP</button>
       </div>
       
-      <button className='pararJogo' onClick={() => setPararJogo(true)}>STOP</button>
+      <div className="tabelaWrap">
+        
+        <div className="tabela">
+          {caixasData.map((data, i) => (
+            <CaixaStop
+              key={`caixa-${i}`}
+              numero_base={randomNumber}
+              numero={data.numero}
+              conta={data.conta}
+              checar={pararJogo}
+            />
+          ))}
+        </div>
+      </div>
+      
+      
+      
 
       
       
