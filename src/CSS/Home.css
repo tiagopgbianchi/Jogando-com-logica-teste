@@ -1,45 +1,77 @@
-.centralizar {
+.homePage {
   display: flex;
-  flex-direction: column; /* ou row se quiser lado a lado */
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh; /* ocupa a altura total da tela */
+  gap: 10dvh;
+  
 }
 
-.botao-personalizado {
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 10px; /* bordas arredondadas */
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 10px;
-  transition: background-color 0.3s ease;
-}
 
-.botao-personalizado:hover {
-  background-color: #333; /* tom mais claro ao passar o mouse */
-}
-
-.buttonsHome{
-  margin-top: 80px;
+.buttonsHome {
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: 200;
+  font-style: normal;
+  margin-top: 0px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
+  gap: 8dvh;
 }
 
-.buttonsHome button {
-  font-family: "Cherry Bomb One", system-ui;
-  font-weight: 200;
-  font-style: normal;
-  -webkit-text-stroke: 1.25px #000000;
-  font-size: 45px;
-  color: #eeeeee;
+.buttonJogar {
+  color: #ddd;
+  font-size: 14dvh;
+  border: 0.8dvh solid #000;
+  border-radius: 10dvh;
+  background: radial-gradient(circle, #207994, #054255);
+  -webkit-text-stroke: 0.8dvh #000000;
+  padding: 0 4dvh 3dvh 4dvh;
+  line-height: 1;
 }
 
-.botao-jogar{
-  
+.buttonSobre {
+  color: #ddd;
+  font-size: 10dvh;
+  border: 0.8dvh solid #000;
+  border-radius: 10dvh;
+  background: radial-gradient(circle, #207994, #054255);
+  -webkit-text-stroke: 0.6dvh #000000;
+  padding: 0 4dvh 2dvh 4dvh;
+  line-height: 1;
+}
+
+.buttonContato {
+  color: #ddd;
+  font-size: 10dvh;
+  border: 0.8dvh solid #000;
+  border-radius: 10dvh;
+  background: radial-gradient(circle, #207994, #054255);
+  -webkit-text-stroke: 0.6dvh #000000;
+  padding: 0 4dvh 2dvh 4dvh;
+  line-height: 1;
+}
+
+.buttonJogar:hover {
+  transform: scale(1.04);
+}
+
+.buttonSobre:hover {
+  transform: scale(1.02);
+}
+
+.buttonContato:hover {
+  transform: scale(1.02);
+}
+
+.logoTexto {
+  width: 130dvh;
+}
+
+.logo {
+  object-fit: contain;
+  margin-top: 6dvh;
+  display: flex;
+  justify-content: center;
+  margin-right: 4.4dvh;
 }

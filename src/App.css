@@ -1,36 +1,26 @@
 body {
-    background: linear-gradient(to right, #226e8f, #52b8e4);
+  background: linear-gradient(to right, #226e8f, #52b8e4);
+  
 }
 
 .body {
-    background: #3f9bc9;
+  background: #3f9bc9;
 }
-
 
 .my-element {
-    background-color: #000000
+  background-color: #000000;
 }
 
-.logoTexto{
-    width: 800px;
+.back-button {
+  position: absolute;
+  background: none;
+  border: none;
+  z-index: 9999;
 }
 
-.logo {
-    margin-top: 70px;
-    display: flex;
-    justify-content: center;
-    margin-left: -30px;
-}
-.back-button{
-    position: absolute;
-    background: none;
-    border: none;
-    z-index: 9999;
-}
-
-.homeButton{
-    height: 90px;
+.homeButton {
+  height: 90px;
 }
 .homeButton:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }

@@ -1,4 +1,4 @@
-.jogosPg{
+.jogosPg {
   font-family: "Cherry Bomb One", system-ui;
   font-weight: 200;
   font-style: normal;
@@ -7,15 +7,15 @@
   margin: 0 200px 0 200px;
   -webkit-text-stroke: 1.25px #000000;
 }
-h2{
-    color: #eeeeee;
-    font-size: 80px;
-    text-align: center;
-    margin-bottom: 100px;
-    -webkit-text-stroke: 4px #000000;
-}   
+h2 {
+  color: #eeeeee;
+  font-size: 80px;
+  text-align: center;
+  margin-bottom: 100px;
+  -webkit-text-stroke: 4px #000000;
+}
 .game-button {
-  all: unset; 
+  all: unset;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,12 +25,12 @@ h2{
 }
 
 .game-button:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }
 
 .game-icon {
-  width: 13vw; 
-  
+  width: 13vw;
+
   object-fit: contain;
 }
 

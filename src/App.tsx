@@ -16,8 +16,8 @@ function BackButton() {
 
   return (
     <Link to="/">
-      <button className="back-button"> 
-        <img src='public/homeButton.png' className="homeButton"/>
+      <button className="back-button">
+        <img src="public/homeButton.png" className="homeButton" />
       </button>
     </Link>
   );
