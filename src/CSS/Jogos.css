@@ -4,8 +4,11 @@
   font-style: normal;
   font-size: 25px;
   color: #eeeeee;
-  margin: 0 200px 0 200px;
+  padding: 0 200px 0 200px;
   -webkit-text-stroke: 1.25px #000000;
+  border: 1.5dvh solid #740911;
+  min-height: 100dvh;
+  width:100vw;
 }
 h2 {
   color: #eeeeee;

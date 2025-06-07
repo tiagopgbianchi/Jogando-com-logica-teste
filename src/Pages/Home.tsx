@@ -27,17 +27,19 @@ function Home() {
           {" "}
           Jogar
         </button>
-        <button className="buttonSobre" onClick={() => mudar_pagina("sobre")}>
-          {" "}
-          Sobre
-        </button>
-        <button
-          className="buttonContato"
-          onClick={() => mudar_pagina("contato")}
-        >
-          {" "}
-          Contato
-        </button>
+        <div className="buttonRow">
+          <button className="buttonSobre" onClick={() => mudar_pagina("sobre")}>
+            {" "}
+            Sobre
+          </button>
+          <button
+            className="buttonContato"
+            onClick={() => mudar_pagina("contato")}
+          >
+            {" "}
+            Contato
+          </button>
+        </div>
       </div>
     </div>
   );

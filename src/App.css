@@ -1,14 +1,15 @@
 body {
-  background: linear-gradient(to right, #226e8f, #52b8e4);
+  background: radial-gradient(circle, #46a2ca, #226e8f);
+  min-height: 100dvh;
+  box-sizing: border-box;
+}
+@media (orientation: portrait) {
+  body {
+  
+  border: 1.5dvw solid #9b0b16;
+  min-height: 100dvh;
   
 }
-
-.body {
-  background: #3f9bc9;
-}
-
-.my-element {
-  background-color: #000000;
 }
 
 .back-button {

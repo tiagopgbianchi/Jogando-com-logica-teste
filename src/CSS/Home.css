@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10dvh;
-  
+  gap: 12dvh;
+  border: 1.5dvh solid #740911;
+  min-height: 100dvh;
 }
-
 
 .buttonsHome {
   font-family: "Cherry Bomb One", system-ui;
@@ -16,17 +16,17 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  gap: 8dvh;
+  gap: 13dvh;
 }
 
 .buttonJogar {
   color: #ddd;
-  font-size: 14dvh;
-  border: 0.8dvh solid #000;
-  border-radius: 10dvh;
-  background: radial-gradient(circle, #207994, #054255);
-  -webkit-text-stroke: 0.8dvh #000000;
-  padding: 0 4dvh 3dvh 4dvh;
+  font-size: 15dvh;
+  border: 1dvh solid #000;
+  border-radius: 12.5dvh;
+  background: radial-gradient(circle, #b82a1d, #691008);
+  -webkit-text-stroke: 0.9dvh #000000;
+  padding: 0 5dvh 3.75dvh 5dvh;
   line-height: 1;
 }
 
@@ -52,6 +52,14 @@
   line-height: 1;
 }
 
+.buttonRow {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 10dvh;
+}
+
 .buttonJogar:hover {
   transform: scale(1.04);
 }
@@ -65,13 +73,63 @@
 }
 
 .logoTexto {
-  width: 130dvh;
+  width: 145dvh;
 }
 
 .logo {
   object-fit: contain;
-  margin-top: 6dvh;
+  margin-top: 4dvh;
   display: flex;
   justify-content: center;
   margin-right: 4.4dvh;
+}
+@media (orientation: portrait) {
+  .homePage {
+    gap: 25dvw;
+  }
+
+  .buttonsHome {
+    gap: 22dvw;
+  }
+
+  .buttonJogar {
+    font-size: 17.5dvw;
+    border: 1dvw solid #000;
+    border-radius: 12.5dvw;
+
+    -webkit-text-stroke: 1dvw #000000;
+    padding: 0 5dvw 3.75dvw 5dvw;
+  }
+
+  .buttonSobre {
+    font-size: 12.5dvw;
+    border: 1dvw solid #000;
+    border-radius: 12.5dvw;
+
+    -webkit-text-stroke: 0.77dvw #000000;
+    padding: 0 5dvw 2.5dvw 5dvw;
+  }
+
+  .buttonContato {
+    font-size: 12.5dvw;
+    border: 1dvw solid #000;
+    border-radius: 12.5dvw;
+
+    -webkit-text-stroke: 0.77dvw #000000;
+    padding: 0 5dvw 2.5dvw 5dvw;
+  }
+
+  .buttonRow {
+    flex-direction: column;
+    gap: 13dvw;
+  }
+
+  .logoTexto {
+    width: 84dvw;
+  }
+
+  .logo {
+    margin-top: 15dvw;
+    margin-right: 0;
+  }
 }
