@@ -9,14 +9,18 @@ function Home() {
   };
   return (
     <div className="homePage">
+      <div className="imagens">
+        <img src="public/imagemXadrez.png" className="imagemXadrez" />
+        <img src="public/imagemCubo.png" className="imagemCubo" />
+      </div>
       <div className="logo">
         <picture>
           <source
             srcSet="public/logoEscritaVertical.png"
-            media="(max-width: 668px)"
+            media="(orientation: portrait)"
           />
           <img
-            src="public/logoEscritaHorizontal.png"
+            src="public/logoEscritaHorizontal5.png"
             className="logoTexto"
             alt="Logo"
           />

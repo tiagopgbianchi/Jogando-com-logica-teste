@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12dvh;
-  border: 1.5dvh solid #740911;
+  gap: 4dvh;
+  border: 1dvh solid #4e1013;
   min-height: 100dvh;
+  border-radius: 2px;
 }
 
 .buttonsHome {
@@ -16,38 +17,40 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  gap: 13dvh;
+  gap: 20dvh;
+  z-index: 1;
 }
 
 .buttonJogar {
   color: #ddd;
-  font-size: 15dvh;
-  border: 1dvh solid #000;
-  border-radius: 12.5dvh;
+  font-size: min(9vw, 16.5dvh);
+  border: 1.1dvh solid #000;
+  border-radius: 13dvh;
   background: radial-gradient(circle, #b82a1d, #691008);
-  -webkit-text-stroke: 0.9dvh #000000;
-  padding: 0 5dvh 3.75dvh 5dvh;
+  -webkit-text-stroke: 1dvh #000000;
+  padding: 0 min(2.7vw, 5.5dvh) 4.2dvh min(2.7vw, 5.5dvh);
   line-height: 1;
+  box-shadow: 0px 20px 46px rgba(0, 0, 0, 0.6);
 }
 
 .buttonSobre {
   color: #ddd;
-  font-size: 10dvh;
-  border: 0.8dvh solid #000;
+  font-size: 8dvh;
+  border: 0.7dvh solid #000;
   border-radius: 10dvh;
-  background: radial-gradient(circle, #207994, #054255);
-  -webkit-text-stroke: 0.6dvh #000000;
+  background: radial-gradient(circle, #207994aa, #054255aa);
+  -webkit-text-stroke: 0.5dvh #000000;
   padding: 0 4dvh 2dvh 4dvh;
   line-height: 1;
 }
 
 .buttonContato {
   color: #ddd;
-  font-size: 10dvh;
-  border: 0.8dvh solid #000;
+  font-size: 8dvh;
+  border: 0.7dvh solid #000;
   border-radius: 10dvh;
-  background: radial-gradient(circle, #207994, #054255);
-  -webkit-text-stroke: 0.6dvh #000000;
+  background: radial-gradient(circle, #207994aa, #054255aa);
+  -webkit-text-stroke: 0.5dvh #000000;
   padding: 0 4dvh 2dvh 4dvh;
   line-height: 1;
 }
@@ -61,7 +64,7 @@
 }
 
 .buttonJogar:hover {
-  transform: scale(1.04);
+  transform: scale(1.07);
 }
 
 .buttonSobre:hover {
@@ -73,7 +76,8 @@
 }
 
 .logoTexto {
-  width: 145dvh;
+  width: clamp(0px, 125dvh, 66vw);
+  transform: scale(1.5);
 }
 
 .logo {
@@ -81,28 +85,52 @@
   margin-top: 4dvh;
   display: flex;
   justify-content: center;
-  margin-right: 4.4dvh;
+  margin-right: 0dvh;
+}
+.imagens {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  min-height: 99dvh;
+  gap: 38vw;
+  padding-top: 8dvh;
+  padding-right: 2dvh;
+}
+
+.imagemCubo {
+  margin-top: 7dvh;
+  height: 25vw;
+}
+
+.imagemXadrez {
+  width: 28vw;
+}
+.imagemXadrez:hover,
+.imagemCubo:hover {
+  transform: scale(1.02);
 }
 @media (orientation: portrait) {
   .homePage {
-    gap: 25dvw;
+    border: 1.3dvw solid #4e1013;
+    gap: 12dvh;
   }
 
   .buttonsHome {
-    gap: 22dvw;
+    gap: 10dvh;
   }
 
   .buttonJogar {
-    font-size: 17.5dvw;
+    font-size: min(18vw, 10dvh);
     border: 1dvw solid #000;
     border-radius: 12.5dvw;
-
     -webkit-text-stroke: 1dvw #000000;
     padding: 0 5dvw 3.75dvw 5dvw;
   }
 
   .buttonSobre {
-    font-size: 12.5dvw;
+    font-size: 10.5dvw;
     border: 1dvw solid #000;
     border-radius: 12.5dvw;
 
@@ -111,7 +139,7 @@
   }
 
   .buttonContato {
-    font-size: 12.5dvw;
+    font-size: 10.5dvw;
     border: 1dvw solid #000;
     border-radius: 12.5dvw;
 
@@ -121,15 +149,35 @@
 
   .buttonRow {
     flex-direction: column;
-    gap: 13dvw;
+    gap: 7dvw;
   }
 
   .logoTexto {
-    width: 84dvw;
+    width: min(38dvh,80vw);
+    transform: scale(1);
   }
 
   .logo {
-    margin-top: 15dvw;
+    margin-top: 7dvh;
     margin-right: 0;
+  }
+  .imagens {
+    min-height: 99dvh;
+    gap: 20vw;
+    padding-top: 0dvh;
+    padding-right: 0dvh;
+  }
+  .imagemCubo {
+    margin: 0;
+    width: 27vw;
+  }
+
+  .imagemXadrez {
+    width: 30vw;
+    margin: 0;
+  }
+  .imagemXadrez:hover,
+  .imagemCubo:hover {
+    transform: scale(1.02);
   }
 }

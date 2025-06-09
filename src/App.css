@@ -1,14 +1,12 @@
 body {
-  background: radial-gradient(circle, #46a2ca, #226e8f);
+  background: radial-gradient(circle, #55b5df, #0e668b);
   min-height: 100dvh;
   box-sizing: border-box;
 }
 @media (orientation: portrait) {
   body {
-  
-  border: 1.5dvw solid #9b0b16;
-  min-height: 100dvh;
-  
+      background: radial-gradient(circle, #47a5ce, #2080a8);
+
 }
 }
 
