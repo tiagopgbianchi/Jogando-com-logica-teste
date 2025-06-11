@@ -15,9 +15,7 @@ function GameButton({ pagina, label, imageSrc }: GameButtonProps) {
 
   return (
     <button onClick={entrarJogo} className="game-button">
-      {imageSrc && (
-        <img src={imageSrc}  className="game-icon" />
-      )}
+      {imageSrc && <img src={imageSrc} className="game-icon" />}
       <span className="game-label">{label}</span>
     </button>
   );
