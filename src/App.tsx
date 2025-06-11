@@ -18,7 +18,7 @@ function BackButton() {
   return (
     <Link to="/">
       <button className="back-button">
-        <img src="public/homeButton.png" className="homeButton" />
+        <img src={`${import.meta.env.BASE_URL}homeButton.png`} className="homeButton" />
       </button>
     </Link>
   );

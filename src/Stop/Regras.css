@@ -3,93 +3,95 @@
   font-weight: 200;
   font-style: normal;
   display: flex;
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden; /* avoids double scrollbars */
+  border: 1dvh solid #9b0b16; /* 1px remains 1dvh as it was already 1dvh */
 }
 
 .boxRegras {
   width: 55%;
-  background-color: #6d0912b0;
-  border-right: 10px solid #9b0b16;
-  padding: 2rem;
+  background-color: #6d0912a0;
+  border-right: 1.42857dvh solid #9b0b16; /* 10px -> 1.42857dvh */
+  padding: 2rem; /* 2rem untouched, as it's not px */
   box-sizing: border-box;
   min-height: 100vh;
 }
 
 .regras {
-  font-size: 25px;
+  font-size: 3.57143dvh; /* 25px -> 3.57143dvh */
   color: #eeeeee;
   margin: 0;
-  -webkit-text-stroke: 1.5px #000000;
+  -webkit-text-stroke: 0.21429dvh #000000; /* 1.5px -> 0.21429dvh */
 }
 
 .botoes {
   width: 45%;
-  padding: 2rem;
+  padding: 2rem; /* 2rem untouched */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh; /* ensures it fills the full height */
-  overflow: hidden;  /* prevents its own scrollbar */
+  overflow: hidden; /* prevents its own scrollbar */
 }
 
 .regras strong {
-    font-size: 30px;
-    -webkit-text-stroke: 2.2px #2e0306;
+  font-size: 4.28571dvh; /* 30px -> 4.28571dvh */
+  -webkit-text-stroke: 0.31429dvh #2e0306; /* 2.2px -> 0.31429dvh */
 }
 
-.regras li{
-    margin-bottom: 30px;
+.regras li {
+  margin-bottom: 4.28571dvh; /* 30px -> 4.28571dvh */
 }
+
 .boxRegras h2 {
-    font-size: 50px ;
-    -webkit-text-stroke: 3px #9b0b16;
-    margin-bottom: 27px;
-    cursor: pointer;
-}
-.regras h2:hover{
-    color: #d1d0d0;
-    -webkit-text-stroke: 3px #800a14;
-    transform: scale(1.03);
+  font-size: 7.14286dvh; /* 50px -> 7.14286dvh */
+  -webkit-text-stroke: 0.42857dvh #9b0b16; /* 3px -> 0.42857dvh */
+  margin-bottom: 3.85714dvh; /* 27px -> 3.85714dvh */
+  cursor: pointer;
 }
 
-code{
-    font-family: "Cherry Bomb One", system-ui;
-    font-weight: 200;
-    font-style: normal;
-    color: #bd0d1c;
-    -webkit-text-stroke: 0.4px #fff;
-    font-size: 30px;
+.regras h2:hover {
+  color: #d1d0d0;
+  -webkit-text-stroke: 0.42857dvh #800a14; /* 3px -> 0.42857dvh */
+  transform: scale(1.03);
+}
+
+code {
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: 200;
+  font-style: normal;
+  color: #bd0d1c;
+  -webkit-text-stroke: 0.05714dvh #fff; /* 0.4px -> 0.05714dvh */
+  font-size: 4.28571dvh; /* 30px -> 4.28571dvh */
 }
 
 .button {
-  border: 10px solid #4b0606 ;
-  background: 
-    radial-gradient(circle,#e21e1ea0,#751111a0);
-  border-radius: 120px;
-  padding: 0 20px;
+  border: 1.21428dvh solid #4b0606;
+  background: radial-gradient(circle, #e21e1ea0, #751111a0);
+  border-radius: 14.57198dvh;
+  padding: 0 2.42857dvh;
   box-sizing: border-box;
   color: #e9c3c3;
-  -webkit-text-stroke: 6.5px #4b0606;
-  font-size: 160px;
-  display: flex;            
-  align-items: center;        
-  justify-content: center;    
+  -webkit-text-stroke: 0.78923dvh #4b0606;
+  font-size: 19.4285dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
-  width: 550px;
-  height: 230px;
+  width: 66.78572dvh;
+  height: 27.92049dvh;
   text-align: center;
-  padding-bottom: 35px;
-  margin-top: 0px;
-  margin-bottom: 00px;
+  padding-bottom: 4.25dvh;
+  margin-top: 0dvh;
+  margin-bottom: 0dvh;
 }
+
 .button:hover {
-    border: 10px solid #300404 ;
-    background: 
-     radial-gradient(circle,#be1a1aa0,#570c0ca0);
-    transform: scale(1.03);
-    -webkit-text-stroke: 6.5px #300404;
-    color: #caa8a8;
+  border: 1.42857dvh solid #300404; /* 10px -> 1.42857dvh */
+  background: radial-gradient(circle, #be1a1aa0, #570c0ca0);
+  transform: scale(1.03);
+  -webkit-text-stroke: 0.92857dvh #300404; /* 6.5px -> 0.92857dvh */
+  color: #caa8a8;
 }

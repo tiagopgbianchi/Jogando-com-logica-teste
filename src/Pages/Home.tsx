@@ -2,6 +2,7 @@
 import "../CSS/Home.css";
 import { useNavigate } from "react-router-dom";
 
+
 function Home() {
   const navigate = useNavigate();
   const mudar_pagina = (pagina: string) => {
@@ -10,17 +11,17 @@ function Home() {
   return (
     <div className="homePage">
       <div className="imagens">
-        <img src="public/imagemXadrez.png" className="imagemXadrez" />
-        <img src="public/imagemCubo.png" className="imagemCubo" />
+        <img src={`${import.meta.env.BASE_URL}imagemXadrez.png`} className="imagemXadrez" />
+        <img src={`${import.meta.env.BASE_URL}imagemCubo.png`} className="imagemCubo" />
       </div>
       <div className="logo">
         <picture>
           <source
-            srcSet="public/logoEscritaVertical.png"
+            srcSet={`${import.meta.env.BASE_URL}logoEscritaVertical.png`}
             media="(orientation: portrait)"
           />
           <img
-            src="public/logoEscritaHorizontal5.png"
+            src={`${import.meta.env.BASE_URL}logoEscritaHorizontal5.png`}
             className="logoTexto"
             alt="Logo"
           />

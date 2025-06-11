@@ -6,7 +6,7 @@ function JogoStop() {
     <div className="regrasPage">
       {/* Left Side - Rules */}
       <div className="boxRegras">
-        <h2>Regras do Stop Matemático</h2>
+        <h2>Como Jogar Stop Matemático</h2>
         <ul  className='regras'>
           <li>
             <strong>O número mágico vai aparecer na tela:</strong><br />
