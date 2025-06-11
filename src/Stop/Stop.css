@@ -1,39 +1,71 @@
-
+.sortPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0dvh solid #5e1317;
+  box-shadow: inset 0 0 4vw #5e1317e0;
+  min-height: 100dvh;
+  width: 100vw;
+  border-radius: 2px;
+}
 
 .sort {
-    font-family: "Cherry Bomb One", system-ui;
-    font-weight: 200;
-    font-style: normal;
-    font-size: 7vw;
-    color: #d88282;
-    -webkit-text-stroke: 4px #330404;
-    text-align: center;
-    
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 7vw;
+  color: #df9999;
+  -webkit-text-stroke: 6px #6d070c;
+}
+.innerBorder{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 0.4dvh solid #330404;
+  padding: 0dvh; 
+  border-radius: 7dvh;
+  box-sizing: border-box;
+  z-index: 1;
+  padding: 3vw 4vw;
+}
+.outerBorder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 0.4dvh solid #330404; /* Outer border */
+  padding: 0dvh; /* Space for the inner border to be visible */
+  border-radius: 10.5dvh;
+  box-sizing: border-box;
+  z-index: 1;
 }
 .divSort {
-  padding-top: 7vw;
+  outline: 1dvh solid black;   /* Outer border */
+  outline-offset: 2dvh;  
   display: flex;
-  flex-direction: column;          
-  align-items: center;            
-  justify-content: center;         
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   gap: 3vw;
-  height: 85vh;
+  border: 3dvh solid #7e070d;
+  border-radius: 10dvh;
+  background: radial-gradient(circle, #a7192080, #6d040a80);
+  box-shadow: 0 0 3vw #310305;
+  outline: 100px #a1a1a1;
+  z-index: -1;
 }
-
 
 .numeroBox {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle, #d86262, #b83d3d);
+  background: radial-gradient(circle, #df9999, #b15d5d);
   border: 0.6vw solid #570707;
   border-radius: 3vw;
   padding: 0 2vw;
   width: fit-content;
   height: fit-content;
-
-  /* Makes the box only as tall as needed, tightly wrapping content */
   line-height: 1;
 }
 
@@ -45,23 +77,18 @@
   color: #940909;
   -webkit-text-stroke: 7px #330404;
   display: block;
-
-  /* Critical to remove top whitespace */
   line-height: 1;
-  
   padding: 0;
   margin: 0;
-
-  /* Extra tweak to fix stubborn font padding */
   transform: translateY(-1.2vw);
 }
 
-.reset-button{
+.reset-button {
   font-family: "Cherry Bomb One", system-ui;
   font-weight: 200;
   font-style: normal;
   position: absolute;
-  bottom:6dvh;
+  bottom: 6dvh;
   right: 8vw;
   -webkit-text-stroke: 0.15vw #330404;
   color: #eee;
@@ -72,7 +99,6 @@
   padding: 0 0.6vw;
 }
 
-.reset-button:hover{
+.reset-button:hover {
   transform: scale(1.02);
 }
-

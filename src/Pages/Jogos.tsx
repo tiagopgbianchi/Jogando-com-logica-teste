@@ -16,6 +16,16 @@ function Jogos() {
           label="Jogo de Damas"
           imageSrc={`${import.meta.env.BASE_URL}imagem_damas.png`}
         />
+        <GameButton
+          pagina="jogoStop"
+          label="Stop Matemático"
+          imageSrc={`${import.meta.env.BASE_URL}iconStop.png`}
+        />
+        <GameButton
+          pagina="jogoStop"
+          label="Stop Matemático"
+          imageSrc={`${import.meta.env.BASE_URL}iconStop.png`}
+        />
       </div>
     </div>
   );

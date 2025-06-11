@@ -4,17 +4,19 @@
   font-style: normal;
   font-size: 25px;
   color: #eeeeee;
-  padding: 0 200px 0 200px;
+  padding: 0;
   -webkit-text-stroke: 1.25px #000000;
-  border: 1dvh solid #4e1013;
+  border: 1dvh solid #5e1317;
+  box-shadow: inset 00px 00px 4vw #5e1317e0;
   min-height: 100dvh;
   width: 100vw;
 }
 
 .grade_jogos {
+  padding: 0 15vw;
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-  gap: 20px;
+  gap: 5vw;
 }
 h2 {
   color: #eeeeee;
@@ -39,7 +41,6 @@ h2 {
 
 .game-icon {
   width: 13vw;
-
   object-fit: contain;
 }
 

@@ -14,7 +14,9 @@ function StopPage() {
   const [resetTrigger, setResetTrigger] = useState(0); // Triggers re-run
 
   // Use browser-safe types
-  const animationIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const animationIntervalRef = useRef<ReturnType<typeof setInterval> | null>(
+    null
+  );
   const stopTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const gameTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -33,7 +35,8 @@ function StopPage() {
 
     // Stop animation and fix number
     stopTimeoutRef.current = setTimeout(() => {
-      if (animationIntervalRef.current) clearInterval(animationIntervalRef.current);
+      if (animationIntervalRef.current)
+        clearInterval(animationIntervalRef.current);
       const finalNum = NumGenerator();
       setDisplayedNumber(finalNum);
       setRandomNumber(finalNum);
@@ -50,7 +53,8 @@ function StopPage() {
     startGame();
 
     return () => {
-      if (animationIntervalRef.current) clearInterval(animationIntervalRef.current);
+      if (animationIntervalRef.current)
+        clearInterval(animationIntervalRef.current);
       if (stopTimeoutRef.current) clearTimeout(stopTimeoutRef.current);
       if (gameTimeoutRef.current) clearTimeout(gameTimeoutRef.current);
     };
@@ -63,23 +67,28 @@ function StopPage() {
   return (
     <div>
       {showNumber && (
-        <div className="divSort">
-          <h2 className="sort">O número mágico é</h2>
-          <div className="numeroBox">
-            <span className="numero">{displayedNumber}</span>
+        <div className="sortPage">
+          <div className="outerBorder">
+            <div className="divSort">
+              <div className="innerBorder">
+                <h2 className="sort">O número mágico é</h2>
+                <div className="numeroBox">
+                  <span className="numero">{displayedNumber}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
 
       {showGame && randomNumber !== null && (
-  <>
-    <StopJogo randomNumber={randomNumber} />
-    <button onClick={handleReset} className="reset-button">
-      Reiniciar
-    </button>
-  </>
-)}
-      
+        <>
+          <StopJogo randomNumber={randomNumber} />
+          <button onClick={handleReset} className="reset-button">
+            Reiniciar
+          </button>
+        </>
+      )}
     </div>
   );
 }
