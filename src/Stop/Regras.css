@@ -68,13 +68,13 @@ code {
 }
 
 .button {
-  border: 1.21428dvh solid #4b0606;
+  border: 1.41428dvh solid #4b0606;
   background: radial-gradient(circle, #e21e1ea0, #751111a0);
   border-radius: 14.57198dvh;
   padding: 0 2.42857dvh;
   box-sizing: border-box;
   color: #e9c3c3;
-  -webkit-text-stroke: 0.78923dvh #4b0606;
+  -webkit-text-stroke: 0.88923dvh #4b0606;
   font-size: 19.4285dvh;
   display: flex;
   align-items: center;

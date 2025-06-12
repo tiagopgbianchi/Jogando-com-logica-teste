@@ -2,11 +2,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0dvh solid #5e1317;
-  box-shadow: inset 0 0 4vw #5e1317e0;
-  min-height: 100dvh;
+  border: 0vw solid #5e1317;
+  box-shadow: inset 0 0 2vw #5e1317e0;
+  min-height: 100dvh; /* 700px = 51.24vw */
   width: 100vw;
-  border-radius: 2px;
+  border-radius: 0.15vw;
+}
+
+.bordaSort {
+  background: radial-gradient(circle, #a30c0c, #740505);
+  border: 0.5vw solid #080303;
+  border-radius: 6vw;
+  padding: 2.2vw; /* 30px */
+  text-align: center;
+  width: fit-content;
+  box-sizing: border-box;
+  box-shadow: 0 0 2vw #000;
+}
+
+.divSort {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2vw;
+  border: 0.5vw solid #080303;
+  border-radius: 5.3vw; /* 100dvh ≈ 700px → 51.24vw, so 10dvh ≈ 7.3vw */
+  background: radial-gradient(circle, #af8f8fc0, #855a5dc0);
+  padding: 1.5vw 3.5vw 2.2vw 3.5vw; /* converted paddings */
 }
 
 .sort {
@@ -14,74 +37,37 @@
   font-weight: 200;
   font-style: normal;
   font-size: 7vw;
-  color: #df9999;
-  -webkit-text-stroke: 6px #6d070c;
-}
-.innerBorder{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border: 0.4dvh solid #330404;
-  padding: 0dvh; 
-  border-radius: 7dvh;
-  box-sizing: border-box;
-  z-index: 1;
-  padding: 3vw 4vw;
-}
-.outerBorder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border: 0.4dvh solid #330404; /* Outer border */
-  padding: 0dvh; /* Space for the inner border to be visible */
-  border-radius: 10.5dvh;
-  box-sizing: border-box;
-  z-index: 1;
-}
-.divSort {
-  outline: 1dvh solid black;   /* Outer border */
-  outline-offset: 2dvh;  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 3vw;
-  border: 3dvh solid #7e070d;
-  border-radius: 10dvh;
-  background: radial-gradient(circle, #a7192080, #6d040a80);
-  box-shadow: 0 0 3vw #310305;
-  outline: 100px #a1a1a1;
-  z-index: -1;
+  color: #e2a01d;
+  -webkit-text-stroke: 0.44vw #000000; /* 6px */
 }
 
 .numeroBox {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle, #df9999, #b15d5d);
-  border: 0.6vw solid #570707;
+  background: radial-gradient(circle, #a52323e0, #7c0707e0);
+  border: 0.7vw solid #000000;
   border-radius: 3vw;
-  padding: 0 2vw;
+  padding: 0.7vw 2.7vw;
   width: fit-content;
   height: fit-content;
   line-height: 1;
 }
 
 .numero {
-  font-size: clamp(10px, 14vw, 2000px);
+  font-size: clamp(0.73vw, 14vw, 146.5vw); /* clamping based on px → vw */
   font-family: "Cherry Bomb One", system-ui;
   font-weight: 200;
   font-style: normal;
-  color: #940909;
-  -webkit-text-stroke: 7px #330404;
+  color: #e2a01d;
+  -webkit-text-stroke: 0.51vw #000000; /* 7px */
   display: block;
   line-height: 1;
   padding: 0;
   margin: 0;
-  transform: translateY(-1.2vw);
+  transform: translateY(-0.88vw); /* 1.2vw */
 }
+
 
 .reset-button {
   font-family: "Cherry Bomb One", system-ui;

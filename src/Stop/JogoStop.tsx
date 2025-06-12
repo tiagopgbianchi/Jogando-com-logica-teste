@@ -2,29 +2,20 @@ import { useState, useEffect } from "react";
 import "./Stop.css";
 import "./JogoStop.css";
 import CaixaStop from "./CaixaStop";
+import { difficulties } from "./Difficulties";
 
 type JogoStopProps = {
   randomNumber: number;
+  difficulty: "d1" | "d2" | "d3";
 };
 
-
-function StopJogo({ randomNumber }: JogoStopProps) {
-  const possibleNumbersByBox = [
-    [5, 6, 7, 8, 9, 10],
-    [4, 5, 6, 7, 8, 9],
-    [10, 100],
-    [2],
-    [1, 2, 3, 4],
-    [2, 3, 5],
-    [20, 30, 40],
-    [0, 1, 10],
-    [0, 1, 2, 3],
-    [15, 16, 17, 18, 19, 20, 21, 22, 23],
-  ];
-
-  const contasPorBox = ["+", "-", "+", "x", "+", "÷", "+", "x", "-", "+"];
-
-  function getValidNumber(randomNumber: number, conta: string, options: number[]): number {
+function StopJogo({ randomNumber, difficulty}: JogoStopProps) {
+  
+  function getValidNumber(
+    randomNumber: number,
+    conta: string,
+    options: number[]
+  ): number {
     let validOptions = options;
 
     if (conta === "÷") {
@@ -37,10 +28,8 @@ function StopJogo({ randomNumber }: JogoStopProps) {
     const index = Math.floor(Math.random() * validOptions.length);
     return validOptions[index];
   }
-
-
-
-
+  const { possibleNumbersByBox, contasPorBox } = difficulties[difficulty as "d1" | "d2" | "d3"];
+  const [acertos, setAcertos] = useState(0);
   const [caixasData, setCaixasData] = useState<
     { numero: number; conta: string; checar: boolean }[]
   >([]);
@@ -74,16 +63,23 @@ function StopJogo({ randomNumber }: JogoStopProps) {
 
   return (
     <div className="jogoStop">
-      <h2>{count}</h2>
+      {!pararJogo && <h2>{count}</h2>}
 
       <div className="numMagico">
-        
         <span className="randomNumber">{randomNumber}</span>
-        <button className='pararJogo' onClick={() => setPararJogo(true)}>STOP</button>
+        {!pararJogo ? (
+          <button className="pararJogo" onClick={() => setPararJogo(true)}>
+            STOP
+          </button>
+        ) : (
+          <div className="finalResultado">
+            ⏱ Tempo final: {count} segundos
+            <br />✅ Acertos: {acertos}
+          </div>
+        )}
       </div>
-      
+
       <div className="tabelaWrap">
-        
         <div className="tabela">
           {caixasData.map((data, i) => (
             <CaixaStop
@@ -92,17 +88,13 @@ function StopJogo({ randomNumber }: JogoStopProps) {
               numero={data.numero}
               conta={data.conta}
               checar={pararJogo}
+              registrarAcerto={() => setAcertos((prev) => prev + 1)}
             />
           ))}
         </div>
       </div>
-      
-      
-      
 
       
-      
-      {pararJogo && <h1>Tempo Final: {count} segundos</h1>}
     </div>
   );
 }

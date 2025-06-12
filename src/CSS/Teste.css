@@ -1,0 +1,31 @@
+.testePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0dvh solid #5e1317;
+  box-shadow: inset 0 0 4vw #5e1317e0;
+  min-height: 100dvh;
+  width: 100vw;
+  border-radius: 2px;
+}
+
+.cell {
+  background: radial-gradient(circle, #771919, #940909);
+  border: 4.5px solid #570707; /* outer border */
+  border-radius: 10px;
+  padding: 11px; /* creates space around the inner box */
+  text-align: center;
+  width: fit-content;
+  box-sizing: border-box;
+}
+
+.input-fake {
+  font-size: 30px;
+  color: #e9e8e8;
+  background: radial-gradient(circle, #cf7070, #be4949);
+  border: 4.5px solid #570707; /* inner border */
+  border-radius: 10px;
+  width: 100%;
+  padding: 15px 0 15px 5px;
+  box-sizing: border-box;
+}

@@ -6,6 +6,8 @@ import Sobre from "./Pages/Sobre";
 import Contato from "./Pages/Contato";
 import JogoStop from "./Stop/RegrasStop";
 import PaginaDamas from "./Damas/PaginaDamas";
+import Teste from  "./Pages/Teste";
+import SPTTT from "./SPTTT/RegrasSPTTT";
 import "./App.css";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 
@@ -36,6 +38,8 @@ function App() {
         <Route path="/jogoStop" element={<JogoStop />} />
         <Route path="/stoppage" element={<StopPage />} />
         <Route path="/damas" element={<PaginaDamas />} />
+        <Route path="/teste" element={<Teste />} />
+        <Route path="/spttt" element={<SPTTT />} />
       </Routes>
     </main>
   );

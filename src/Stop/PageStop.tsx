@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import "./Stop.css";
 import StopJogo from "./JogoStop";
-
-const NumGenerator = () => {
-  return Math.floor(Math.random() * 6) + 4;
-};
+import { useLocation } from "react-router-dom";
 
 function StopPage() {
+  const NumGenerator = () => {
+    return Math.floor(Math.random() * 6) + 4;
+  };
+  const location = useLocation();
+  const difficulty = location.state?.difficulty || "d2";
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
   const [displayedNumber, setDisplayedNumber] = useState<number>(4);
   const [showGame, setShowGame] = useState(false);
@@ -68,13 +70,11 @@ function StopPage() {
     <div>
       {showNumber && (
         <div className="sortPage">
-          <div className="outerBorder">
+          <div className="bordaSort">
             <div className="divSort">
-              <div className="innerBorder">
-                <h2 className="sort">O número mágico é</h2>
-                <div className="numeroBox">
-                  <span className="numero">{displayedNumber}</span>
-                </div>
+              <div className="sort">O número mágico é</div>
+              <div className="numeroBox">
+                <span className="numero">{displayedNumber}</span>
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@ function StopPage() {
 
       {showGame && randomNumber !== null && (
         <>
-          <StopJogo randomNumber={randomNumber} />
+          <StopJogo randomNumber={randomNumber} difficulty={difficulty} />
           <button onClick={handleReset} className="reset-button">
             Reiniciar
           </button>
