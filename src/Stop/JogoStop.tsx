@@ -9,8 +9,7 @@ type JogoStopProps = {
   difficulty: "d1" | "d2" | "d3";
 };
 
-function StopJogo({ randomNumber, difficulty}: JogoStopProps) {
-  
+function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
   function getValidNumber(
     randomNumber: number,
     conta: string,
@@ -28,7 +27,8 @@ function StopJogo({ randomNumber, difficulty}: JogoStopProps) {
     const index = Math.floor(Math.random() * validOptions.length);
     return validOptions[index];
   }
-  const { possibleNumbersByBox, contasPorBox } = difficulties[difficulty as "d1" | "d2" | "d3"];
+  const { possibleNumbersByBox, contasPorBox } =
+    difficulties[difficulty as "d1" | "d2" | "d3"];
   const [acertos, setAcertos] = useState(0);
   const [caixasData, setCaixasData] = useState<
     { numero: number; conta: string; checar: boolean }[]
@@ -66,7 +66,9 @@ function StopJogo({ randomNumber, difficulty}: JogoStopProps) {
       {!pararJogo && <h2>{count}</h2>}
 
       <div className="numMagico">
-        <span className="randomNumber">{randomNumber}</span>
+        <div className="numeroCaixa">
+          <span className="numeroO">{randomNumber}</span>
+        </div>
         {!pararJogo ? (
           <button className="pararJogo" onClick={() => setPararJogo(true)}>
             STOP
@@ -93,8 +95,6 @@ function StopJogo({ randomNumber, difficulty}: JogoStopProps) {
           ))}
         </div>
       </div>
-
-      
     </div>
   );
 }

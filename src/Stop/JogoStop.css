@@ -43,20 +43,32 @@
   width: 39vw;
   gap: 40px;
 }
-.randomNumber {
+.numeroCaixa {
   display: flex;
-  align-items: center;        
-  justify-content: center; 
-  color: #940909; 
-  font-size: 15vw;
-  background: 
-    radial-gradient(circle,#d86262,#b83d3d);
-  border: 8.3px solid #570707;
-  border-radius: 40px;
-  padding: 0 30px 30px 30px;
-  height: 16vw;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #b13737, #851616);
+  border: 0.7vw solid #000000;
+  border-radius: 3vw;
+  padding: 0.7vw 2.7vw;
+  width: fit-content;
+  height: fit-content;
+  line-height: 1;
   margin:auto;
   cursor: pointer;
+}
+.numeroO {
+  font-size: clamp(0.73vw, 14vw, 146.5vw); /* clamping based on px → vw */
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: 200;
+  font-style: normal;
+  color: #e2a01d;
+  -webkit-text-stroke: 0.51vw #000000; /* 7px */
+  display: block;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  transform: translateY(-0.88vw); /* 1.2vw */
 }
 
 .pararJogo{
