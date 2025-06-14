@@ -56,7 +56,7 @@ function CaixaStop(props: caixaStopProp) {
         {props.conta}
         {props.numero}
       </div>
-      <form className="cell" onSubmit={handleSubmit}>
+      <form className="cellBorder" onSubmit={handleSubmit}>
         <input
           className="input-cell"
           type="number"

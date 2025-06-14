@@ -3,37 +3,57 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 40px;
   -webkit-text-stroke: 2.3px #000000;
-  color: #eeeeee;
-  width:50vw; 
+  color: #f1b02d;
+  width: 50vw;
 }
 .jogoStop h2 {
+  color: #f3c364; 
   top: 6dvh;
   right: 8vw;
   position: absolute;
   font-size: 4vw;
-  -webkit-text-stroke: 3.5px #640909
+  -webkit-text-stroke: 3.5px #030000;
 }
 .jogoStop {
+  width: 100vw;
   height: 100vh; /* Full viewport height */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center; /* Center children vertically */
-  padding: 0 8vw 0 3vw;
+  padding: 0vw 0vw;
   position: relative;
   font-family: "Cherry Bomb One", system-ui;
   font-weight: 200;
   font-style: normal;
   font-size: 25px;
-  color: #eeeeee;
+  color: #f1b02d;
+  border: 0dvh solid #5e1317;
+  box-shadow: inset 00px 00px 0vw #5e1317a0;
   -webkit-text-stroke: 1.5px #000000;
+}
+
+.stopBorder{
+  padding: 6vw 6vw 6vw 0.3vw;
+  border: 1vw solid #7a0808;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  height: 93dvh;
+  background: none;
+  background: radial-gradient(circle, #ff272760, #ec030360);
+  
+  box-shadow: 0 0 40px #000;
 }
 
 .numMagico {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;  
-  justify-content: center;  
+  align-items: flex-start;
+  justify-content: center;
   font-size: 45px;
   font-weight: bold;
   height: 100%;
@@ -41,7 +61,7 @@
   border-radius: 20px;
   -webkit-text-stroke: 1.5px #330404;
   width: 39vw;
-  gap: 40px;
+  gap: 80px;
 }
 .numeroCaixa {
   display: flex;
@@ -54,7 +74,7 @@
   width: fit-content;
   height: fit-content;
   line-height: 1;
-  margin:auto;
+  margin: auto;
   cursor: pointer;
 }
 .numeroO {
@@ -71,61 +91,58 @@
   transform: translateY(-0.88vw); /* 1.2vw */
 }
 
-.pararJogo{
-  border: 6px solid #e4dddd ;
-  background: 
-    radial-gradient(circle,#d64545,#a71e1e);
+.pararJogo {
+  border: 8px solid #080303;
+  background: radial-gradient(circle, #a02b2b, #851616);
   border-radius: 60px;
   box-sizing: border-box;
-  color: #e6e6e6;
-  -webkit-text-stroke: 6px #7e0b0b;
+  color: #e2a01d;
+  -webkit-text-stroke: 6px #080303;
   font-size: 75px;
-  display: flex;            
-  align-items: center;        
-  justify-content: center;    
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 285px;
   height: 150px;
   text-align: center;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 0px;
   padding-bottom: 7px;
 }
 .pararJogo:hover {
-    border: 6px solid #bdb6b6 ;
-    background: 
-      radial-gradient(circle,#c53f3f,#991b1b);
-    transform: scale(1.03);
-    -webkit-text-stroke: 6px #7e0a0a;
-    color: #c0bebe;
+  border: 8px solid #080303;
+  background: radial-gradient(circle, #922222, #740f0f);
+  transform: scale(1.03);
+  -webkit-text-stroke: 6px #080303;
+  color: #e2a01d;
 }
-.cell {
-  background: 
-      radial-gradient(circle,#771919,#940909);
-  border: 4.5px solid #570707;
+.cellBorder {
+  background: radial-gradient(circle, #af1111, #970909);
+  border: 4.5px solid #080303;
   border-radius: 10px;
   padding: 11px;
   text-align: center;
 }
 
-
 .header {
-  display: flex;            
-  align-items: center;        
-  justify-content: center;   
-  border: 5.3px solid #570707;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5.3px solid #0e0202;
   border-radius: 10px;
-  background: 
-      radial-gradient(circle,#cf7070,#be4949);
+  background: radial-gradient(circle, #b67f7f, #9b6061);
+  background: radial-gradient(circle, #bd5656, #a33838);
+  box-shadow: inset 0 0 0px #831c1cbb;
   margin-bottom: 7px;
   font-size: 30px;
 }
 
-.input-cell { 
+.input-cell {
   font-size: 30px;
-  color: #e9e8e8; 
-   background: 
-      radial-gradient(circle,#cf7070,#be4949);
-  border: 4.5px solid #570707;
+  color: #e9e8e8;
+  background: radial-gradient(circle, #b67f7f, #9b6061);
+  
+  border: 4.5px solid #080303;
   border-radius: 10px;
   width: 100%;
   padding: 15px 0 15px 5px;
@@ -133,19 +150,13 @@
 }
 
 .input-cell:focus {
-  border-color: #991010;
+  border-color: #080303;
   box-shadow: 0 0 5px rgba(153, 16, 16, 0.5);
 }
 
-.verde {
-  background-color: #2fc436;
-}
 
-.vermelho {
-  background-color: #992521;
-}
 
-.tabelaWrap{
+.tabelaWrap {
   position: relative;
   display: inline-block;
 }

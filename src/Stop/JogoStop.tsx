@@ -63,36 +63,36 @@ function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
 
   return (
     <div className="jogoStop">
-      {!pararJogo && <h2>{count}</h2>}
-
-      <div className="numMagico">
-        <div className="numeroCaixa">
-          <span className="numeroO">{randomNumber}</span>
-        </div>
-        {!pararJogo ? (
-          <button className="pararJogo" onClick={() => setPararJogo(true)}>
-            STOP
-          </button>
-        ) : (
-          <div className="finalResultado">
-            ⏱ Tempo final: {count} segundos
-            <br />✅ Acertos: {acertos}
+      <div className="stopBorder">
+        {!pararJogo && <h2>{count}</h2>}
+        <div className="numMagico">
+          <div className="numeroCaixa">
+            <span className="numeroO">{randomNumber}</span>
           </div>
-        )}
-      </div>
-
-      <div className="tabelaWrap">
-        <div className="tabela">
-          {caixasData.map((data, i) => (
-            <CaixaStop
-              key={`caixa-${i}`}
-              numero_base={randomNumber}
-              numero={data.numero}
-              conta={data.conta}
-              checar={pararJogo}
-              registrarAcerto={() => setAcertos((prev) => prev + 1)}
-            />
-          ))}
+          {!pararJogo ? (
+            <button className="pararJogo" onClick={() => setPararJogo(true)}>
+              STOP
+            </button>
+          ) : (
+            <div className="finalResultado">
+              ⏱ Tempo final: {count} segundos
+              <br />✅ Acertos: {acertos}
+            </div>
+          )}
+        </div>
+        <div className="tabelaWrap">
+          <div className="tabela">
+            {caixasData.map((data, i) => (
+              <CaixaStop
+                key={`caixa-${i}`}
+                numero_base={randomNumber}
+                numero={data.numero}
+                conta={data.conta}
+                checar={pararJogo}
+                registrarAcerto={() => setAcertos((prev) => prev + 1)}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
