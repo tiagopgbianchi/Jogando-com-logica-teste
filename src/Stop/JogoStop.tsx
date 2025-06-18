@@ -10,6 +10,17 @@ type JogoStopProps = {
 };
 
 function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
+  function formatTime(seconds: number): string {
+    if (seconds < 60) {
+      return `${seconds} segundos`;
+    } else {
+      const minutos = Math.floor(seconds / 60);
+      const segundos = seconds % 60;
+      return `${minutos} minuto${minutos > 1 ? "s" : ""} e ${segundos} segundo${
+        segundos !== 1 ? "s" : ""
+      }`;
+    }
+  }
   function getValidNumber(
     randomNumber: number,
     conta: string,
@@ -75,8 +86,9 @@ function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
             </button>
           ) : (
             <div className="finalResultado">
-              ⏱ Tempo final: {count} segundos
-              <br />✅ Acertos: {acertos}
+              <div>Tempo:</div>
+              <div>{formatTime(count)}</div>
+              <div>Acertos: {acertos}</div>
             </div>
           )}
         </div>
