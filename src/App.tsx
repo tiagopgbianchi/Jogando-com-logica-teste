@@ -8,6 +8,7 @@ import JogoStop from "./Stop/RegrasStop";
 import PaginaDamas from "./Damas/PaginaDamas";
 import Teste from  "./Pages/Teste";
 import SPTTT from "./SPTTT/RegrasSPTTT";
+import JogoSPTTT from "./SPTTT/SPTTT";
 import "./App.css";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/damas" element={<PaginaDamas />} />
         <Route path="/teste" element={<Teste />} />
         <Route path="/spttt" element={<SPTTT />} />
+        <Route path="/jogospttt" element={<JogoSPTTT />} />
       </Routes>
     </main>
   );

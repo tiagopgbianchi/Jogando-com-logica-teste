@@ -1,9 +1,9 @@
-import React from "react";
-import "./App.css";
 
-const App: React.FC = () => {
+import "./SPTTT.css";
+
+function SPTTT() {
   return (
-    <div className="App">
+    <div className="jogo-SPTTT">
       <h1>Ultimate Tic-Tac-Toe Board</h1>
       <div className="big-board">
         {Array.from({ length: 9 }).map((_, boardIndex) => (
@@ -18,6 +18,6 @@ const App: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
-export default App;
+export default SPTTT;
