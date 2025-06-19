@@ -2,12 +2,29 @@ import "../CSS/Teste.css";
 export default function Teste() {
   return (
     <div className="testePage">
-      <div className="borda">
-        <div className="texto">O número mágico é</div>
-        <div className="numBox">
-          <span className="num">31</span>
-        </div>
-      </div>
+      <div className="dropdown-menua">
+              <div
+                onClick={() => {
+                  
+                }}
+              >
+                Fácil
+              </div>
+              <div
+                onClick={() => {
+                  
+                }}
+              >
+                Médio
+              </div>
+              <div
+                onClick={() => {
+                  
+                }}
+              >
+                Difícil
+              </div>
+            </div>
     </div>
   );
 }
