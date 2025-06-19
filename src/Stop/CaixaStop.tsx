@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { CheckCircle, XCircle } from "lucide-react";
 
 interface caixaStopProp {
   numero_base: number;
@@ -66,11 +67,32 @@ function CaixaStop(props: caixaStopProp) {
       </form>
       {props.checar && (
         <div className="feedback">
-          {certo === true && <span className="checkmark">✔️</span>}
+          {certo === true && (
+            <div className="icon-stack">
+              <CheckCircle
+                className="icon check out"
+                strokeWidth={4}
+                color="black"
+              />
+
+              <CheckCircle
+                className="icon check"
+                strokeWidth={1.5}
+                color="#0fb11d"
+              />
+            </div>
+          )}
           {certo === false && (
             <>
-              <span className="xmark">❌</span>
-              <div className="correction">Correct: {respostaCorreta}</div>
+              <div className="icon-stack">
+                <XCircle
+                  className="icon xmark out"
+                  strokeWidth={4}
+                  color="black"
+                />
+                <XCircle className="icon xmark" strokeWidth={1.5} color="#f02121" />
+              </div>
+              <div className="correction">{respostaCorreta}</div>
             </>
           )}
         </div>

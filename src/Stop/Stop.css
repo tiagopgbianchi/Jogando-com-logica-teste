@@ -4,7 +4,7 @@
   align-items: center;
   border: 0vw solid #5e1317;
   box-shadow: inset 0 0 2vw #5e1317e0;
-  min-height: 100dvh; /* 700px = 51.24vw */
+  min-height: 100dvh;
   width: 100vw;
   border-radius: 0.15vw;
 }
@@ -13,7 +13,7 @@
   background: radial-gradient(circle, #a30c0c, #740505);
   border: 0.5vw solid #080303;
   border-radius: 6vw;
-  padding: 2.2vw; /* 30px */
+  padding: 2.2vw;
   text-align: center;
   width: fit-content;
   box-sizing: border-box;
@@ -27,9 +27,9 @@
   text-align: center;
   gap: 2vw;
   border: 0.5vw solid #080303;
-  border-radius: 5.3vw; /* 100dvh ≈ 700px → 51.24vw, so 10dvh ≈ 7.3vw */
+  border-radius: 5.3vw;
   background: radial-gradient(circle, #aa6d6d, #844749);
-  padding: 1.5vw 3.5vw 2.2vw 3.5vw; /* converted paddings */
+  padding: 1.5vw 3.5vw 2.2vw 3.5vw;
 }
 
 .sort {
@@ -38,7 +38,7 @@
   font-style: normal;
   font-size: 7vw;
   color: #e2a01d;
-  -webkit-text-stroke: 0.44vw #000000; /* 6px */
+  -webkit-text-stroke: 0.44vw #000000;
 }
 
 .numeroBox {
@@ -46,7 +46,7 @@
   align-items: center;
   justify-content: center;
   background: radial-gradient(circle, #b13737, #851616);
-  border: 0.7vw solid #000000; 
+  border: 0.7vw solid #000000;
   border-radius: 3vw;
   padding: 0.7vw 2.7vw;
   width: fit-content;
@@ -55,19 +55,18 @@
 }
 
 .numero {
-  font-size: clamp(0.73vw, 14vw, 146.5vw); /* clamping based on px → vw */
+  font-size: clamp(0.73vw, 14vw, 146.5vw);
   font-family: "Cherry Bomb One", system-ui;
   font-weight: 200;
   font-style: normal;
   color: #e2a01d;
-  -webkit-text-stroke: 0.51vw #000000; /* 7px */
+  -webkit-text-stroke: 0.51vw #000000;
   display: block;
   line-height: 1;
   padding: 0;
   margin: 0;
-  transform: translateY(-0.88vw); /* 1.2vw */
+  transform: translateY(-0.88vw);
 }
-
 
 .reset-button {
   font-family: "Cherry Bomb One", system-ui;
@@ -80,7 +79,6 @@
   color: #f1b02d;
   font-size: 2.3vw;
   background: radial-gradient(circle, #a02b2b, #851616);
-  
   border-radius: 1.5vw;
   border: 0.3vw solid #080303;
   padding: 0 0.7vw 0.2vw 0.7vw;
