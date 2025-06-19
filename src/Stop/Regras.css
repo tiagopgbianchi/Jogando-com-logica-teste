@@ -10,7 +10,7 @@
 
 .boxRegras {
   width: 55%;
-  background-color: #6d0912a0;
+  background: radial-gradient(circle, #8b121c90, #6d091290);
   border-right: 1.42857dvh solid #9b0b16; /* 10px -> 1.42857dvh */
   padding: 2rem; /* 2rem untouched, as it's not px */
   box-sizing: border-box;
@@ -42,7 +42,10 @@
 }
 
 .regras li {
+  gap: 2vw;
   margin-bottom: 4.28571dvh; /* 30px -> 4.28571dvh */
+  display: flex;
+  flex-direction: row;
 }
 
 .boxRegras h2 {
@@ -94,4 +97,28 @@ code {
   transform: scale(1.03);
   -webkit-text-stroke: 0.92857dvh #300404; /* 6.5px -> 0.92857dvh */
   color: #caa8a8;
+}
+
+h3 {
+  border-radius: 1vw;
+  border: 0.4vw solid black;
+  display:flex;
+  justify-items:auto;
+  align-items: center;
+  padding: 0.3vw 1vw ;
+  background: radial-gradient(circle,#00000020,#00000020);
+}
+
+.como {
+  width: 20vw;
+}
+
+.c3 {
+  width: 8vw;
+}
+.c3Box {
+  width: 16vw;
+}
+.c4{
+  width: 24vw;
 }

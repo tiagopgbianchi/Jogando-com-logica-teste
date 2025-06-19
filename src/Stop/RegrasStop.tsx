@@ -13,29 +13,37 @@ function JogoStop() {
     <div className="regrasPage">
       {/* Left Side - Rules */}
       <div className="boxRegras">
-        <h2>Como Jogar Stop Matemático</h2>
+        {/*<h2>Como Jogar Stop Matemático</h2>*/}
         <ul className="regras">
           <li>
-            <strong>O número mágico vai aparecer na tela:</strong>
-            <br />O número mágico será usado para todas as contas do jogo.
+            <h3>O Número Mágico vai ser sorteado</h3>
+            <img
+              src={`${import.meta.env.BASE_URL}ComoJogarStop1.png`}
+              className="como c1"
+            />
           </li>
           <li>
-            <strong>Várias contas vão aparecer:</strong>
-            <br />
-            Você vai ver contas como <code>+4</code>, <code>-2</code>,{" "}
-            <code>×3</code>, <code>÷2</code>, e deve resolver todas usando o
-            número que apareceu.
+            <img
+              src={`${import.meta.env.BASE_URL}ComoJogarStop2.png`}
+              className="como c2"
+            />
+            <h3>Use o Número Mágico para fazer as contas</h3>
           </li>
           <li>
-            <strong>Temporizador!</strong>
-            <br />
-            Você tem um tempo para responder o máximo que conseguir. Quando o
-            tempo acabar, o jogo termina.
+            <h3>Clique no botão STOP quando terminar</h3>
+            <div className="c3Box">
+              <img
+                src={`${import.meta.env.BASE_URL}ComoJogarStop3.png`}
+                className="como c3"
+              />
+            </div>
           </li>
           <li>
-            <strong>Veja sua pontuação:</strong>
-            <br />
-            No final, o jogo mostra quantas você acertou e sua pontuação!
+            <img
+              src={`${import.meta.env.BASE_URL}ComoJogarStop4.png`}
+              className="como c4"
+            />
+            <h3>Veja seu tempo e </h3>
           </li>
         </ul>
       </div>
