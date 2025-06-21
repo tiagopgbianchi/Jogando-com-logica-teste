@@ -141,7 +141,9 @@ code {
 }
 
 .difMenu {
-  font-size: 1vw;
+  color: #fff;
+  -webkit-text-stroke: 0.1vw #080303;
+  font-size: 1.5vw;
   cursor: pointer;
   position: absolute;
 }
