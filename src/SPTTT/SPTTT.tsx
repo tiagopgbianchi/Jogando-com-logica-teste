@@ -1,43 +1,42 @@
 import { useState } from "react";
 import "./SPTTT.css";
-import { XComponent } from "./Xcomponent";
-import { OComponent } from "./Ocomponent";
-const [activeBoard, setActiveBoard] = useState<number | null>(null);
+import { XComponent } from "./XComponent";
+import { OComponent } from "./OComponent";
 
-
-
-//BOARD
+// BOARD TYPES
 type Player = "X" | "O" | null;
 type MiniBoard = Player[];
 type UltimateBoard = MiniBoard[];
 
-function SPTTT() {
+export default function SPTTT() {
   const [boards, setBoards] = useState<UltimateBoard>(
     Array.from({ length: 9 }, () => Array(9).fill(null))
   );
   const [currentPlayer, setCurrentPlayer] = useState<Player>("X");
+  const [activeBoard, setActiveBoard] = useState<number | null>(null); // ✅ CORRECT PLACE
 
   const handleClick = (boardIndex: number, cellIndex: number) => {
-  if (boards[boardIndex][cellIndex] !== null) return;
-  if (activeBoard !== null && activeBoard !== boardIndex) return;
+    if (boards[boardIndex][cellIndex] !== null) return;
+    if (activeBoard !== null && activeBoard !== boardIndex) return;
 
-  const newBoards: UltimateBoard = boards.map((board, bIdx) =>
-    bIdx === boardIndex
-      ? board.map((cell, cIdx) =>
-          cIdx === cellIndex ? currentPlayer : cell
-        )
-      : board
-  );
+    const newBoards: UltimateBoard = boards.map((board, bIdx) =>
+      bIdx === boardIndex
+        ? board.map((cell, cIdx) =>
+            cIdx === cellIndex ? currentPlayer : cell
+          )
+        : board
+    );
 
-  setBoards(newBoards);
-  setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
+    setBoards(newBoards);
+    setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
 
-  // Movement mechanic: next active board = cellIndex just played
-  const nextBoard = cellIndex;
-  const targetBoardHasMoves = newBoards[nextBoard].some(cell => cell === null);
+    const nextBoard = cellIndex;
+    const targetBoardHasMoves = newBoards[nextBoard].some(
+      (cell) => cell === null
+    );
 
-  setActiveBoard(targetBoardHasMoves ? nextBoard : null);
-};
+    setActiveBoard(targetBoardHasMoves ? nextBoard : null);
+  };
 
   return (
     <div className="jogo-SPTTT">
@@ -63,5 +62,3 @@ function SPTTT() {
     </div>
   );
 }
-
-export default SPTTT;
