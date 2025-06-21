@@ -1,0 +1,25 @@
+.small-board{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 0.2vw solid #a71515;
+}
+
+.big-board{
+    gap: 0.3vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 0.4vw solid rgb(0, 0, 0);
+}
+
+.board-wrap{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.casa{
+    border: 0.2vw solid black;
+    width: 4vw;
+    height: 4vw;
+    background: radial-gradient(circle,#eeea,#aaaa);
+}
