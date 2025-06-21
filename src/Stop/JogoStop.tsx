@@ -41,20 +41,26 @@ function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
   ): number {
     let validOptions = options;
 
+    const isClose = (a: number, b: number, epsilon = 0.00001) =>
+      Math.abs(a - b) < epsilon;
+
     if (conta === "÷") {
       if (difficulty === "d6") {
         validOptions = options.filter((n) => {
-          if (n === 0) return false; 
-          if (n === randomNumber) return false; 
+          if (n === 0) return false;
+          if (n === randomNumber) return false;
 
           const result = randomNumber / n;
           const decimal = Math.abs(result % 1);
 
           return (
-            decimal === 0 ||
-            decimal === 0.5 ||
-            decimal === 0.25 ||
-            decimal === 0.75
+            isClose(decimal, 0.3) ||
+            isClose(decimal, 0.9) ||
+            isClose(decimal, 0.1) ||
+            isClose(decimal, 0) ||
+            isClose(decimal, 0.5) ||
+            isClose(decimal, 0.25) ||
+            isClose(decimal, 0.75)
           );
         });
       } else {
