@@ -141,6 +141,7 @@ code {
 }
 
 .difMenu {
+  font-size: 1vw;
   cursor: pointer;
   position: absolute;
 }

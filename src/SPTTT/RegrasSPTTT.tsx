@@ -17,13 +17,13 @@ function RegrasSPTTT(){
           <li>
             <h3>O Número Mágico vai ser sorteado</h3>
             <img
-              src={`${import.meta.env.BASE_URL}ComoJogarStop1.png`}
+              src={`${import.meta.env.BASE_URL}logoCubo.png`}
               className="como c1"
             />
           </li>
           <li>
             <img
-              src={`${import.meta.env.BASE_URL}ComoJogarStop2.png`}
+              src={`${import.meta.env.BASE_URL}logoCubo.png`}
               className="como c2"
             />
             <h3>Use o Número Mágico para fazer as contas</h3>
@@ -32,15 +32,15 @@ function RegrasSPTTT(){
             <h3>Clique no botão STOP quando terminar</h3>
             <div className="c3Box">
               <img
-                src={`${import.meta.env.BASE_URL}ComoJogarStop3.png`}
-                className="como c3"
+                src={`${import.meta.env.BASE_URL}logoCubo.png`}
+                className="regras r3"
               />
             </div>
           </li>
           <li>
             <img
-              src={`${import.meta.env.BASE_URL}ComoJogarStop4.png`}
-              className="como c4"
+              src={`${import.meta.env.BASE_URL}logoCubo.png`}
+              className="regras r4"
             />
             <h3>Veja seu tempo e </h3>
           </li>

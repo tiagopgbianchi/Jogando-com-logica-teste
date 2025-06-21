@@ -2,14 +2,27 @@ import { useState, useEffect } from "react";
 import "./Stop.css";
 import "./JogoStop.css";
 import CaixaStop from "./CaixaStop";
-import { difficulties } from "./Difficulties";
+import { difficulties, DifficultyKey } from "./Difficulties";
 
 type JogoStopProps = {
   randomNumber: number;
-  difficulty: "d1" | "d2" | "d3";
+  difficulty: DifficultyKey;
 };
 
 function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
+  function shuffleTogether<T, U>(
+    arr1: readonly T[],
+    arr2: readonly U[]
+  ): [T[], U[]] {
+    const indices = arr1.map((_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    const shuffled1 = indices.map((i) => arr1[i]);
+    const shuffled2 = indices.map((i) => arr2[i]);
+    return [shuffled1, shuffled2];
+  }
   function formatTime(seconds: number): string {
     if (seconds < 60) {
       return `${seconds} segundos`;
@@ -29,17 +42,38 @@ function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
     let validOptions = options;
 
     if (conta === "÷") {
-      validOptions = options.filter((n) => n !== 0 && randomNumber % n === 0);
+      if (difficulty === "d6") {
+        validOptions = options.filter((n) => {
+          if (n === 0) return false; 
+          if (n === randomNumber) return false; 
+
+          const result = randomNumber / n;
+          const decimal = Math.abs(result % 1);
+
+          return (
+            decimal === 0 ||
+            decimal === 0.5 ||
+            decimal === 0.25 ||
+            decimal === 0.75
+          );
+        });
+      } else {
+        validOptions = options.filter((n) => n !== 0 && randomNumber % n === 0);
+      }
     } else if (conta === "-") {
-      validOptions = options.filter((n) => randomNumber - n >= 0);
+      if (difficulty === "d6") {
+        validOptions = options; // allow negative results
+      } else {
+        validOptions = options.filter((n) => randomNumber - n >= 0);
+      }
     }
 
-    if (validOptions.length === 0) return 1; // fallback
+    if (validOptions.length === 0) return randomNumber; // fallback
     const index = Math.floor(Math.random() * validOptions.length);
     return validOptions[index];
   }
   const { possibleNumbersByBox, contasPorBox } =
-    difficulties[difficulty as "d1" | "d2" | "d3"];
+    difficulties[difficulty as DifficultyKey];
   const [acertos, setAcertos] = useState(0);
   const [caixasData, setCaixasData] = useState<
     { numero: number; conta: string; checar: boolean }[]
@@ -50,9 +84,13 @@ function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
   const [pararJogo, setPararJogo] = useState(false);
 
   useEffect(() => {
-    const newCaixasData = possibleNumbersByBox.map((arr, index) => {
-      const conta = contasPorBox[index];
-      const numero = getValidNumber(randomNumber, conta, arr);
+    const [shuffledNumbers, shuffledContas] = shuffleTogether(
+      [...possibleNumbersByBox],
+      [...contasPorBox]
+    );
+    const newCaixasData = shuffledNumbers.map((arr, index) => {
+      const conta = shuffledContas[index];
+      const numero = getValidNumber(randomNumber, conta, [...arr]);
       return {
         numero,
         conta,

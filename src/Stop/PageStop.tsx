@@ -2,13 +2,17 @@ import { useState, useEffect, useRef } from "react";
 import "./Stop.css";
 import StopJogo from "./JogoStop";
 import { useLocation } from "react-router-dom";
+import { difficulties,DifficultyKey } from "./Difficulties";
 
 function StopPage() {
   const NumGenerator = () => {
-    return Math.floor(Math.random() * 6) + 4;
+    const possible =
+      difficulties[difficulty as DifficultyKey].possibleRandomNumbers;
+    const index = Math.floor(Math.random() * possible.length);
+    return possible[index];
   };
   const location = useLocation();
-  const difficulty = location.state?.difficulty || "d2";
+  const difficulty = (location.state?.difficulty || "d2") as DifficultyKey;
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
   const [displayedNumber, setDisplayedNumber] = useState<number>(4);
   const [showGame, setShowGame] = useState(false);

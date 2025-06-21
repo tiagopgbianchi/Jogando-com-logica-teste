@@ -67,7 +67,7 @@ function JogoStop() {
                   setIsOpen(false);
                 }}
               >
-                Fácil
+                Muito Fácil
               </div>
               <div
                 onClick={() => {
@@ -75,7 +75,7 @@ function JogoStop() {
                   setIsOpen(false);
                 }}
               >
-                Médio
+                Facil
               </div>
               <div
                 onClick={() => {
@@ -83,7 +83,31 @@ function JogoStop() {
                   setIsOpen(false);
                 }}
               >
+                Medio
+              </div>
+              <div
+                onClick={() => {
+                  setDifficulty("d4");
+                  setIsOpen(false);
+                }}
+              >
                 Difícil
+              </div>
+              <div
+                onClick={() => {
+                  setDifficulty("d5");
+                  setIsOpen(false);
+                }}
+              >
+                Muito Difícil
+              </div>
+              <div
+                onClick={() => {
+                  setDifficulty("d6");
+                  setIsOpen(false);
+                }}
+              >
+                Impossivel
               </div>
             </div>
           )}
