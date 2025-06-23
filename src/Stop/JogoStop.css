@@ -130,7 +130,7 @@
   text-align: center;
 }
 
-.header {
+.header,.headerDual {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,7 +140,14 @@
   box-shadow: inset 0 0 0vw #831c1cbb;
   margin-bottom: 0.49vw;
   font-size: 2.08vw;
+  flex-direction: column;
 }
+.headerDual{
+  padding: 0.13vw 0;
+font-size: 1.8vw;
+line-height: 1.1;
+}
+
 
 .input-cell {
   font-size: 2.08vw;

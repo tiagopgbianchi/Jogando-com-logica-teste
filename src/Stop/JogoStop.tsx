@@ -1,3 +1,4 @@
+// Updated StopJogo.tsx
 import { useState, useEffect } from "react";
 import "./Stop.css";
 import "./JogoStop.css";
@@ -8,6 +9,20 @@ type JogoStopProps = {
   randomNumber: number;
   difficulty: DifficultyKey;
 };
+
+type CaixaData =
+  | {
+      numero: number;
+      conta: string;
+      checar: boolean;
+      isDual: false;
+    }
+  | {
+      numeros: [number, number]; // <-- change this line
+      contas: [string, string];
+      checar: boolean;
+      isDual: true;
+    };
 
 function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
   function shuffleTogether<T, U>(
@@ -23,6 +38,7 @@ function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
     const shuffled2 = indices.map((i) => arr2[i]);
     return [shuffled1, shuffled2];
   }
+
   function formatTime(seconds: number): string {
     if (seconds < 60) {
       return `${seconds} segundos`;
@@ -34,77 +50,77 @@ function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
       }`;
     }
   }
+
   function getValidNumber(
     randomNumber: number,
     conta: string,
     options: number[]
   ): number {
     let validOptions = options;
-
     const isClose = (a: number, b: number, epsilon = 0.00001) =>
       Math.abs(a - b) < epsilon;
 
     if (conta === "÷") {
-      if (difficulty === "d6") {
-        validOptions = options.filter((n) => {
-          if (n === 0) return false;
-          if (n === randomNumber) return false;
-
-          const result = randomNumber / n;
-          const decimal = Math.abs(result % 1);
-
-          return (
-            isClose(decimal, 0.3) ||
-            isClose(decimal, 0.9) ||
-            isClose(decimal, 0.1) ||
-            isClose(decimal, 0) ||
-            isClose(decimal, 0.5) ||
-            isClose(decimal, 0.25) ||
-            isClose(decimal, 0.75)
-          );
-        });
-      } else {
-        validOptions = options.filter((n) => n !== 0 && randomNumber % n === 0);
-      }
+      validOptions = options.filter((n) => n !== 0 && randomNumber % n === 0);
     } else if (conta === "-") {
-      if (difficulty === "d6") {
-        validOptions = options; // allow negative results
-      } else {
-        validOptions = options.filter((n) => randomNumber - n >= 0);
-      }
+      validOptions = options.filter((n) => randomNumber - n >= 0);
     }
 
-    if (validOptions.length === 0) return randomNumber; // fallback
+    if (validOptions.length === 0) return randomNumber;
     const index = Math.floor(Math.random() * validOptions.length);
     return validOptions[index];
   }
-  const { possibleNumbersByBox, contasPorBox } =
-    difficulties[difficulty as DifficultyKey];
-  const [acertos, setAcertos] = useState(0);
-  const [caixasData, setCaixasData] = useState<
-    { numero: number; conta: string; checar: boolean }[]
-  >([]);
 
+  const [acertos, setAcertos] = useState(0);
+  const [caixasData, setCaixasData] = useState<CaixaData[]>([]);
   const [count, setCount] = useState(0);
   const [showGame] = useState(true);
   const [pararJogo, setPararJogo] = useState(false);
 
   useEffect(() => {
+    const {
+      possibleNumbersByBox,
+      contasPorBox,
+      dualBoxes = [],
+    } = difficulties[difficulty];
+
     const [shuffledNumbers, shuffledContas] = shuffleTogether(
       [...possibleNumbersByBox],
       [...contasPorBox]
     );
-    const newCaixasData = shuffledNumbers.map((arr, index) => {
+
+    const singleBoxes: CaixaData[] = shuffledNumbers.map((arr, index) => {
       const conta = shuffledContas[index];
       const numero = getValidNumber(randomNumber, conta, [...arr]);
       return {
         numero,
         conta,
         checar: false,
-      };
+        isDual: false,
+      } as const;
     });
-    setCaixasData(newCaixasData);
-  }, [randomNumber]);
+
+    const dualBoxesData: CaixaData[] = dualBoxes.map((dualBox) => {
+      const num1 = getValidNumber(randomNumber, dualBox.operations[0], [
+        ...dualBox.numbers1,
+      ]);
+      const num2 = getValidNumber(randomNumber, dualBox.operations[1], [
+        ...dualBox.numbers2,
+      ]);
+
+      return {
+        numeros: [num1, num2] as [number, number],
+        contas: [dualBox.operations[0], dualBox.operations[1]] as [
+          string,
+          string
+        ],
+        checar: false,
+        isDual: true,
+      } as const;
+    });
+
+    setCaixasData([...singleBoxes, ...dualBoxesData]);
+  }, [randomNumber, difficulty]);
 
   useEffect(() => {
     if (!showGame || pararJogo) return;
@@ -138,16 +154,28 @@ function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
         </div>
         <div className="tabelaWrap">
           <div className="tabela">
-            {caixasData.map((data, i) => (
-              <CaixaStop
-                key={`caixa-${i}`}
-                numero_base={randomNumber}
-                numero={data.numero}
-                conta={data.conta}
-                checar={pararJogo}
-                registrarAcerto={() => setAcertos((prev) => prev + 1)}
-              />
-            ))}
+            {caixasData.map((data, i) =>
+              data.isDual ? (
+                <CaixaStop
+                  key={`caixa-${i}`}
+                  numero_base={randomNumber}
+                  numeros={data.numeros} // <-- pass numeros here
+                  contas={data.contas}
+                  checar={pararJogo}
+                  registrarAcerto={() => setAcertos((prev) => prev + 1)}
+                  isDual
+                />
+              ) : (
+                <CaixaStop
+                  key={`caixa-${i}`}
+                  numero_base={randomNumber}
+                  numero={data.numero} // <-- pass numero here
+                  conta={data.conta}
+                  checar={pararJogo}
+                  registrarAcerto={() => setAcertos((prev) => prev + 1)}
+                />
+              )
+            )}
           </div>
         </div>
       </div>
