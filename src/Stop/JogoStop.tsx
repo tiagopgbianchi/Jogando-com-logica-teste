@@ -57,16 +57,41 @@ function StopJogo({ randomNumber, difficulty }: JogoStopProps) {
     options: number[]
   ): number {
     let validOptions = options;
+
     const isClose = (a: number, b: number, epsilon = 0.00001) =>
       Math.abs(a - b) < epsilon;
 
     if (conta === "÷") {
-      validOptions = options.filter((n) => n !== 0 && randomNumber % n === 0);
+      if (difficulty === "d6") {
+        validOptions = options.filter((n) => {
+          if (n === 0) return false;
+          if (n === randomNumber) return false;
+
+          const result = randomNumber / n;
+          const decimal = Math.abs(result % 1);
+
+          return (
+            isClose(decimal, 0.3) ||
+            isClose(decimal, 0.9) ||
+            isClose(decimal, 0.1) ||
+            isClose(decimal, 0) ||
+            isClose(decimal, 0.5) ||
+            isClose(decimal, 0.25) ||
+            isClose(decimal, 0.75)
+          );
+        });
+      } else {
+        validOptions = options.filter((n) => n !== 0 && randomNumber % n === 0);
+      }
     } else if (conta === "-") {
-      validOptions = options.filter((n) => randomNumber - n >= 0);
+      if (difficulty === "d6") {
+        validOptions = options; // allow negative results
+      } else {
+        validOptions = options.filter((n) => randomNumber - n >= 0);
+      }
     }
 
-    if (validOptions.length === 0) return randomNumber;
+    if (validOptions.length === 0) return randomNumber; // fallback
     const index = Math.floor(Math.random() * validOptions.length);
     return validOptions[index];
   }
