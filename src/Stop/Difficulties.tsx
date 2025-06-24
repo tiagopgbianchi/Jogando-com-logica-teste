@@ -29,12 +29,15 @@ type DualBoxConfig = {
   operations: [string, string];
 };
 
-export const difficulties: Record<string, {
-  possibleNumbersByBox: number[][];
-  contasPorBox: string[];
-  possibleRandomNumbers: number[];
-  dualBoxes: DualBoxConfig[];
-}> = {
+export const difficulties: Record<
+  string,
+  {
+    possibleNumbersByBox: number[][];
+    contasPorBox: string[];
+    possibleRandomNumbers: number[];
+    dualBoxes: DualBoxConfig[];
+  }
+> = {
   d1: {
     possibleNumbersByBox: [
       [1, 2, 3],
@@ -54,20 +57,25 @@ export const difficulties: Record<string, {
   },
   d2: {
     possibleNumbersByBox: [
-      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      [11, 12, 13, 14, 15, 16],
+      range(1, 10),
+      range(1, 16),
       [10, 100],
       [40, 50, 60, 70, 80],
       [0],
-      [1, 2, 3],
-      [4, 5, 6],
+      [1, 2, 3, 4, 5],
       [6, 7, 8, 9],
       [2, 3],
       [0, 1],
     ],
-    contasPorBox: ["+", "+", "+ ", "+", "-", "-", "-", "-", "x", "x"],
-    possibleRandomNumbers: [6, 7, 8, 9],
-    dualBoxes: [],
+    contasPorBox: ["+", "+", "+ ", "+", "-", "-", "-", "x", "x"],
+    possibleRandomNumbers: range(6, 9),
+    dualBoxes: [
+      {
+        numbers1: range(7, 12),
+        numbers2: range(12, 20),
+        operations: ["+", "-"],
+      },
+    ],
   },
   d3: {
     possibleNumbersByBox: [
@@ -82,9 +90,15 @@ export const difficulties: Record<string, {
       [2],
       [0, 1],
     ],
-    contasPorBox: ["+", "+", "+ ", "+", "-", "-", "-", "-", "x", "x"],
+    contasPorBox: ["+", "+", "+ ", "+", "-", "-", "-", "x", "x"],
     possibleRandomNumbers: [10, 11, 12, 13, 14, 15, 16, 17, 18],
-    dualBoxes: [],
+    dualBoxes: [
+      {
+        numbers1: range(7, 12),
+        numbers2: range(17, 24),
+        operations: ["+", "-"],
+      },
+    ],
   },
   d4: {
     possibleNumbersByBox: [
@@ -118,9 +132,8 @@ export const difficulties: Record<string, {
       [3, 6],
       [50, 60],
       [1, 2, 5],
-      
     ],
-    contasPorBox: ["x", "÷", "+", "x", "-", "÷", "x", "x", ],
+    contasPorBox: ["x", "÷", "+", "x", "-", "÷", "x", "x"],
     possibleRandomNumbers: [11, 12, 13, 14],
     dualBoxes: [
       {
