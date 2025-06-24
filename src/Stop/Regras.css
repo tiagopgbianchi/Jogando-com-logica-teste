@@ -3,92 +3,92 @@
   font-weight: 200;
   font-style: normal;
   display: flex;
-  min-height: 100dvh;
+  max-height: 100dvh;
   overflow: hidden; /* avoids double scrollbars */
-  border: 1dvh solid #9b0b16; /* 1px remains 1dvh as it was already 1dvh */
+  border: 0dvh solid #9b0b16; /* 1px remains 1dvh as it was already 1dvh */
+  padding: 1vw;
+  min-height: 100dvh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
 }
 
 .boxRegras {
-  width: 55%;
-  background: radial-gradient(circle, #8b121c90, #6d091290);
-  border-right: 1.42857dvh solid #9b0b16; /* 10px -> 1.42857dvh */
-  padding: 2rem; /* 2rem untouched, as it's not px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0vw;
+  border: 0.4vw solid #080303;
+  border-radius: 3.3vw;
+  background: radial-gradient(circle, #c6aeae, #564343);
+  padding: 2.2dvh 2.5vw 0.2dvh 0vw;
+}
+.boxBorder {
+  background: radial-gradient(circle, #6d1f1f, #570505);
+  border: 0.4vw solid #080303;
+  border-radius: 4vw;
+  padding: 1vw;
+  text-align: center;
+  width: fit-content;
   box-sizing: border-box;
-  min-height: 100vh;
+  box-shadow: 0 0 1vw #000a;
 }
 
 .regras {
+  display: flex;
+  flex-direction: column;
   font-size: 3.57143dvh; /* 25px -> 3.57143dvh */
   color: #eeeeee;
-  margin: 0;
+  gap: 2.2dvh;
   -webkit-text-stroke: 0.21429dvh #000000; /* 1.5px -> 0.21429dvh */
-}
-
-
-
-.regras strong {
-  font-size: 4.28571dvh; /* 30px -> 4.28571dvh */
-  -webkit-text-stroke: 0.31429dvh #2e0306; /* 2.2px -> 0.31429dvh */
 }
 
 .regras li {
   gap: 2vw;
-  margin-bottom: 4.28571dvh; /* 30px -> 4.28571dvh */
   display: flex;
   flex-direction: row;
+  align-items: center;
+  margin: 0;
 }
-
-.boxRegras h2 {
-  font-size: 7.14286dvh; /* 50px -> 7.14286dvh */
-  -webkit-text-stroke: 0.42857dvh #9b0b16; /* 3px -> 0.42857dvh */
-  margin-bottom: 3.85714dvh; /* 27px -> 3.85714dvh */
-  cursor: pointer;
-}
-
-.regras h2:hover {
-  color: #d1d0d0;
-  -webkit-text-stroke: 0.42857dvh #800a14; /* 3px -> 0.42857dvh */
-  transform: scale(1.03);
-}
-
-code {
-  font-family: "Cherry Bomb One", system-ui;
-  font-weight: 200;
-  font-style: normal;
-  color: #bd0d1c;
-  -webkit-text-stroke: 0.05714dvh #fff; /* 0.4px -> 0.05714dvh */
-  font-size: 4.28571dvh; /* 30px -> 4.28571dvh */
-}
-
-
 
 .regras h3 {
+  font-size: 2vw;
+  padding: 1.8dvh 0;
+  height: fit-content;
+  width: 23vw;
   border-radius: 1vw;
   border: 0.4vw solid black;
-  display:flex;
-  justify-items:auto;
+  display: flex;
+  justify-items: auto;
   align-items: center;
-  padding: 0.3vw 1vw ;
-  background: radial-gradient(circle,#00000020,#00000020);
+  background: radial-gradient(circle, #65341080, #75442180);
+  color: #ffd000;
+  -webkit-text-stroke: 0.15vw #080303;
 }
 
 .como {
-  width: 20vw;
+  width: clamp(2vw, 43dvh, 22vw);
 }
 
 .c3 {
-  width: 8vw;
+  width: clamp(2vw, 17dvh, 22vw);
+  margin: 0 5vw;
 }
-.c3Box {
-  width: 16vw;
+
+.c2 {
+  width: clamp(2vw, 32dvh, 22vw);
+  margin-right: 5vw;
+  transform: translateX(2vw) scale(1.25) translateY(-1.3dvh);
 }
-.c4{
-  width: 24vw;
+
+.c1 .c4 {
+  width: clamp(2vw, 50dvh, 22vw);
 }
 .botoes {
   gap: 3vw;
   width: 45%;
-  padding: 0; 
+  padding: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -108,10 +108,9 @@ code {
   align-items: center;
   justify-content: center;
   text-align: center;
-  
-  padding:0.3vw 2.5vw 2vw 2.5vw ;
+  padding: 0.3vw 2.5vw 2vw 2.5vw;
   line-height: 1;
-  box-shadow: inset 0 0 3vw #00000070; 
+  box-shadow: inset 0 0 3vw #00000070;
 }
 
 .button:hover {
@@ -122,22 +121,32 @@ code {
 }
 
 .difPart {
-  -webkit-text-stroke: 0.2vw #000000;
+  -webkit-text-stroke: 0.1vw #000000;
   font-size: 3vw;
-  position: relative;
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: row;
+  position: relative; /* Add this to act as a positioning context for the absolute menu */
+  margin-right: 7vw;
+  color: #851616;
 }
 
 .difLabel {
   display: inline;
-  margin-right: 8px;
+  -webkit-text-stroke: 0.25vw #000000;
   font-size: 3vw;
+  color: #e2a01d;
 }
 
 .difToggle {
   cursor: pointer;
   font-weight: bold;
   user-select: none;
+  display: flex; /* Make difToggle a flex container to align label and arrow */
+  align-items: center; /* Vertically align items */
+}
+
+.difToggle h2 {
+  margin: 0; /* Remove default margin from h2 */
 }
 
 .difMenu {
@@ -145,11 +154,22 @@ code {
   -webkit-text-stroke: 0.1vw #080303;
   font-size: 1.5vw;
   cursor: pointer;
-  position: absolute;
+  position: absolute; /* Position the menu absolutely */
+  /* Adjust these values to position the menu precisely */
+  top: 0; /* Align with the top of .difPart */
+  left: 100%; /* Position it to the right of .difPart */
+  margin-left: 10px; /* Add some space between the toggle and the menu */
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap; /* Prevent menu items from wrapping */
 }
-
-
-
-
-
-
+.upArrow {
+  padding-bottom: 0.5vw;
+  margin-left: 0.2vw;
+  font-weight: 1000;
+}
+.downArrow {
+  padding-top: 0.5vw;
+  margin-left: 0.2vw;
+  font-weight: 1000;
+}
