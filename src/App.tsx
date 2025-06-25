@@ -5,7 +5,7 @@ import Jogos from "./Pages/Jogos";
 import Sobre from "./Pages/Sobre";
 import Contato from "./Pages/Contato";
 import JogoStop from "./Stop/RegrasStop";
-import PaginaDamas from "./Damas/PaginaDamas";
+import PaginaDamas from "./Damas/Pages/PaginaDamas";
 import Teste from  "./Pages/Teste";
 import SPTTT from "./SPTTT/RegrasSPTTT";
 import JogoSPTTT from "./SPTTT/SPTTT";
