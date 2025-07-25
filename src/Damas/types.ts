@@ -9,3 +9,8 @@ export interface Move {
   from: Position;
   to: Position;
 }
+
+export interface PieceType {
+  player: Player;
+  isKing: boolean;
+}

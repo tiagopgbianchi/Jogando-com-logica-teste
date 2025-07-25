@@ -14,7 +14,7 @@
 /* spttt.css */
 
 /* Layout for the full 3x3 ultimate board */
-.ultimate-board {
+.big-board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   width: 600px;
@@ -24,6 +24,7 @@
 
 /* Each 3x3 sub-board */
 .small-board {
+  position: relative; /* so the absolute child aligns properly */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   background: #ccc;
@@ -34,19 +35,43 @@
   transition: box-shadow 0.3s, border-color 0.3s;
 }
 
+/* Overlay the winner symbol on top */
+.board-winner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 1);
+  z-index: 10;
+  pointer-events: none; /* allow clicks to go through if needed */
+}
+
 /* 🔵 Highlight this board as the only playable one */
 .small-board.playable {
-  border: 3px solid #eeff00;
   box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
-  background-color: #a71515;
+  background-color: #ff0000aa;
+}
+
+.small-board.playable:hover{
+  transform: scale(1.01);
 }
 
 /* Individual cell styling */
 .cell {
-  background: white;
+  background: rgb(0, 0, 0);
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
 }
+
+.small-board.won {
+  opacity: 0.9;
+  position: relative;
+  background: #8a6464;
+}
+

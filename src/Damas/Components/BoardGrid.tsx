@@ -1,57 +1,73 @@
 import Piece from "./Piece";
 import "../styles/board.css";
+import { PieceType } from "../types";
+
 interface BoardGridProps {
-  matrix: number[][];
+  matrix: (PieceType | null)[][];
   validMoves: [number, number][];
   selectedPos: [number, number] | null;
-  onPieceClick: (row: number, col: number, piece: number) => void;
+  selectedPlayer: number | null;
+  onPieceClick: (row: number, col: number, piece: PieceType) => void;
   onSquareClick: (row: number, col: number) => void;
+  mustCapturePieces: [number, number][];
+  mustCaptureTargets: [number, number][];
 }
 
-export default function BoardGrid({
+function BoardGrid({
   matrix,
   validMoves,
   selectedPos,
+  selectedPlayer,
   onPieceClick,
   onSquareClick,
+  mustCapturePieces,
+  mustCaptureTargets,
 }: BoardGridProps) {
+  selectedPlayer = selectedPlayer
+  mustCaptureTargets=mustCaptureTargets
+  const isSquareHighlighted = (row: number, col: number) =>
+    validMoves.some(([r, c]) => r === row && c === col);
+
+  const isSquareMustCapture = (row: number, col: number) =>
+    mustCapturePieces.some(([r, c]) => r === row && c === col);
+
   return (
     <div className="board">
-      {Array.from({ length: 64 }, (_, index) => {
-        const row = Math.floor(index / 8);
-        const col = index % 8;
-        const isValidDest = validMoves.some(
-          ([r, c]) => r === row && c === col
-        );
-        const squareClass = [
-          "square",
-          (row + col) % 2 === 0 ? "light" : "dark",
-          isValidDest ? "highlight" : "",
-        ].join(" ");
+      {matrix.map((rowArr, row) =>
+        rowArr.map((piece, col) => {
+          const isDark = (row + col) % 2 !== 0;
+          const squareColor = isDark ? "dark" : "light";
+          const isHighlighted = isSquareHighlighted(row, col);
+          const isSelected =
+            selectedPos?.[0] === row && selectedPos?.[1] === col;
+          const mustCapture = isSquareMustCapture(row, col);
 
-        return (
-          <div key={index} className={squareClass}>
-            {matrix[row][col] !== 0 ? (
-              <Piece
-                codigo={onPieceClick}
-                image={matrix[row][col]}
-                posi_x={row}
-                posi_y={col}
-                selected={
-                  selectedPos !== null &&
-                  selectedPos[0] === row &&
-                  selectedPos[1] === col
-                }
-              />
-            ) : (
-              <button
-                onClick={() => onSquareClick(row, col)}
-                className="botao_quadrado"
-              />
-            )}
-          </div>
-        );
-      })}
+          return (
+            <div
+              key={`${row}-${col}`}
+              className={`square ${squareColor} ${isHighlighted ? `must-move-target` : ""}`}
+            >
+              {piece ? (
+                <Piece
+                  codigo={onPieceClick}
+                  piece={piece}
+                  posi_x={row}
+                  posi_y={col}
+                  selected={isSelected}
+                  mustCapture={mustCapture}
+                />
+              ) : (
+                <button
+                  className="botao_quadrado"
+                  onClick={() => onSquareClick(row, col)}
+                />
+              )}
+            </div>
+          );
+        })
+      )}
     </div>
   );
 }
+
+export default BoardGrid;

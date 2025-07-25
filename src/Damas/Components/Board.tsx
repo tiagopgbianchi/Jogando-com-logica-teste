@@ -1,99 +1,94 @@
 import { useEffect, useState } from "react";
-import { Player } from "../types";
+import { Player, PieceType } from "../types";
 import BoardGrid from "../Components/BoardGrid";
 import {
-  getValidMoves,
-  hasMandatoryCapture,
-  isValidCapture,
-  isValidMove,
-} from "../gameengine";
+  initializeBoard,
+  updateMandatoryCaptures,
+  getMovesForSelectedPiece,
+  attemptMove,
+} from "../Logic/gameController";
 
-const boardSize = 8;
+interface BoardProps {
+  mandatoryCapture: boolean;
+}
 
-function Board() {
-  const [matrix, setMatrix] = useState<number[][]>(
-    Array.from({ length: boardSize }, () =>
-      Array.from({ length: boardSize }, () => 0)
-    )
+function Board({ mandatoryCapture }: BoardProps) {
+  const [matrix, setMatrix] = useState<(PieceType | null)[][]>(
+    initializeBoard()
   );
-
   const [turn, setTurn] = useState<Player>(1);
+
+  const [mustCapturePieces, setMustCapturePieces] = useState<
+    [number, number][]
+  >([]);
+  const [mustCaptureTargets, setMustCaptureTargets] = useState<
+    [number, number][]
+  >([]);
   const [validMoves, setValidMoves] = useState<[number, number][]>([]);
-  const [selectedPiece, setSelectedPiece] = useState<[number, number, number] | null>(null);
 
-  // Helper to update a specific cell on the board
-  const setPieceAt = (row: number, col: number, piece: number) => {
-    setMatrix((prev) =>
-      prev.map((r, i) =>
-        r.map((cell, j) => (i === row && j === col ? piece : cell))
-      )
+  const [selectedPiece, setSelectedPiece] = useState<{
+    row: number;
+    col: number;
+    piece: PieceType;
+  } | null>(null);
+
+  useEffect(() => {
+    const { mustCapturePieces, mustCaptureTargets } = updateMandatoryCaptures(
+      matrix,
+      turn,
+      mandatoryCapture
     );
-  };
+    setMustCapturePieces(mustCapturePieces);
+    setMustCaptureTargets(mustCaptureTargets);
+  }, [matrix, turn, mandatoryCapture]);
 
-  // Initial white pieces setup
-  useEffect(() => {
-    let toggle = true;
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < boardSize; j++) {
-        if (toggle) setPieceAt(i, j, 1); // white = 1
-        toggle = !toggle;
-      }
-      toggle = !toggle;
-    }
-  }, []);
+  const handlePieceClick = (row: number, col: number, piece: PieceType) => {
+    if (piece.player !== turn) return;
 
-  // Initial black pieces setup
-  useEffect(() => {
-    let toggle = false;
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < boardSize; j++) {
-        if (toggle) setPieceAt(boardSize - 1 - i, j, 2); // black = 2
-        toggle = !toggle;
-      }
-      toggle = !toggle;
-    }
-  }, []);
+    const moves = getMovesForSelectedPiece(
+      matrix,
+      row,
+      col,
+      piece,
+      turn,
+      mandatoryCapture
+    );
 
-  const handlePieceClick = (row: number, col: number, piece: number) => {
-    if (piece !== turn) return;
-
-    const mandatory = hasMandatoryCapture(matrix, turn);
-    const moves = getValidMoves(matrix, row, col, piece, mandatory);
-
-    setSelectedPiece([row, col, piece]);
+    setSelectedPiece({ row, col, piece });
     setValidMoves(moves);
   };
 
   const handleSquareClick = (row: number, col: number) => {
     if (!selectedPiece) return;
 
-    const [fromRow, fromCol, piece] = selectedPiece;
-    const toRow = row;
-    const toCol = col;
-    const mandatory = hasMandatoryCapture(matrix, turn);
+    const { row: fromRow, col: fromCol, piece } = selectedPiece;
 
-    if (mandatory) {
-      if (isValidCapture(matrix, fromRow, fromCol, toRow, toCol, piece)) {
-        const midRow = (fromRow + toRow) / 2;
-        const midCol = (fromCol + toCol) / 2;
+    const result = attemptMove(
+      matrix,
+      fromRow,
+      fromCol,
+      row,
+      col,
+      piece,
+      turn,
+      mandatoryCapture
+    );
 
-        setPieceAt(fromRow, fromCol, 0);
-        setPieceAt(midRow, midCol, 0);
-        setPieceAt(toRow, toCol, piece);
+    if (!result) return;
 
-        setSelectedPiece(null);
-        setValidMoves([]);
-        setTurn(turn === 1 ? 2 : 1);
+    const { updatedMatrix, nextTurn, moreCaptures } = result;
+    setMatrix(updatedMatrix);
+
+    if (moreCaptures.length > 0) {
+      const newPiece = updatedMatrix[row][col]; // ✅ get updated king
+      if (newPiece) {
+        setSelectedPiece({ row, col, piece: newPiece }); // ✅ use newPiece (may be a king)
+        setValidMoves(moreCaptures);
       }
     } else {
-      if (isValidMove(matrix, fromRow, fromCol, toRow, toCol, piece)) {
-        setPieceAt(fromRow, fromCol, 0);
-        setPieceAt(toRow, toCol, piece);
-
-        setSelectedPiece(null);
-        setValidMoves([]);
-        setTurn(turn === 1 ? 2 : 1);
-      }
+      setSelectedPiece(null);
+      setValidMoves([]);
+      if (nextTurn !== null) setTurn(nextTurn);
     }
   };
 
@@ -103,13 +98,16 @@ function Board() {
         Turn: {turn === 1 ? "White" : "Black"}
       </h2>
       <BoardGrid
+        selectedPlayer={selectedPiece ? selectedPiece.piece.player : null}
         matrix={matrix}
         validMoves={validMoves}
         selectedPos={
-          selectedPiece ? [selectedPiece[0], selectedPiece[1]] : null
+          selectedPiece ? [selectedPiece.row, selectedPiece.col] : null
         }
         onPieceClick={handlePieceClick}
         onSquareClick={handleSquareClick}
+        mustCapturePieces={mustCapturePieces}
+        mustCaptureTargets={mustCaptureTargets}
       />
     </div>
   );

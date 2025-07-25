@@ -1,12 +1,12 @@
 import StopPage from "./Stop/PageStop";
 /*import StopJogo from "./Stop/JogoStop";*/
-import Home from "./Pages/Home";
-import Jogos from "./Pages/Jogos";
-import Sobre from "./Pages/Sobre";
-import Contato from "./Pages/Contato";
+import Home from "./Main/Pages/Home";
+import Jogos from "./Main/Pages/Jogos";
+import Sobre from "./Main/Pages/Sobre";
+import Contato from "./Main/Pages/Contato";
 import JogoStop from "./Stop/RegrasStop";
 import PaginaDamas from "./Damas/Pages/PaginaDamas";
-import Teste from  "./Pages/Teste";
+import Teste from  "./Main/Pages/Teste";
 import SPTTT from "./SPTTT/RegrasSPTTT";
 import JogoSPTTT from "./SPTTT/SPTTT";
 import "./App.css";

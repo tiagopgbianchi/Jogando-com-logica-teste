@@ -144,7 +144,7 @@ function CaixaStop(props: CaixaStopProps) {
                   color="#f02121"
                 />
               </div>
-              <div className="correction">Correto: {respostaCorreta}</div>
+              <div className="correction"> {respostaCorreta}</div>
             </>
           )}
         </div>

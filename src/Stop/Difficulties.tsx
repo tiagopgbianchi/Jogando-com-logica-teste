@@ -67,7 +67,7 @@ export const difficulties: Record<
       [2, 3],
       [0, 1],
     ],
-    contasPorBox: ["+", "+", "+ ", "+", "-", "-", "-", "x", "x"],
+    contasPorBox: ["+", "+", "+", "+", "-", "-", "-", "x", "x"],
     possibleRandomNumbers: range(6, 9),
     dualBoxes: [
       {
@@ -90,7 +90,7 @@ export const difficulties: Record<
       [2],
       [0, 1],
     ],
-    contasPorBox: ["+", "+", "+ ", "+", "-", "-", "-", "x", "x"],
+    contasPorBox: ["+", "+", "+", "+", "-", "-", "-", "x", "x"],
     possibleRandomNumbers: [10, 11, 12, 13, 14, 15, 16, 17, 18],
     dualBoxes: [
       {
@@ -118,7 +118,7 @@ export const difficulties: Record<
       [0, 1],
       range(2, 9),
     ],
-    contasPorBox: ["+", "+", "+ ", "-", "-", "x", "x", "x", "÷", "÷"],
+    contasPorBox: ["+", "+", "+", "-", "-", "x", "x", "x", "÷", "÷"],
     possibleRandomNumbers: range(4, 12),
     dualBoxes: [],
   },
