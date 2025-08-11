@@ -26,6 +26,11 @@ function Jogos() {
           label="Super Jogo da Velha"
           imageSrc={`${import.meta.env.BASE_URL}vite.svg`}
         />
+        <GameButton
+          pagina="cacaSoma"
+          label="Caça Soma"
+          imageSrc={`${import.meta.env.BASE_URL}vite.svg`}
+        />
       </div>
     </div>
   );

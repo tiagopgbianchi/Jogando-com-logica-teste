@@ -6,9 +6,10 @@ import Sobre from "./Main/Pages/Sobre";
 import Contato from "./Main/Pages/Contato";
 import JogoStop from "./Stop/RegrasStop";
 import PaginaDamas from "./Damas/Pages/PaginaDamas";
-import Teste from  "./Main/Pages/Teste";
+import Teste from "./Main/Pages/Teste";
 import SPTTT from "./SPTTT/RegrasSPTTT";
 import JogoSPTTT from "./SPTTT/SPTTT";
+import Pagina_Soma from "./Caca_soma/Pagina_principal";
 import "./App.css";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 
@@ -21,7 +22,10 @@ function BackButton() {
   return (
     <Link to="/">
       <button className="back-button">
-        <img src={`${import.meta.env.BASE_URL}homeButton.png`} className="homeButton" />
+        <img
+          src={`${import.meta.env.BASE_URL}homeButton.png`}
+          className="homeButton"
+        />
       </button>
     </Link>
   );
@@ -42,6 +46,7 @@ function App() {
         <Route path="/teste" element={<Teste />} />
         <Route path="/spttt" element={<SPTTT />} />
         <Route path="/jogospttt" element={<JogoSPTTT />} />
+        <Route path="/cacaSoma" element={<Pagina_Soma />} />
       </Routes>
     </main>
   );
