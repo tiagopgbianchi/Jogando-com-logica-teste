@@ -17,8 +17,8 @@ function Jogos() {
           imageSrc={`${import.meta.env.BASE_URL}imagem_damas.png`}
         />
         <GameButton
-          pagina="teste"
-          label="Página Teste"
+          pagina="baseGame"
+          label="Base Game"
           imageSrc={`${import.meta.env.BASE_URL}vite.svg`}
         />
         <GameButton

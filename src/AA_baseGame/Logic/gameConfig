@@ -1,0 +1,21 @@
+import { GameConfig } from "./types";
+
+export const tinyTestConfig: GameConfig = {
+  boardWidth: 4,
+  boardHeight: 4,
+  players: 2,
+  pieces: [
+    {
+      type: "king",
+      movementRule: (state, from, to) =>
+        Math.abs(from.row - to.row) <= 1 && Math.abs(from.col - to.col) <= 1,
+      captureRule: (state, from, to) =>
+        Math.abs(from.row - to.row) <= 1 && Math.abs(from.col - to.col) <= 1
+    }
+  ],
+  initialSetup: [
+    { type: "king", row: 0, col: 0, owner: 0 },
+    { type: "king", row: 3, col: 3, owner: 1 }
+  ],
+  turnRules: { movesPerTurn: 1 }
+};

@@ -11,6 +11,7 @@ import SPTTT from "./SPTTT/RegrasSPTTT";
 import JogoSPTTT from "./SPTTT/SPTTT";
 import Pagina_Soma from "./Caca_soma/Pagina_principal";
 import "./App.css";
+import BaseGame from "./AA_baseGame/Pages/baseGamePage"
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 
 function BackButton() {
@@ -47,6 +48,7 @@ function App() {
         <Route path="/spttt" element={<SPTTT />} />
         <Route path="/jogospttt" element={<JogoSPTTT />} />
         <Route path="/cacaSoma" element={<Pagina_Soma />} />
+        <Route path="/baseGame" element={<BaseGame />} />
       </Routes>
     </main>
   );
