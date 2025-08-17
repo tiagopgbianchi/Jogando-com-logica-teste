@@ -1,13 +1,14 @@
 import { useState } from "react";
-import "./SPTTT.css";
+import styles from "./SPTTT.module.css";
 import { Piece } from "./Piece";
 import { WinnerOverlay } from "./WinnerBox"; // make sure this file exists
+import { useLocation } from "react-router-dom";
 
 // BOARD TYPES
 type Player = "X" | "O" | null;
 type MiniBoard = Player[];
 type UltimateBoard = MiniBoard[];
-type WinCondition = "line" | "majority";
+
 
 export default function SPTTT() {
   const [boards, setBoards] = useState<UltimateBoard>(
@@ -16,14 +17,15 @@ export default function SPTTT() {
   const [winners, setWinners] = useState<Array<Player>>(Array(9).fill(null));
   const [currentPlayer, setCurrentPlayer] = useState<Player>("X");
   const [activeBoard, setActiveBoard] = useState<number | null>(null);
-  const [winCondition, setWinCondition] = useState<WinCondition>("line");
+  const location = useLocation();
+  const { winCondition } = location.state as { winCondition: "line" | "majority" }; // Type assertion to ensure correct type
   const [finalWinner, setFinalWinner] = useState<"X" | "O" | "tie" | null>(null);
 
   function checkWinner(board: MiniBoard): Player {
     const lines = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
       [0, 3, 6], [1, 4, 7], [2, 5, 8], // cols
-      [0, 4, 8], [2, 4, 6],            // diagonals
+      [0, 4, 8], [2, 4, 6],           // diagonals
     ];
 
     for (let [a, b, c] of lines) {
@@ -40,7 +42,7 @@ export default function SPTTT() {
       const lines = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // cols
-        [0, 4, 8], [2, 4, 6],            // diagonals
+        [0, 4, 8], [2, 4, 6],           // diagonals
       ];
 
       for (let [a, b, c] of lines) {
@@ -118,53 +120,39 @@ export default function SPTTT() {
   };
 
   return (
-    <div className="jogo-SPTTT">
-      <h1>Ultimate Tic-Tac-Toe</h1>
+    <div className={styles['jogo-SPTTT']}>
+      
 
-      {/* Win mode selector */}
-      <div className="mode-select">
-        <label>
-          <input
-            type="radio"
-            name="winMode"
-            value="line"
-            checked={winCondition === "line"}
-            onChange={() => setWinCondition("line")}
-          />
-          Classic (3 in a row)
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="winMode"
-            value="majority"
-            checked={winCondition === "majority"}
-            onChange={() => setWinCondition("majority")}
-          />
-          Most Boards
-        </label>
+      {/* Turn indicator */}
+      <div className={styles['turn-indicator']}>
+        <span>Turno do jogador:</span>
+        <div className={styles['current-player-symbol']}>
+          <Piece player={currentPlayer!} />
+        </div>
       </div>
 
-      <div className="board-wrap">
-        <div className="big-board">
+      
+
+      <div className={styles['board-wrap']}>
+        <div className={styles['big-board']}>
           {boards.map((board, boardIndex) => (
             <div
               key={boardIndex}
-              className={`small-board ${
+              className={`${styles['small-board']} ${
                 activeBoard === null || activeBoard === boardIndex
-                  ? "playable"
+                  ? styles.playable
                   : ""
-              } ${winners[boardIndex] ? "won" : ""}`}
+              } ${winners[boardIndex] ? styles.won : ""}`}
             >
               {winners[boardIndex] && (
-                <div className="board-winner">
+                <div className={styles['board-winner']}>
                   <Piece player={winners[boardIndex]!} />
                 </div>
               )}
               {board.map((cell, cellIndex) => (
                 <button
                   key={cellIndex}
-                  className="casa"
+                  className={styles.casa}
                   onClick={() => handleClick(boardIndex, cellIndex)}
                   disabled={!!winners[boardIndex]}
                 >

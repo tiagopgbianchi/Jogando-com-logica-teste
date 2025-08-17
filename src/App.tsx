@@ -5,7 +5,7 @@ import Jogos from "./Main/Pages/Jogos";
 import Sobre from "./Main/Pages/Sobre";
 import Contato from "./Main/Pages/Contato";
 import JogoStop from "./Stop/RegrasStop";
-import PaginaDamas from "./Damas/Pages/PaginaDamas";
+import PaginaDamas from "./Damas/Pages/RegrasDamas";
 import Teste from "./Main/Pages/Teste";
 import SPTTT from "./SPTTT/RegrasSPTTT";
 import JogoSPTTT from "./SPTTT/SPTTT";
@@ -13,6 +13,7 @@ import Pagina_Soma from "./Caca_soma/Pagina_principal";
 import "./App.css";
 import BaseGame from "./AA_baseGame/Pages/baseGamePage"
 import { Routes, Route, useLocation, Link } from "react-router-dom";
+import JogoDamas from "./Damas/Pages/JogoDamas"
 
 function BackButton() {
   const location = useLocation();
@@ -38,6 +39,7 @@ function App() {
       <BackButton />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/jogodamas" element={<JogoDamas />} />
         <Route path="/jogos" element={<Jogos />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/contato" element={<Contato />} />

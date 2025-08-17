@@ -1,22 +1,23 @@
 import { useState } from "react";
-import styles from "./RegrasSPTTT.module.css";
+import styles from "../styles/regras.module.css";
 import { useNavigate } from "react-router-dom";
 
-type WinCondition = "line" | "majority";
+type MandatoryCapture = true | false;
 
-function JogoStop() {
+function RegrasDamas() {
   const navigate = useNavigate();
-  const [winCondition, setWinCondition] = useState<WinCondition>("line");
-
+  const [MandatoryCapture, setMandatoryCapture] = useState<MandatoryCapture>(false);
+  
   function jogarStop() {
-    navigate("/jogospttt", { state: { winCondition } });
+    navigate("/jogodamas", { state: { MandatoryCapture } });
   }
-
+  
   return (
     <div className={styles.regrasPage}>
       {/* Left Side - Rules */}
       <div className={styles.boxBorder}>
         <div className={styles.boxRegras}>
+          
           <ul className={styles.regras}>
             <li>
               <h3>Regra 1: Como jogar Ultimate Tic-Tac-Toe</h3>
@@ -57,7 +58,7 @@ function JogoStop() {
         <button className={styles.button} onClick={jogarStop}>
           <span>Jogar</span>
         </button>
-
+        
         {/* Win mode selector */}
         <div className={styles['mode-select-rules']}>
           <label>
@@ -65,20 +66,20 @@ function JogoStop() {
               type="radio"
               name="winMode"
               value="line"
-              checked={winCondition === "line"}
-              onChange={() => setWinCondition("line")}
+              checked={MandatoryCapture === true}
+              onChange={() => setMandatoryCapture(true)}
             />
-            Clássico (3 em linha)
+            Captura obrigatória
           </label>
           <label>
             <input
               type="radio"
               name="winMode"
               value="majority"
-              checked={winCondition === "majority"}
-              onChange={() => setWinCondition("majority")}
+              checked={MandatoryCapture === false}
+              onChange={() => setMandatoryCapture(false)}
             />
-            Maioria dos Tabuleiros
+            Captura não obrigatória
           </label>
         </div>
       </div>
@@ -86,4 +87,4 @@ function JogoStop() {
   );
 }
 
-export default JogoStop;
+export default RegrasDamas;

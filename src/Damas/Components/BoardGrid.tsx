@@ -1,5 +1,5 @@
 import Piece from "./Piece";
-import "../styles/board.css";
+import styles from "../styles/board.module.css";
 import { PieceType } from "../types";
 
 interface BoardGridProps {
@@ -23,8 +23,8 @@ function BoardGrid({
   mustCapturePieces,
   mustCaptureTargets,
 }: BoardGridProps) {
-  selectedPlayer = selectedPlayer
-  mustCaptureTargets=mustCaptureTargets
+  selectedPlayer = selectedPlayer;
+  mustCaptureTargets = mustCaptureTargets;
   const isSquareHighlighted = (row: number, col: number) =>
     validMoves.some(([r, c]) => r === row && c === col);
 
@@ -32,7 +32,7 @@ function BoardGrid({
     mustCapturePieces.some(([r, c]) => r === row && c === col);
 
   return (
-    <div className="board">
+    <div className={styles.board}>
       {matrix.map((rowArr, row) =>
         rowArr.map((piece, col) => {
           const isDark = (row + col) % 2 !== 0;
@@ -45,7 +45,9 @@ function BoardGrid({
           return (
             <div
               key={`${row}-${col}`}
-              className={`square ${squareColor} ${isHighlighted ? `must-move-target` : ""}`}
+              className={`${styles.square} ${styles[squareColor]} ${
+                isHighlighted ? styles["must-move-target"] : ""
+              }`}
             >
               {piece ? (
                 <Piece
@@ -58,7 +60,7 @@ function BoardGrid({
                 />
               ) : (
                 <button
-                  className="botao_quadrado"
+                  className={styles.botao_quadrado}
                   onClick={() => onSquareClick(row, col)}
                 />
               )}
