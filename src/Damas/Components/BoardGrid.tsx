@@ -23,13 +23,22 @@ function BoardGrid({
   mustCapturePieces,
   mustCaptureTargets,
 }: BoardGridProps) {
+  // Remove unused variable warnings
   selectedPlayer = selectedPlayer;
   mustCaptureTargets = mustCaptureTargets;
+
   const isSquareHighlighted = (row: number, col: number) =>
     validMoves.some(([r, c]) => r === row && c === col);
 
   const isSquareMustCapture = (row: number, col: number) =>
     mustCapturePieces.some(([r, c]) => r === row && c === col);
+
+  const getSquareLabel = (row: number, col: number) => {
+    // Add coordinate labels for better UX (optional)
+    const files = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+    const ranks = ['8', '7', '6', '5', '4', '3', '2', '1'];
+    return `${files[col]}${ranks[row]}`;
+  };
 
   return (
     <div className={styles.board}>
@@ -48,6 +57,7 @@ function BoardGrid({
               className={`${styles.square} ${styles[squareColor]} ${
                 isHighlighted ? styles["must-move-target"] : ""
               }`}
+              title={getSquareLabel(row, col)} // Tooltip with square coordinates
             >
               {piece ? (
                 <Piece
@@ -62,6 +72,7 @@ function BoardGrid({
                 <button
                   className={styles.botao_quadrado}
                   onClick={() => onSquareClick(row, col)}
+                  aria-label={`Move to ${getSquareLabel(row, col)}`}
                 />
               )}
             </div>
