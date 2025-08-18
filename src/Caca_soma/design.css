@@ -6,19 +6,18 @@
   grid-template-columns: repeat(10, 50px);
   grid-template-rows: repeat(10, 50px);
   gap: 0px;
+  color: rgb(166, 166, 247);
 }
 
-.cell {
-  border: 1x solid #000000;
+.celula {
+  border: 1px solid #000000;
   cursor: pointer;
-  border-radius: 0;
+  border-radius: 0px;
   font-size: 15px; /* controla o tamanho da letra */
   display: flex; /* para centralizar */
   align-items: center; /* verticalmente */
   justify-content: center;
-}
-.cell:hover {
-  border-color: #666;
+  background-color: white;
 }
 
 .num-pontu {
@@ -26,14 +25,14 @@
   font-size: 200px;
   top: 10px;
   left: 10px;
-  color: red;
+  color: rgb(54, 52, 197);
 }
 .texto-sorte {
   position: absolute;
   font-size: 50px;
   top: 10px;
   left: 1000px;
-  color: red;
+  color: rgb(28, 37, 165);
 }
 
 .num-sorte {
@@ -41,7 +40,7 @@
   font-size: 200px;
   top: 100px;
   left: 1000px;
-  color: red;
+  color: rgb(33, 36, 194);
 }
 
 .container {
