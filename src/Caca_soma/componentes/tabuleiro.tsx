@@ -2,12 +2,13 @@ import { useState } from "react";
 import "../design.css";
 
 interface prop {
-  addPontu: () => void;
+  addPontu: (valor: number) => void;
   mudarClicar: () => void;
-  clicar: boolean;
+  mudarJogar: () => void;
+  jogar: boolean;
 }
 
-function Tabuleiro({ clicar, mudarClicar, addPontu }: prop) {
+function Tabuleiro({ jogar, mudarClicar, mudarJogar, addPontu }: prop) {
   const [somaClick, setSomaClick] = useState(0);
   // 10x10 matrix filled with false
   const [board, setBoard] = useState(
@@ -15,11 +16,12 @@ function Tabuleiro({ clicar, mudarClicar, addPontu }: prop) {
   );
 
   const toggleCell = (row: number, col: number, valor: number) => {
-    if (board[row][col] == false && clicar) {
+    if (board[row][col] == false && jogar) {
       if (somaClick > 0) {
         setSomaClick(0);
-        addPontu();
+        addPontu(1);
         mudarClicar();
+        mudarJogar();
       } else {
         setSomaClick(valor);
       }
@@ -28,7 +30,7 @@ function Tabuleiro({ clicar, mudarClicar, addPontu }: prop) {
     setBoard((prev) =>
       prev.map((r, rIdx) =>
         r.map((cell, cIdx) =>
-          rIdx === row && cIdx === col && clicar ? true : cell
+          rIdx === row && cIdx === col && jogar ? true : cell
         )
       )
     );

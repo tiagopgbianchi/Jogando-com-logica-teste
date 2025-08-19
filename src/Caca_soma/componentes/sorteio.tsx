@@ -1,14 +1,14 @@
 import { useRef, useState, useEffect } from "react";
 
 interface properties {
-  mudarClicar: () => void;
+  mudarJogar: () => void;
   clicar: boolean;
 }
 const NumGenerator = () => {
   return Math.floor(Math.random() * 200);
 };
 
-function Girar({ mudarClicar, clicar }: properties) {
+function Girar({ mudarJogar, clicar }: properties) {
   const [displayedNumber, setDisplayedNumber] = useState(0);
   const interval = useRef<number | null>(null);
   const stop = useRef<number | null>(null);
@@ -25,7 +25,7 @@ function Girar({ mudarClicar, clicar }: properties) {
         if (interval.current) clearInterval(interval.current);
         const finalNum = NumGenerator();
         setDisplayedNumber(finalNum);
-        mudarClicar();
+        mudarJogar();
       }, 2000);
       return () => {
         if (interval.current) clearInterval(interval.current);
