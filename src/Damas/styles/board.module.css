@@ -132,12 +132,13 @@
 }
 
 .light {
-  background: radial-gradient(circle, #e8f5e8, #c8e6c9);
+  background: radial-gradient(circle, #e8f5e8, #bbd6bc);
   border: 0.1vw solid #81c784;
 }
 
 .dark {
   background: radial-gradient(circle, #2e7d32, #1b5e20);
+  background: radial-gradient(circle, #a77039, #724f0f);
   border: 0.1vw solid #0d4f14;
 }
 
