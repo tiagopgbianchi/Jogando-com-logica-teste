@@ -2,13 +2,12 @@ import { useState } from "react";
 import "../design.css";
 
 interface prop {
-  addPontu: (valor: number) => void;
   mudarClicar: () => void;
   mudarJogar: () => void;
   jogar: boolean;
 }
 
-function Tabuleiro({ jogar, mudarClicar, mudarJogar, addPontu }: prop) {
+function Tabuleiro({ jogar, mudarClicar, mudarJogar }: prop) {
   const [somaClick, setSomaClick] = useState(0);
   // 10x10 matrix filled with false
   const [board, setBoard] = useState(
@@ -19,7 +18,6 @@ function Tabuleiro({ jogar, mudarClicar, mudarJogar, addPontu }: prop) {
     if (board[row][col] == false && jogar) {
       if (somaClick > 0) {
         setSomaClick(0);
-        addPontu(1);
         mudarClicar();
         mudarJogar();
       } else {

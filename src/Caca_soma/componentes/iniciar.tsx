@@ -2,13 +2,17 @@ import "../design.css";
 
 interface prop {
   mudarClicar: () => void;
+  mudarQualJoga: () => void;
   clicar: boolean;
 }
-function Iniciar({ mudarClicar, clicar }: prop) {
+function Iniciar({ mudarClicar, clicar, mudarQualJoga }: prop) {
   return (
     <button
       onClick={() => {
-        clicar ? mudarClicar() : null;
+        if (clicar) {
+          mudarClicar();
+          mudarQualJoga();
+        }
       }}
     >
       INICIAR

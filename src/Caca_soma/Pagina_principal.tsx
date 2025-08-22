@@ -1,12 +1,17 @@
 import Tabuleiro from "./componentes/tabuleiro";
 import Girar from "./componentes/sorteio";
 import Iniciar from "./componentes/iniciar";
+import Timer from "./componentes/timer";
 import { useState } from "react";
 import "./design.css";
 
 function Caca_soma() {
   const [jogar, setJogar] = useState(false);
   const [clicar, setClicar] = useState(true);
+  const [qualJoga, setQualJoga] = useState(false);
+  const mudarQualJoga = () => {
+    setQualJoga(!qualJoga);
+  };
   const mudarClicar = () => {
     setClicar(!clicar);
   };
@@ -14,19 +19,19 @@ function Caca_soma() {
     setJogar(!jogar);
   };
 
-  const [pontu_1, setPontu_1] = useState(0);
-  const [pontu_2, setPontu2] = useState(0);
+  const [pontu_1, setPontu_1] = useState(0.0);
+  const [pontu_2, setPontu_2] = useState(0.0);
   const addPontu = (aumento: number) => {
-    setPontu_1(pontu_1 + aumento);
+    if (qualJoga) setPontu_1(pontu_1 + aumento);
+    else setPontu_2(pontu_2 + aumento);
   };
   return (
     <div className="container">
       <div>
-        <div className="num-pontu-1">{pontu_1}</div>
-        <div className="num-pontu-2">{pontu_2}</div>
+        <div className="num-pontu-1">{pontu_1.toFixed(2)}</div>
+        <div className="num-pontu-2">{pontu_2.toFixed(2)}</div>
       </div>
       <Tabuleiro
-        addPontu={addPontu}
         mudarClicar={mudarClicar}
         jogar={jogar}
         mudarJogar={mudarJogar}
@@ -37,7 +42,14 @@ function Caca_soma() {
           {<Girar clicar={clicar} mudarJogar={mudarJogar} />}
         </div>
         <div className="botao-ini">
-          <Iniciar mudarClicar={mudarClicar} clicar={clicar} />
+          <Iniciar
+            mudarClicar={mudarClicar}
+            clicar={clicar}
+            mudarQualJoga={mudarQualJoga}
+          />
+        </div>
+        <div>
+          <Timer jogar={jogar} addPontu={addPontu} />
         </div>
       </div>
     </div>
