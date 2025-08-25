@@ -54,10 +54,7 @@ function Timer({ jogar, addPontu }: prop) {
 
   return (
     <div>
-      <p>Tempo atual: {(tempoAtual / 1000).toFixed(2)} segundos</p>
-      {tempo !== null && (
-        <p>Tempo final armazenado: {(tempo / 1000).toFixed(2)} segundos</p>
-      )}
+      <p>Tempo atual: {(tempoAtual / 1000).toFixed(1)} segundos</p>
     </div>
   );
 }

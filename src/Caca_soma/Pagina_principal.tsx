@@ -28,8 +28,8 @@ function Caca_soma() {
   return (
     <div className="container">
       <div>
-        <div className="num-pontu-1">{pontu_1.toFixed(2)}</div>
-        <div className="num-pontu-2">{pontu_2.toFixed(2)}</div>
+        <div className="num-pontu-1">{pontu_1.toFixed(1)}</div>
+        <div className="num-pontu-2">{pontu_2.toFixed(1)}</div>
       </div>
       <Tabuleiro
         mudarClicar={mudarClicar}
