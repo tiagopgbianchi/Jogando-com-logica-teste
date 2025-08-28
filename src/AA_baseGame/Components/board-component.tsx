@@ -21,7 +21,7 @@ const Board: React.FC<BoardProps> = ({
 }) => {
   const engine = new GameEngine();
   const [internalGameState, setInternalGameState] = useState<GameState>(() => 
-    engine.initializeGame(passagemConfig, passagemRules)
+    engine.initializeGame(gameConfig, gameRules)
   );
   
   const gameState = externalGameState || internalGameState;
