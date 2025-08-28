@@ -41,7 +41,7 @@ const PieceComponent: React.FC<PieceProps> = ({
       
       case 'king':
         return {
-          symbol: piece.isKing || piece.isPromoted ? '♚' : '♔',
+          symbol: piece.data?.isKing || piece.data?.isPromoted ? '♚' : '♔',
           backgroundColor: getPlayerColor(piece.owner),
           textColor: 'white',
           shape: 'circle'
@@ -81,7 +81,7 @@ const PieceComponent: React.FC<PieceProps> = ({
       
       case 'captain':
         return {
-          symbol: '⚓',
+          symbol: '⚔',
           backgroundColor: getPlayerColor(piece.owner),
           textColor: 'white',
           shape: 'circle'
@@ -92,7 +92,7 @@ const PieceComponent: React.FC<PieceProps> = ({
       default:
         // Default checker piece
         return {
-          symbol: piece.isKing || piece.isPromoted ? '♚' : '●',
+          symbol: piece.data?.isKing || piece.data?.isPromoted ? '♚' : '●',
           backgroundColor: getPlayerColor(piece.owner),
           textColor: 'white',
           shape: 'circle'
@@ -102,10 +102,10 @@ const PieceComponent: React.FC<PieceProps> = ({
 
   const display = getPieceDisplay();
   
-  // Special states
-  const hasMoved = piece.hasMoved;
-  const isPromoted = piece.isKing || piece.isPromoted;
-  const isSpecial = piece.isSpecial;
+  // Special states from piece.data
+  const hasMoved = piece.data?.hasMoved;
+  const isPromoted = piece.data?.isKing || piece.data?.isPromoted;
+  const isSpecial = piece.data?.isSpecial;
   const hasValue = piece.value !== undefined;
 
   // Get border styling

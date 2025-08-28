@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { GameState, Position, Piece, TurnAction, GameConfig } from '../Logic/types';
+import { GameState, Position, Piece, TurnAction, GameConfig, GameRules } from '../Logic/types';
 import { GameEngine } from '../Logic/gameEngine';
-import { passagemConfig } from '../Logic/gameConfig';
 import PieceComponent from './piece';
+import { passagemRules } from '../Logic/gameRules';
+import { passagemConfig } from '../Logic/gameConfig';
 import '../style.css';
 
 interface BoardProps {
   gameConfig: GameConfig;
+  gameRules: GameRules;
   gameState?: GameState;
   onGameStateChange?: (newState: GameState) => void;
 }
 
 const Board: React.FC<BoardProps> = ({ 
   gameConfig,
+  gameRules,
   gameState: externalGameState, 
   onGameStateChange 
 }) => {
   const engine = new GameEngine();
   const [internalGameState, setInternalGameState] = useState<GameState>(() => 
-    engine.initializeBoard(passagemConfig)
+    engine.initializeGame(passagemConfig, passagemRules)
   );
   
   const gameState = externalGameState || internalGameState;
@@ -29,7 +32,7 @@ const Board: React.FC<BoardProps> = ({
   // Update available actions when selection changes or game state changes
   useEffect(() => {
     if (selectedSquare) {
-      const actions = engine.getAvailableActions(gameState, selectedSquare);
+      const actions = engine.getAvailableActions(gameState, gameRules, selectedSquare);
       setAvailableActions(actions);
       
       // Create highlight squares for valid moves
@@ -41,7 +44,7 @@ const Board: React.FC<BoardProps> = ({
       });
       setHighlightedSquares(highlights);
     } else {
-      const allActions = engine.getAvailableActions(gameState);
+      const allActions = engine.getAvailableActions(gameState, gameRules);
       setAvailableActions(allActions);
       setHighlightedSquares([]);
     }
@@ -51,7 +54,7 @@ const Board: React.FC<BoardProps> = ({
     const clickedPosition = { row, col };
     const clickedPiece = gameState.board[row][col];
 
-    if (gameState.winner !== null) {
+    if (gameState.gamePhase === "ended") {
       return; // Game is over, no more moves
     }
 
@@ -70,7 +73,7 @@ const Board: React.FC<BoardProps> = ({
       
       if (validAction) {
         // Execute the action
-        const success = engine.executeAction(gameState, validAction);
+        const success = engine.executeAction(gameState, validAction, gameRules);
         
         if (success) {
           // Update state
@@ -92,7 +95,7 @@ const Board: React.FC<BoardProps> = ({
         );
         
         if (placeAction) {
-          const success = engine.executeAction(gameState, placeAction);
+          const success = engine.executeAction(gameState, placeAction, gameRules);
           
           if (success) {
             if (onGameStateChange) {
@@ -118,7 +121,7 @@ const Board: React.FC<BoardProps> = ({
         );
         
         if (placeAction) {
-          const success = engine.executeAction(gameState, placeAction);
+          const success = engine.executeAction(gameState, placeAction, gameRules);
           
           if (success) {
             if (onGameStateChange) {
@@ -136,7 +139,7 @@ const Board: React.FC<BoardProps> = ({
     const specialAction = availableActions.find(action => action.type === actionType);
     
     if (specialAction) {
-      const success = engine.executeAction(gameState, specialAction);
+      const success = engine.executeAction(gameState, specialAction, gameRules);
       
       if (success) {
         if (onGameStateChange) {
@@ -168,7 +171,7 @@ const Board: React.FC<BoardProps> = ({
   };
 
   const currentPlayerName = `Player ${gameState.currentPlayer + 1}`;
-  const winResult = engine.checkWinCondition(gameState);
+  const winResult = gameRules.checkWinCondition(gameState);
 
   // Get player data for display
   const currentPlayerData = gameState.playerData?.[gameState.currentPlayer] || {};
@@ -190,46 +193,41 @@ const Board: React.FC<BoardProps> = ({
         </p>
         <p>Turn: {gameState.turnCount + 1}</p>
         
-        {/* Show remaining moves/energy if applicable */}
-        {gameState.remainingMoves !== undefined && (
-          <p>Moves Left: {gameState.remainingMoves}</p>
-        )}
-        {gameState.remainingEnergy !== undefined && (
-          <p>Energy Left: {gameState.remainingEnergy}</p>
-        )}
+        {/* Show remaining moves if applicable */}
+        <p>Moves Left: {gameState.remainingMoves}</p>
+        
         {barriersLeft > 0 && (
           <p>Barriers Available: {barriersLeft}</p>
         )}
         
-        {/* Show dice roll if applicable */}
-        {gameState.diceRoll && (
-          <p>Dice Roll: {gameState.diceRoll.join(', ')}</p>
+        {/* Show dice roll if stored in gameData */}
+        {gameState.gameData?.diceRoll && (
+          <p>Dice Roll: {Array.isArray(gameState.gameData.diceRoll) ? 
+            gameState.gameData.diceRoll.join(', ') : gameState.gameData.diceRoll}</p>
         )}
 
         {/* Score Display */}
-        {gameState.gameData && (
-          <div style={{ margin: '10px 0' }}>
-            {gameState.gameData?.capturedPieces && (
-              <p>Captures: 
-                {Array.from({length: gameState.players}, (_, i) => (
-                  <span key={i} style={{ margin: '0 10px' }}>
-                    Player {i + 1}: {gameState.gameData?.capturedPieces[i] || 0}
-                  </span>
-                ))}
-              </p>
-            )}
-            
-            {gameState.gameData?.scores && (
-              <p>Scores: 
-                {Array.from({length: gameState.players}, (_, i) => (
-                  <span key={i} style={{ margin: '0 10px' }}>
-                    Player {i + 1}: {gameState.gameData?.scores[i] || 0}
-                  </span>
-                ))}
-              </p>
-            )}
-          </div>
-        )}
+        <div style={{ margin: '10px 0' }}>
+          {gameState.gameData?.capturedPieces && (
+            <p>Captures: 
+              {Array.from({length: gameState.players}, (_, i) => (
+                <span key={i} style={{ margin: '0 10px' }}>
+                  Player {i + 1}: {gameState.gameData?.capturedPieces[i] || 0}
+                </span>
+              ))}
+            </p>
+          )}
+          
+          {gameState.gameData?.scores && (
+            <p>Scores: 
+              {Array.from({length: gameState.players}, (_, i) => (
+                <span key={i} style={{ margin: '0 10px' }}>
+                  Player {i + 1}: {gameState.gameData?.scores[i] || 0}
+                </span>
+              ))}
+            </p>
+          )}
+        </div>
 
         {/* Win condition display */}
         {winResult && (
@@ -250,8 +248,8 @@ const Board: React.FC<BoardProps> = ({
           </div>
         )}
 
-        {/* Show if player must capture */}
-        {gameState.mustCapture && (
+        {/* Show if player must capture (if stored in gameData) */}
+        {gameState.gameData?.mustCapture && (
           <div style={{ 
             backgroundColor: '#e74c3c', 
             color: 'white', 
@@ -348,10 +346,39 @@ const Board: React.FC<BoardProps> = ({
       {/* Action Buttons */}
       <div style={{ marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
         
-        {/* Skip Turn */}
-        {gameState.config.turnRules.canSkipTurn && (
+        {/* Custom action buttons based on available actions */}
+        {availableActions.filter(action => action.type === 'custom').map((action, index) => (
           <button 
-            onClick={() => handleSpecialAction('skip')}
+            key={index}
+            onClick={() => handleSpecialAction('custom')}
+            style={{
+              padding: '8px 16px',
+              fontSize: '14px',
+              backgroundColor: '#9b59b6',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}
+            disabled={!!winResult}
+          >
+            {action.data?.buttonText || 'Custom Action'}
+          </button>
+        ))}
+
+        {/* Generic skip turn button if no moves available */}
+        {availableActions.length === 0 && gameState.gamePhase === "playing" && (
+          <button 
+            onClick={() => {
+              // Force end turn by creating a skip action
+              const skipAction: TurnAction = { type: 'custom', data: { skip: true } };
+              engine.executeAction(gameState, skipAction, gameRules);
+              if (onGameStateChange) {
+                onGameStateChange(gameState);
+              } else {
+                setInternalGameState({...gameState});
+              }
+            }}
             style={{
               padding: '8px 16px',
               fontSize: '14px',
@@ -364,44 +391,6 @@ const Board: React.FC<BoardProps> = ({
             disabled={!!winResult}
           >
             Skip Turn
-          </button>
-        )}
-
-        {/* Roll Dice */}
-        {gameState.config.turnRules.hasDiceRolls && !gameState.diceRoll && (
-          <button 
-            onClick={() => handleSpecialAction('rollDice')}
-            style={{
-              padding: '8px 16px',
-              fontSize: '14px',
-              backgroundColor: '#9b59b6',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-            disabled={!!winResult}
-          >
-            Roll Dice
-          </button>
-        )}
-
-        {/* Declare No Solution (for puzzle games) */}
-        {gameState.config.turnRules.customRules?.allowNoSolution && (
-          <button 
-            onClick={() => handleSpecialAction('declareNoSolution')}
-            style={{
-              padding: '8px 16px',
-              fontSize: '14px',
-              backgroundColor: '#e67e22',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-            disabled={!!winResult}
-          >
-            No Solution
           </button>
         )}
       </div>
@@ -419,7 +408,7 @@ const Board: React.FC<BoardProps> = ({
           <h4>Selected Piece</h4>
           <p>Type: {gameState.board[selectedSquare.row][selectedSquare.col]?.type}</p>
           <p>Position: ({selectedSquare.row}, {selectedSquare.col})</p>
-          {gameState.board[selectedSquare.row][selectedSquare.col]?.value && (
+          {gameState.board[selectedSquare.row][selectedSquare.col]?.value !== undefined && (
             <p>Value: {gameState.board[selectedSquare.row][selectedSquare.col]?.value}</p>
           )}
           <p>Available Actions: {availableActions.length}</p>
