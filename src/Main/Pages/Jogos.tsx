@@ -17,7 +17,7 @@ function Jogos() {
           imageSrc={`${import.meta.env.BASE_URL}imagem_damas.png`}
         />
         <GameButton
-          pagina="baseGame"
+          pagina="damasregras"
           label="Base Game"
           imageSrc={`${import.meta.env.BASE_URL}vite.svg`}
         />
@@ -27,9 +27,19 @@ function Jogos() {
           imageSrc={`${import.meta.env.BASE_URL}vite.svg`}
         />
         <GameButton
-          pagina="cacaSoma"
+          pagina="cacasomaRg"
           label="Caça Soma"
           imageSrc={`${import.meta.env.BASE_URL}vite.svg`}
+        />
+        <GameButton
+          pagina="crownchaseRg"
+          label="Caça Coroa"
+          imageSrc={`${import.meta.env.BASE_URL}vite.svg`}
+        />
+        <GameButton
+          pagina="dimensions"
+          label="Rubiks Class"
+          imageSrc={`${import.meta.env.BASE_URL}imagemCubo.png`}
         />
       </div>
     </div>

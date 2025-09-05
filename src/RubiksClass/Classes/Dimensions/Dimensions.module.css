@@ -1,0 +1,210 @@
+/* Add these styles to your existing Dimensions.module.css */
+
+.dragContainer, .dropContainer {
+  margin: 20px 0;
+}
+
+.dragContainer h3, .dropContainer h3 {
+  text-align: center;
+  font-size: clamp(25px, 3vw, 35px);
+  margin-bottom: 15px;
+  -webkit-text-stroke: clamp(1.5px, 0.2vw, 3px) #000000;
+}
+
+.imagesRow, .boxesRow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.cubeImage {
+  border: clamp(4px, 0.5vw, 8px) solid #5e1317;
+  border-radius: clamp(10px, 1vw, 15px);
+  padding: 15px;
+  background: radial-gradient(circle, #b82a1d, #691008);
+  cursor: grab;
+  transition: all 0.3s ease;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cubeImage:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cubeImage.placed {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.dimensionBox {
+  border: clamp(4px, 0.5vw, 8px) solid #2c3e50;
+  border-radius: clamp(10px, 1vw, 15px);
+  padding: 15px;
+  background: radial-gradient(circle, #3498db, #2980b9);
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropArea {
+  border: 2px dashed #eee;
+  border-radius: 10px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.droppedImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyText {
+  color: #eee;
+  font-size: 14px;
+  opacity: 0.7;
+  -webkit-text-stroke: 0.5px #000000;
+}
+
+.dimensionLabel {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: bold;
+  -webkit-text-stroke: clamp(1px, 0.13vw, 2px) #000000;
+  color: #eee;
+  text-align: center;
+}
+
+.removeButton {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 18px;
+}
+
+.removeButton:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+}
+
+.submitContainer {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.submitButton {
+  padding: 15px 40px;
+  background: radial-gradient(circle, #27ae60, #219653);
+  color: #eee;
+  border: clamp(4px, 0.5vw, 8px) solid #000;
+  border-radius: clamp(10px, 1vw, 20px);
+  cursor: pointer;
+  font-size: clamp(20px, 2.5vw, 30px);
+  font-weight: bold;
+  -webkit-text-stroke: clamp(1px, 0.13vw, 2px) #000000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: radial-gradient(circle, #219653, #1a7e48);
+  transform: scale(1.05);
+}
+
+.submitButton:disabled {
+  background: radial-gradient(circle, #7f8c8d, #636e72);
+  cursor: not-allowed;
+  transform: scale(0.98);
+}
+
+/* Cube visualization styles */
+.cubeVisual {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px;
+}
+
+.cubeVisual div {
+  background-color: #e74c3c;
+  border: 1px solid #c0392b;
+}
+
+.cube2x2 {
+  width: 30px;
+  height: 30px;
+}
+
+.cube3x3 {
+  width: 8px;
+  height: 8px;
+}
+
+.cube4x4 {
+  width: 6px;
+  height: 6px;
+}
+
+.cube5x5 {
+  width: 5px;
+  height: 5px;
+}
+
+.cube6x6 {
+  width: 4px;
+  height: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .imagesRow, .boxesRow {
+    gap: 10px;
+  }
+  
+  .cubeImage {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+  }
+  
+  .dimensionBox {
+    width: 100px;
+    padding: 10px;
+  }
+  
+  .dropArea {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .cube2x2 {
+    width: 20px;
+    height: 20px;
+  }
+}

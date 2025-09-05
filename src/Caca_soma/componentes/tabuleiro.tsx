@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../design.css";
+import "../styles/design.css"
 
 interface prop {
   mudarClicar: () => void;

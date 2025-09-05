@@ -1,9 +1,9 @@
-import Tabuleiro from "./componentes/tabuleiro";
-import Girar from "./componentes/sorteio";
-import Iniciar from "./componentes/iniciar";
-import Timer from "./componentes/timer";
+import Tabuleiro from "../componentes/tabuleiro";
+import Girar from "../componentes/sorteio";
+import Iniciar from "../componentes/iniciar";
+import Timer from "../componentes/timer";
 import { useState } from "react";
-import "./design.css";
+import "../styles/design.css";
 
 function Caca_soma() {
   const [jogar, setJogar] = useState(false);

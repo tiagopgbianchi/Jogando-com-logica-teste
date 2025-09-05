@@ -1,0 +1,85 @@
+.piece {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  position: relative;
+  user-select: none;
+}
+
+.pieceCircle {
+  border-radius: 50%;
+}
+
+.pieceSquare {
+  border-radius: 15%;
+}
+
+.pieceSelected {
+  border: 3px solid #f1c40f;
+}
+
+.pieceSpecial {
+  border: 2px solid #f39c12;
+  box-shadow: 0 0 8px rgba(241, 196, 15, 0.6);
+}
+
+.piecePromoted {
+  border: 2px solid #9b59b6;
+}
+
+.pieceMoved {
+  opacity: 0.9;
+}
+
+.pieceBarrier {
+  cursor: default;
+}
+
+.pieceContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.pieceValue {
+  font-size: 8px;
+  font-weight: bold;
+  margin-top: -2px;
+}
+
+.pieceIndicator {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  font-size: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.piecePromotedIndicator {
+  background-color: #9b59b6;
+}
+
+.pieceSpecialIndicator {
+  background-color: #f39c12;
+}
+
+.pieceMovementIndicator {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #e67e22;
+}

@@ -9,11 +9,16 @@ import PaginaDamas from "./Damas/Pages/RegrasDamas";
 import Teste from "./Main/Pages/Teste";
 import SPTTT from "./SPTTT/RegrasSPTTT";
 import JogoSPTTT from "./SPTTT/SPTTT";
-import Pagina_Soma from "./Caca_soma/Pagina_principal";
+import Pagina_Soma from "./Caca_soma/Pages/Pagina_principal";
 import "./App.css";
 import BaseGame from "./AA_baseGame/Pages/baseGamePage"
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import JogoDamas from "./Damas/Pages/JogoDamas"
+import DamasRegras from "./AA_baseGame/Pages/regrasPage";
+import CrownChasePage from "./CrownChase/Pages/baseGamePage";
+import CrownChaseRegras from "./CrownChase/Pages/regrasPage";
+import CacaSomaRegras from "./Caca_soma/Pages/Regras_CacaSoma";
+import Dimensions from "./RubiksClass/Classes/Dimensions/Dimensions";
 
 function BackButton() {
   const location = useLocation();
@@ -51,6 +56,11 @@ function App() {
         <Route path="/jogospttt" element={<JogoSPTTT />} />
         <Route path="/cacaSoma" element={<Pagina_Soma />} />
         <Route path="/baseGame" element={<BaseGame />} />
+        <Route path="/damasregras" element={<DamasRegras />} />
+        <Route path="/crownchasePg" element={<CrownChasePage />} />
+        <Route path="/crownchaseRg" element={<CrownChaseRegras />} />
+        <Route path="/cacasomaRg" element={<CacaSomaRegras />} />
+        <Route path="/dimensions" element={<Dimensions />} />
       </Routes>
     </main>
   );
