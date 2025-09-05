@@ -6,7 +6,6 @@ type CubeSize = "2x2" | "3x3" | "4x4" | "5x5" | "6x6";
 interface CubeImage {
   id: number;
   size: CubeSize;
-  url: string;
 }
 
 interface DimensionBox {
@@ -20,13 +19,18 @@ const Dimensions: React.FC = () => {
   const [score, setScore] = useState<number | null>(null);
   const [isChecking, setIsChecking] = useState(false);
 
+  // Function to get image path based on cube size
+  const getCubeImage = (size: CubeSize) => {
+    return `${import.meta.env.BASE_URL}${size}.png`;
+  };
+
   // Available cube images to drag
   const [cubeImages, setCubeImages] = useState<CubeImage[]>([
-    { id: 1, size: "2x2", url: "2x2-cube" },
-    { id: 2, size: "3x3", url: "3x3-cube" },
-    { id: 3, size: "4x4", url: "4x4-cube" },
-    { id: 4, size: "5x5", url: "5x5-cube" },
-    { id: 5, size: "6x6", url: "6x6-cube" },
+    { id: 1, size: "2x2" },
+    { id: 2, size: "3x3" },
+    { id: 3, size: "4x4" },
+    { id: 4, size: "5x5" },
+    { id: 5, size: "6x6" },
   ]);
 
   // Dimension boxes where images can be dropped
@@ -161,13 +165,11 @@ const Dimensions: React.FC = () => {
                     draggable={!isPlaced}
                     onDragStart={(e) => !isPlaced && handleDragStart(e, image.id)}
                   >
-                    <div className={styles.cubeVisual}>
-                      {image.size === '2x2' && <div className={styles.cube2x2}></div>}
-                      {image.size === '3x3' && <div className={styles.cube3x3}></div>}
-                      {image.size === '4x4' && <div className={styles.cube4x4}></div>}
-                      {image.size === '5x5' && <div className={styles.cube5x5}></div>}
-                      {image.size === '6x6' && <div className={styles.cube6x6}></div>}
-                    </div>
+                    <img 
+                      src={getCubeImage(image.size)} 
+                      alt={`${image.size} Rubik's Cube`}
+                      className={styles.cubeImg}
+                    />
                   </div>
                 );
               })}
@@ -189,13 +191,11 @@ const Dimensions: React.FC = () => {
                     {box.droppedImage ? (
                       <>
                         <div className={styles.droppedImage}>
-                          <div className={styles.cubeVisual}>
-                            {box.size === '2x2' && <div className={styles.cube2x2}></div>}
-                            {box.size === '3x3' && <div className={styles.cube3x3}></div>}
-                            {box.size === '4x4' && <div className={styles.cube4x4}></div>}
-                            {box.size === '5x5' && <div className={styles.cube5x5}></div>}
-                            {box.size === '6x6' && <div className={styles.cube6x6}></div>}
-                          </div>
+                          <img 
+                            src={getCubeImage(box.size)} 
+                            alt={`${box.size} Rubik's Cube`}
+                            className={styles.cubeImg}
+                          />
                         </div>
                         <button 
                           className={styles.removeButton}

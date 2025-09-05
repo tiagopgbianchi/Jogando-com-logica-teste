@@ -1,20 +1,21 @@
 import { useRef, useState, useEffect } from "react";
 
-interface properties {
+interface Properties {
   mudarJogar: () => void;
   clicar: boolean;
 }
+
 const NumGenerator = () => {
   return Math.floor(Math.random() * 200);
 };
 
-function Girar({ mudarJogar, clicar }: properties) {
+function Girar({ mudarJogar, clicar }: Properties) {
   const [displayedNumber, setDisplayedNumber] = useState(0);
-  const interval = useRef<number | null>(null);
-  const stop = useRef<number | null>(null);
+  const interval = useRef<ReturnType<typeof setInterval> | null>(null);
+  const stop = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    if (clicar == false) {
+    if (clicar === false) {
       interval.current = setInterval(() => {
         const num = NumGenerator();
         setDisplayedNumber(num);
@@ -27,13 +28,15 @@ function Girar({ mudarJogar, clicar }: properties) {
         setDisplayedNumber(finalNum);
         mudarJogar();
       }, 2000);
+
       return () => {
         if (interval.current) clearInterval(interval.current);
         if (stop.current) clearTimeout(stop.current);
       };
     }
-  }, [clicar]);
-  return displayedNumber;
+  }, [clicar, mudarJogar]);
+
+  return <div>{displayedNumber}</div>;
 }
 
 export default Girar;

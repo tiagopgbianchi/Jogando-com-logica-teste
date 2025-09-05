@@ -34,7 +34,7 @@ function Jogos() {
         <GameButton
           pagina="crownchaseRg"
           label="Caça Coroa"
-          imageSrc={`${import.meta.env.BASE_URL}vite.svg`}
+          imageSrc={`${import.meta.env.BASE_URL}3x3.png`}
         />
         <GameButton
           pagina="dimensions"
