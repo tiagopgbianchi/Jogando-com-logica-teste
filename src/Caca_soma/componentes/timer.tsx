@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from "react";
 
 interface prop {
   jogar: boolean;
-  addPontu: (x: number) => void;
+  addTempo: (x: number) => void;
 }
-function Timer({ jogar, addPontu }: prop) {
+function Timer({ jogar, addTempo }: prop) {
   const [tempo, setTempo] = useState(0); // tempo final armazenado
   const [tempoAtual, setTempoAtual] = useState<number>(0); // tempo em tempo real
   const intervalRef = useRef<number | null>(null);
@@ -30,7 +30,7 @@ function Timer({ jogar, addPontu }: prop) {
     if (inicioRef.current) {
       const tempoPassado = Date.now() - inicioRef.current;
       setTempo(tempoPassado);
-      addPontu(tempoPassado / 1000);
+      addTempo(tempoPassado / 1000);
       inicioRef.current = null;
 
       if (intervalRef.current) clearInterval(intervalRef.current);

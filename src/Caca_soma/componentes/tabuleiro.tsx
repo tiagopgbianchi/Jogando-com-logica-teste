@@ -1,27 +1,47 @@
-import { useState } from "react";
-import "../styles/design.css"
+import { useState, useEffect } from "react";
+import styles from "../styles/design.module.css"; // CSS Modules
 
-interface prop {
+interface Prop {
   mudarClicar: () => void;
   mudarJogar: () => void;
+  mudarRodada: () => void;
+  mudarSoma: (y: boolean, x: number) => void;
+  addTempo: (x: number) => void;
+  soma: number;
   jogar: boolean;
+  qualRodada: number;
 }
 
-function Tabuleiro({ jogar, mudarClicar, mudarJogar }: prop) {
-  const [somaClick, setSomaClick] = useState(0);
+function Tabuleiro({
+  jogar,
+  mudarClicar,
+  mudarJogar,
+  mudarRodada,
+  mudarSoma,
+  soma,
+  addTempo,
+  qualRodada,
+}: Prop) {
   // 10x10 matrix filled with false
   const [board, setBoard] = useState(
     Array.from({ length: 10 }, () => Array(10).fill(false))
   );
 
+  useEffect(() => {
+    if (qualRodada === 0) {
+      setBoard(Array.from({ length: 10 }, () => Array(10).fill(false)));
+    }
+  }, [qualRodada]);
+
   const toggleCell = (row: number, col: number, valor: number) => {
-    if (board[row][col] == false && jogar) {
-      if (somaClick > 0) {
-        setSomaClick(0);
+    if (board[row][col] === false && jogar) {
+      if (soma > 0) {
+        mudarSoma(true, valor);
         mudarClicar();
         mudarJogar();
+        mudarRodada();
       } else {
-        setSomaClick(valor);
+        mudarSoma(false, valor);
       }
     }
 
@@ -34,14 +54,21 @@ function Tabuleiro({ jogar, mudarClicar, mudarJogar }: prop) {
     );
   };
 
+  // Paleta de cores para as células clicadas
+
   return (
-    <div className="board">
+    <div className={styles.board}>
       {board.map((row, rIdx) =>
         row.map((cell, cIdx) => (
           <div
             key={`${rIdx}-${cIdx}`}
-            className="celula"
-            style={{ backgroundColor: cell ? "skyblue" : "white" }}
+            className={styles.celula}
+            style={{
+              background:
+                cell === false
+                  ? "radial-gradient(circle, #404341, #774caf)"
+                  : "radial-gradient(circle, #404341, #2e7d32)", // cores variáveis
+            }}
             onClick={() => toggleCell(rIdx, cIdx, rIdx * 10 + cIdx + 1)}
           >
             {rIdx * 10 + cIdx + 1}
