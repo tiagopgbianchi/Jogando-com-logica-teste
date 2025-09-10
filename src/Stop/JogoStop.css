@@ -31,9 +31,10 @@
   font-style: normal;
   font-size: 1.74vw;
   color: #f1b02d;
-  border: 1dvh solid #7a0808;
+  border: 0dvh solid #7a0808;
   box-shadow: inset 0 0 3vw #5e1317a0;
   -webkit-text-stroke: 0.11vw #000000;
+  background: radial-gradient(circle, #de9696, #ab3636);
 }
 
 .stopBorder {

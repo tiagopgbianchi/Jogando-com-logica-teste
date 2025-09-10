@@ -9,12 +9,12 @@ function JogoStop() {
     navigate("/stopPage", { state: { difficulty } });
   }
   const [difficulty, setDifficulty] = useState("d2");
+
   return (
     <div className="regrasPage">
       {/* Left Side - Rules */}
       <div className="boxBorder">
         <div className="boxRegras">
-          
           <ul className="regras">
             <li>
               <h3>O Número Mágico vai ser sorteado</h3>
@@ -58,58 +58,76 @@ function JogoStop() {
         <div className="difPart">
           <div className="difToggle" onClick={() => setIsOpen(!isOpen)}>
             <h2 className="difLabel">Dificuldade</h2>
-            {isOpen ? <div className="downArrow">-</div> : <div className="upArrow">+</div>}
+            <span className="arrow">{isOpen ? "▼" : "▶"}</span>
           </div>
 
           {isOpen && (
             <div className="difMenu">
               <div
+                className={`difMenuItem ${
+                  difficulty === "d1" ? "selected" : ""
+                }`}
                 onClick={() => {
                   setDifficulty("d1");
-                  setIsOpen(false);
+       
                 }}
               >
-                Muito Fácil
+                Fácil 1
               </div>
               <div
+                className={`difMenuItem ${
+                  difficulty === "d2" ? "selected" : ""
+                }`}
                 onClick={() => {
                   setDifficulty("d2");
-                  setIsOpen(false);
+      
                 }}
               >
-                Facil
+                Fácil 2
               </div>
               <div
+                className={`difMenuItem ${
+                  difficulty === "d3" ? "selected" : ""
+                }`}
                 onClick={() => {
                   setDifficulty("d3");
-                  setIsOpen(false);
+           
                 }}
               >
-                Medio
+                Médio 1
               </div>
               <div
+                className={`difMenuItem ${
+                  difficulty === "d4" ? "selected" : ""
+                }`}
                 onClick={() => {
                   setDifficulty("d4");
-                  setIsOpen(false);
+        
                 }}
               >
-                Difícil
+                Médio 2
               </div>
               <div
+                className={`difMenuItem ${
+                  difficulty === "d5" ? "selected" : ""
+                }`}
                 onClick={() => {
                   setDifficulty("d5");
-                  setIsOpen(false);
+             
                 }}
               >
-                Muito Difícil
+                Difícil 1
               </div>
               <div
+                className={`difMenuItem ${
+                  difficulty === "d6" ? "selected" : ""
+                }`}
                 onClick={() => {
                   setDifficulty("d6");
-                  setIsOpen(false);
+       
                 }}
               >
-                Impossivel
+                Difícil 2
               </div>
             </div>
           )}

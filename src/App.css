@@ -15,10 +15,12 @@ body {
   background: none;
   border: none;
   z-index: 9999;
+  top: 2.5vh;
+  right:2dvh;
 }
 
 .homeButton {
-  height: 90px;
+  height: 5vw;
 }
 .homeButton:hover {
   transform: scale(1.05);
