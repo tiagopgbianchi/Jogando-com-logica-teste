@@ -19,7 +19,7 @@ function JogoStop() {
         <div className={styles.boxRegras}>
           <ul className={styles.regras}>
             <li>
-              <h3>Regra 1: Como jogar Ultimate Tic-Tac-Toe</h3>
+              <h3>Escolha onde a próxima jogada vai ser</h3>
               <img
                 src={`${import.meta.env.BASE_URL}ComoJogarStop1.png`}
                 className={`${styles.como} ${styles.c1}`}

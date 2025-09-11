@@ -13,6 +13,7 @@
   width: 100vw;
   justify-content: center;
   align-items: center;
+  background: radial-gradient(circle, #607d96, #3b7b9f);
 }
 
 .boxBorder {
