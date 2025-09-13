@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./Hint.module.css";
 
 interface HintProps {
   title: string;
@@ -13,6 +12,7 @@ interface HintProps {
   hint8?: React.ReactNode;
   hint9?: React.ReactNode;
   hint10?: React.ReactNode;
+  styleFile?: any;
 }
 
 const Hint: React.FC<HintProps> = ({
@@ -27,9 +27,11 @@ const Hint: React.FC<HintProps> = ({
   hint8,
   hint9,
   hint10,
+  styleFile: customStyles,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentHint, setCurrentHint] = useState(1);
+  const styles = customStyles;
 
   // Collect all provided hints
   const hints = [
@@ -74,38 +76,46 @@ const Hint: React.FC<HintProps> = ({
       </button>
 
       {isOpen && (
-        <div className={styles.hintModal}>
-          <div className={styles.hintHeader}>
-            <h3>{title}</h3>
-            <button onClick={closeHints} className={styles.closeButton}>
-              ×
-            </button>
-          </div>
-          
-          <div className={styles.hintContent}>
-            {hints[currentHint - 1]}
-          </div>
-          
-          <div className={styles.hintNavigation}>
-            <button 
-              onClick={showPreviousHint}
-              disabled={currentHint === 1}
-              className={styles.navButton}
-            >
-              Anterior
-            </button>
+        <div className={styles.hintModalOverlay}>
+          <div className={styles.hintModal}>
+            <div className={styles.hintHeader}>
+              <h3>{title}</h3>
+              <button onClick={closeHints} className={styles.closeButton}>
+                ×
+              </button>
+            </div>
             
-            <span className={styles.hintCounter}>
-              Dica {currentHint} de {totalHints}
-            </span>
+            <div className={styles.hintContent}>
+              {/* Show all hints up to the current one */}
+              {hints.slice(0, currentHint).map((hint, index) => (
+                <div key={index} className={styles.hintItem}>
+                  {hint}
+                  {index < currentHint - 1 && <hr className={styles.hintDivider} />}
+                </div>
+              ))}
+            </div>
             
-            <button 
-              onClick={showNextHint}
-              disabled={currentHint === totalHints}
-              className={styles.navButton}
-            >
-              Próxima
-            </button>
+            <div className={styles.hintNavigation}>
+              <button 
+                onClick={showPreviousHint}
+                disabled={currentHint === 1}
+                className={styles.navButton}
+              >
+                Anterior
+              </button>
+              
+              <span className={styles.hintCounter}>
+                Dica {currentHint} de {totalHints}
+              </span>
+              
+              <button 
+                onClick={showNextHint}
+                disabled={currentHint === totalHints}
+                className={styles.navButton}
+              >
+                Próxima
+              </button>
+            </div>
           </div>
         </div>
       )}

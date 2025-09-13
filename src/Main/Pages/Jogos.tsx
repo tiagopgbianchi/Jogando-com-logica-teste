@@ -14,8 +14,8 @@ function Jogos() {
           imageSrc={`${import.meta.env.BASE_URL}iconStop.png`}
         />
         <GameButton
-          pagina="damas"
-          label="Jogo de Damas"
+          pagina="mathwarRg"
+          label="Guerra Matemática"
           imageSrc={`${import.meta.env.BASE_URL}damasLogo.png`}
         />
         <GameButton

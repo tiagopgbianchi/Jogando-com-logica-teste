@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import styles from "./SPTTT.module.css";
 import { Piece } from "./Piece";
-import { WinnerOverlay } from "./WinnerBox"; // make sure this file exists
+import { WinnerOverlay } from "./WinnerBox";
 import { useLocation } from "react-router-dom";
 
-// BOARD TYPES
 type Player = "X" | "O" | null;
 type BoardResult = Player | "tie";
 type MiniBoard = Player[];
@@ -29,24 +28,68 @@ export default function SPTTT() {
   const [winningBoardLine, setWinningBoardLine] = useState<number[] | null>(
     null
   );
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [tapCell, setTapCell] = useState<{
+    boardIndex: number;
+    cellIndex: number;
+  } | null>(null);
+  
   const { winCondition } = location.state as {
     winCondition: "line" | "majority";
-  }; // Type assertion to ensure correct type
+  };
+  
   const [finalWinner, setFinalWinner] = useState<"X" | "O" | "tie" | null>(
     null
   );
+
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      setIsTouchDevice(
+        "ontouchstart" in window ||
+          navigator.maxTouchPoints > 0
+      );
+    };
+
+    checkTouchDevice();
+    window.addEventListener("resize", checkTouchDevice);
+
+    return () => {
+      window.removeEventListener("resize", checkTouchDevice);
+    };
+  }, []);
+
+  const handleTouchStart = (boardIndex: number, cellIndex: number) => {
+    if (!isValidMove(boardIndex, cellIndex)) return;
+
+    if (tapCell && tapCell.boardIndex === boardIndex && tapCell.cellIndex === cellIndex) {
+      handleClick(boardIndex, cellIndex);
+      setTapCell(null);
+    } else {
+      setTapCell({ boardIndex, cellIndex });
+      const nextBoard = getNextBoard(cellIndex);
+      setPreviewBoard(nextBoard);
+    }
+  };
+
+  useEffect(() => {
+    setTapCell(null);
+    setPreviewBoard(null);
+  }, [activeBoard, currentPlayer]);
+
   const isValidMove = (boardIndex: number, cellIndex: number): boolean => {
     if (winners[boardIndex] !== null) return false;
     if (activeBoard !== null && activeBoard !== boardIndex) return false;
     if (boards[boardIndex][cellIndex] !== null) return false;
     return true;
   };
+
   const getNextBoard = (cellIndex: number): number | null => {
     if (winners[cellIndex] !== null) {
-      return null; // Free move if target board is already won/tied
+      return null;
     }
     return cellIndex;
   };
+
   useEffect(() => {
     if (winCondition === "majority") {
       const newScores = {
@@ -241,15 +284,39 @@ export default function SPTTT() {
                 )}
                 {board.map((cell, cellIndex) => {
                   const isValid = isValidMove(boardIndex, cellIndex);
+                  const showHoverPreview =
+                    !cell &&
+                    isValid &&
+                    hoveredCell?.boardIndex === boardIndex &&
+                    hoveredCell?.cellIndex === cellIndex;
+
+                  const showTapPreview =
+                    !cell &&
+                    isValid &&
+                    tapCell?.boardIndex === boardIndex &&
+                    tapCell?.cellIndex === cellIndex;
+
                   return (
                     <button
                       key={cellIndex}
                       className={`${styles.casa} ${
                         isValid ? styles.playableCell : ""
+                      } ${
+                        tapCell?.boardIndex === boardIndex &&
+                        tapCell?.cellIndex === cellIndex
+                          ? styles.tappedCell
+                          : ""
                       }`}
-                      onClick={() =>
-                        isValid && handleClick(boardIndex, cellIndex)
-                      }
+                      onClick={() => {
+                        if (!isTouchDevice && isValid) {
+                          handleClick(boardIndex, cellIndex);
+                        }
+                      }}
+                      onTouchStart={() => {
+                        if (isValid) {
+                          handleTouchStart(boardIndex, cellIndex);
+                        }
+                      }}
                       disabled={!isValid}
                       onMouseEnter={() => {
                         if (isValid) {
@@ -264,14 +331,16 @@ export default function SPTTT() {
                       }}
                     >
                       {cell && <Piece player={cell} />}
-                      {!cell &&
-                        isValid &&
-                        hoveredCell?.boardIndex === boardIndex &&
-                        hoveredCell?.cellIndex === cellIndex && (
-                          <div className={styles.previewPiece}>
-                            <Piece player={currentPlayer!} />
-                          </div>
-                        )}
+                      {showHoverPreview && (
+                        <div className={styles.previewPiece}>
+                          <Piece player={currentPlayer!} />
+                        </div>
+                      )}
+                      {showTapPreview && (
+                        <div className={styles.previewPiece}>
+                          <Piece player={currentPlayer!} />
+                        </div>
+                      )}
                     </button>
                   );
                 })}

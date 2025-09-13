@@ -1,41 +1,60 @@
-/* Add these styles to your existing Dimensions.module.css */
 
-.dragContainer, .dropContainer {
-  margin: 20px 0;
+.container {
+  margin: 0 auto;
+  padding: 2vw;
+  text-align: center;
+  font-family: "Cherry Bomb One", system-ui;
+  color: white;
+  -webkit-text-stroke: 0.1vw black;
+  min-height: 100dvh;
 }
 
-.dragContainer h3, .dropContainer h3 {
+.container h2{
+  -webkit-text-stroke: 0.3vw black;
+  font-size: 5vw;
+  margin: 0 0 3dvh 0;
+}
+.container h3{
+ margin: 0 0 8dvh 0;
+ -webkit-text-stroke: 0.15vw black;
+}
+
+.dragContainer{
+ margin:0 0 8dvh 0;
+}
+.dropContainer {
+  margin:0;
+}
+
+.dragContainer h3 {
   text-align: center;
-  font-size: clamp(25px, 3vw, 35px);
-  margin-bottom: 15px;
-  -webkit-text-stroke: clamp(1.5px, 0.2vw, 3px) #000000;
+  font-size: 3vw;
+  margin-bottom: 2vh;
+  letter-spacing: 0.1vw;
 }
 
 .imagesRow, .boxesRow {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
-  margin: 20px 0;
+  gap: 5vw;
+  margin: 2vh 0;
 }
 
 .cubeImage {
-  border: clamp(4px, 0.5vw, 8px) solid #5e1317;
-  border-radius: clamp(10px, 1vw, 15px);
-  padding: 15px;
-  background: radial-gradient(circle, #b82a1d, #691008);
   cursor: grab;
   transition: all 0.3s ease;
-  width: 100px;
-  height: 100px;
+  width: 15vw;
+  height: 15vw;
+  max-width: 120px;
+  max-height: 120px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
 }
 
 .cubeImage:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-0.5vw) scale(1.1);
 }
 
 .cubeImage.placed {
@@ -43,68 +62,89 @@
   cursor: default;
 }
 
+.cubeImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 1.5vw;
+}
+
 .dimensionBox {
-  border: clamp(4px, 0.5vw, 8px) solid #2c3e50;
-  border-radius: clamp(10px, 1vw, 15px);
-  padding: 15px;
-  background: radial-gradient(circle, #3498db, #2980b9);
-  width: 120px;
+  padding: 2vw;
+  width: 18vw;
+  max-width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 0.4dvh;
+  position: relative;
 }
 
 .dropArea {
-  border: 2px dashed #eee;
-  border-radius: 10px;
-  width: 80px;
-  height: 80px;
+  border: 0.3vw dashed rgba(255, 255, 255, 0.7);
+  border-radius: 2vw;
+  width: 15vw;
+  height: 15vw;
+  max-width: 120px;
+  max-height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dropArea:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .droppedImage {
+  width: 12vw;
+  height: 12vw;
+  max-width: 96px;
+  max-height: 96px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .emptyText {
-  color: #eee;
-  font-size: 14px;
-  opacity: 0.7;
-  -webkit-text-stroke: 0.5px #000000;
+  color: rgba(255, 255, 255);
+  font-size: 1.6vw;
+  font-family: "Cherry Bomb One", system-ui;
+  -webkit-text-stroke: 0.1vw black;
 }
 
 .dimensionLabel {
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: 2.5vw;
   font-weight: bold;
-  -webkit-text-stroke: clamp(1px, 0.13vw, 2px) #000000;
-  color: #eee;
-  text-align: center;
+  color: white;
+  font-family: "Cherry Bomb One", system-ui;
+  -webkit-text-stroke: 0.1vw black;
 }
 
 .removeButton {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -1.5vw;
+  right: -1.5vw;
   background: #e74c3c;
   color: white;
-  border: none;
+  border: 0.2vw solid black;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 4vw;
+  height: 4vw;
+  max-width: 30px;
+  max-height: 30px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight:50;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  font-size: 18px;
+  padding: 0 0 0.3dvh 0;
+  font-size: 1.5vw;
+  font-family: "Cherry Bomb One", system-ui;
+  -webkit-text-stroke: 0.2vw black;
 }
 
 .removeButton:hover {
@@ -115,157 +155,211 @@
 .submitContainer {
   display: flex;
   justify-content: center;
-  margin: 30px 0;
+  margin: 0vh 0;
 }
 
 .submitButton {
-  padding: 15px 40px;
-  background: radial-gradient(circle, #27ae60, #219653);
-  color: #eee;
-  border: clamp(4px, 0.5vw, 8px) solid #000;
-  border-radius: clamp(10px, 1vw, 20px);
+  padding: 2vh 6vw;
+  background: #27ae60;
+  color: white;
+  border: 0.3vw solid black;
+  border-radius: 4vw;
   cursor: pointer;
-  font-size: clamp(20px, 2.5vw, 30px);
+  font-size: 3vw;
   font-weight: bold;
-  -webkit-text-stroke: clamp(1px, 0.13vw, 2px) #000000;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  font-family: "Cherry Bomb One", system-ui;
+  text-shadow: 
+    -0.1vw -0.1vw 0 #000,  
+     0.1vw -0.1vw 0 #000,
+    -0.1vw  0.1vw 0 #000,
+     0.1vw  0.1vw 0 #000;
+  box-shadow: 0 0.5vw 1.5vw rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  letter-spacing: 0.1vw;
 }
 
 .submitButton:hover:not(:disabled) {
-  background: radial-gradient(circle, #219653, #1a7e48);
-  transform: scale(1.05);
+  background: #219653;
+  transform: translateY(-0.3vw);
+  box-shadow: 0 0.8vw 2vw rgba(0, 0, 0, 0.4);
 }
 
 .submitButton:disabled {
-  background: radial-gradient(circle, #7f8c8d, #636e72);
+  background: #95a5a6;
   cursor: not-allowed;
-  transform: scale(0.98);
+  transform: none;
+  box-shadow: none;
 }
 
-/* Cube visualization styles */
-.cubeVisual {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 3px;
+.resetButton {
+  padding: 1.5vh 4vw;
+  background: #3498db;
+  color: white;
+  border: 0.2vw solid black;
+  border-radius: 3vw;
+  cursor: pointer;
+  font-size: 2.5vw;
+  margin-top: 2vh;
+  font-family: "Cherry Bomb One", system-ui;
+  text-shadow: 
+    -0.1vw -0.1vw 0 #000,  
+     0.1vw -0.1vw 0 #000,
+    -0.1vw  0.1vw 0 #000,
+     0.1vw  0.1vw 0 #000;
+  box-shadow: 0 0.5vw 1.5vw rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
-.cubeVisual div {
-  background-color: #e74c3c;
-  border: 1px solid #c0392b;
+.resetButton:hover {
+  background: #2980b9;
+  transform: translateY(-0.3vw);
+  box-shadow: 0 0.8vw 2vw rgba(0, 0, 0, 0.3);
 }
 
-.cube2x2 {
-  width: 30px;
-  height: 30px;
+.hintImage {
+  width: 15vw;
+  height: 15vw;
+  max-width: 120px;
+  max-height: 120px;
+  margin: 1.5vh auto;
+  display: block;
+  border-radius: 1.5vw;
+  border: 0.2vw solid white;
 }
 
-.cube3x3 {
-  width: 8px;
-  height: 8px;
+.correctionIndicator {
+  position: absolute;
+  bottom: -5vw;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 4vw;
+  font-weight: bold;
+  text-shadow: 0.2vw 0.2vw 0.4vw rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  font-family: "Cherry Bomb One", system-ui;
 }
 
-.cube4x4 {
-  width: 6px;
-  height: 6px;
+.correct {
+  color: #27ae60;
 }
 
-.cube5x5 {
-  width: 5px;
-  height: 5px;
+.incorrect {
+  color: #e74c3c;
 }
 
-.cube6x6 {
-  width: 4px;
-  height: 4px;
+.scoreRow {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3vw;
+  padding: 3vw;
+  margin: 3vh 0;
+  backdrop-filter: blur(10px);
+  border: 0.2vw solid rgba(255, 255, 255, 0.3);
+}
+
+.scoreTitle {
+  font-size: 3vw;
+  margin-bottom: 1.5vh;
+  font-weight: bold;
+  font-family: "Cherry Bomb One", system-ui;
+}
+
+.scoreDisplay {
+  font-size: 4vw;
+  font-weight: bold;
+  margin: 1.5vh 0;
+  font-family: "Cherry Bomb One", system-ui;
+}
+
+.emptyScore {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  font-family: "Cherry Bomb One", system-ui;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .container {
+    padding: 3vw;
+    border-radius: 3vw;
+  }
+  
   .imagesRow, .boxesRow {
-    gap: 10px;
+    gap: 3vw;
   }
   
   .cubeImage {
-    width: 80px;
-    height: 80px;
-    padding: 10px;
+    width: 20vw;
+    height: 20vw;
   }
   
   .dimensionBox {
-    width: 100px;
-    padding: 10px;
+    width: 25vw;
+    padding: 3vw;
   }
   
   .dropArea {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .cube2x2 {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-/* Add these styles to your existing Dimensions.module.css */
-
-.cubeImg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.cubeImage {
-  border: clamp(4px, 0.5vw, 8px) solid #5e1317;
-  border-radius: clamp(10px, 1vw, 15px);
-  padding: 10px;
-  background: radial-gradient(circle, #b82a1d, #691008);
-  cursor: grab;
-  transition: all 0.3s ease;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.droppedImage {
-  width: 80px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Adjust the drop area to accommodate images */
-.dropArea {
-  border: 2px dashed #eee;
-  border-radius: 10px;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* Responsive adjustments for images */
-@media (max-width: 768px) {
-  .cubeImage {
-    width: 80px;
-    height: 80px;
+    width: 20vw;
+    height: 20vw;
   }
   
   .droppedImage {
-    width: 60px;
-    height: 60px;
+    width: 16vw;
+    height: 16vw;
+  }
+  
+  .correctionIndicator {
+    font-size: 6vw;
+    bottom: -7vw;
+  }
+  
+  .submitButton {
+    font-size: 4vw;
+    padding: 1.5vh 8vw;
+  }
+  
+  .dragContainer h3 {
+    font-size: 4vw;
+  }
+  
+  .dimensionLabel {
+    font-size: 3.5vw;
+  }
+  
+  .emptyText {
+    font-size: 3vw;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .container {
+    padding: 4vw;
+  }
+  
+  .imagesRow, .boxesRow {
+    gap: 4vw;
+  }
+  
+  .cubeImage {
+    width: 25vw;
+    height: 25vw;
+  }
+  
+  .dimensionBox {
+    width: 30vw;
   }
   
   .dropArea {
-    width: 80px;
-    height: 80px;
+    width: 25vw;
+    height: 25vw;
+  }
+  
+  .submitButton {
+    font-size: 5vw;
+    padding: 1.5vh 10vw;
+  }
+  
+  .dragContainer h3 {
+    font-size: 5vw;
   }
 }

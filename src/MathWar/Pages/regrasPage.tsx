@@ -1,25 +1,26 @@
 import { useState } from "react";
-import styles from "./RegrasSPTTT.module.css";
+import styles from "../styles/regras.module.css";
 import { useNavigate } from "react-router-dom";
 
-type WinCondition = "line" | "majority";
+type MandatoryCapture = true | false;
 
-function JogoStop() {
+function MathWarRegras() {
   const navigate = useNavigate();
-  const [winCondition, setWinCondition] = useState<WinCondition>("line");
-
+  const [MandatoryCapture, setMandatoryCapture] = useState<MandatoryCapture>(false);
+  
   function jogarStop() {
-    navigate("/jogospttt", { state: { winCondition } });
+    navigate("/baseGame", { state: { MandatoryCapture } });
   }
-
+  
   return (
     <div className={styles.regrasPage}>
       {/* Left Side - Rules */}
       <div className={styles.boxBorder}>
         <div className={styles.boxRegras}>
+          
           <ul className={styles.regras}>
             <li>
-              <h3>O jogo tem 9 jogos da velha pequenos</h3>
+              <h3>Regra 1: Como jogar Ultimate Tic-Tac-Toe</h3>
               <img
                 src={`${import.meta.env.BASE_URL}ComoJogarStop1.png`}
                 className={`${styles.como} ${styles.c1}`}
@@ -30,10 +31,10 @@ function JogoStop() {
                 src={`${import.meta.env.BASE_URL}ComoJogarStop2.png`}
                 className={`${styles.como} ${styles.c2}`}
               />
-              <h3>Sua jogada decide onde a próxima jogada vai ser</h3>
+              <h3>Regra 2: Ganhe os tabuleiros pequenos</h3>
             </li>
             <li>
-              <h3>Ganhe os jogos da velha pequenos para ganhar</h3>
+              <h3>Regra 3: A jogada decide o próximo tabuleiro</h3>
               <div className={styles.c3Box}>
                 <img
                   src={`${import.meta.env.BASE_URL}ComoJogarStop3.png`}
@@ -46,7 +47,7 @@ function JogoStop() {
                 src={`${import.meta.env.BASE_URL}ComoJogarStop4.png`}
                 className={`${styles.como} ${styles.c4}`}
               />
-              <h3>Escolha como ganhar - Clássico ou Pontos</h3>
+              <h3>Regra 4: Ganhe o jogo final</h3>
             </li>
           </ul>
         </div>
@@ -57,7 +58,7 @@ function JogoStop() {
         <button className={styles.button} onClick={jogarStop}>
           <span>Jogar</span>
         </button>
-
+        
         {/* Win mode selector */}
         <div className={styles['mode-select-rules']}>
           <label>
@@ -65,20 +66,20 @@ function JogoStop() {
               type="radio"
               name="winMode"
               value="line"
-              checked={winCondition === "line"}
-              onChange={() => setWinCondition("line")}
+              checked={MandatoryCapture === true}
+              onChange={() => setMandatoryCapture(true)}
             />
-            Clássico (3 em linha)
+            Captura obrigatória
           </label>
           <label>
             <input
               type="radio"
               name="winMode"
               value="majority"
-              checked={winCondition === "majority"}
-              onChange={() => setWinCondition("majority")}
+              checked={MandatoryCapture === false}
+              onChange={() => setMandatoryCapture(false)}
             />
-            Maioria dos Tabuleiros
+            Captura não obrigatória
           </label>
         </div>
       </div>
@@ -86,4 +87,4 @@ function JogoStop() {
   );
 }
 
-export default JogoStop;
+export default MathWarRegras;

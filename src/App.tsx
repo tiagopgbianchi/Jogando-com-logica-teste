@@ -19,6 +19,8 @@ import CrownChasePage from "./CrownChase/Pages/baseGamePage";
 import CrownChaseRegras from "./CrownChase/Pages/regrasPage";
 import CacaSomaRegras from "./Caca_soma/Pages/Regras_CacaSoma";
 import Dimensions from "./RubiksClass/Classes/Dimensions/Dimensions";
+import MathWarRegras from "./MathWar/Pages/regrasPage"
+import MathWarPage from "./MathWar/Pages/baseGamePage"
 
 function BackButton() {
   const location = useLocation();
@@ -61,6 +63,8 @@ function App() {
         <Route path="/crownchaseRg" element={<CrownChaseRegras />} />
         <Route path="/cacasomaRg" element={<CacaSomaRegras />} />
         <Route path="/dimensions" element={<Dimensions />} />
+        <Route path="/mathwarRg" element={<MathWarRegras />} />
+        <Route path="/mathwarPg" element={<MathWarPage />} />
       </Routes>
     </main>
   );
