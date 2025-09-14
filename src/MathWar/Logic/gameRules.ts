@@ -1,62 +1,63 @@
+import { gameEngine } from './gameEngine';
 import { GameConfig, GameRules, GameState, TurnAction, Position, Piece, WinResult } from './types';
 import { GameUtils, MovementPatterns } from './types';
 
 export const gameRules: GameRules = {
-  validateMove: (state: GameState, action: TurnAction): boolean => {
-    if ((action.type !== 'move' && action.type !== 'capture') || !action.from || !action.to) {
-      return false;
-    }
+  validateMove: (state: GameState, action: TurnAction) => {
+  // Helper function for move validation
+  const valMove = (state: GameState, piece: Piece, from: Position, to: Position): boolean => {
+    // Check if destination is empty
+    if (gameEngine.getPieceAt(state, to) !== null) return false;
+    
+    // Check if dice have been rolled
+    if (!state.lastDiceRoll) return false;
+    
+    // Calculate Manhattan distance
+    const distance = Math.abs(to.row - from.row) + Math.abs(to.col - from.col);
+    
+    // Calculate allowed movement based on (value + dice) / 2
+    const diceTotal = state.lastDiceRoll.reduce((sum, num) => sum + num, 0);
+    const allowedMovement = Math.floor((piece.value! + diceTotal) / 2);
+    
+    // Check if move distance is within allowed range
+    if (distance > allowedMovement) return false;
+    
+    // Check energy cost (2 per space)
+    const energyCost = distance * 2;
+    if (state.remainingEnergy === undefined || state.remainingEnergy < energyCost) return false;
+    
+    return true;
+  }
 
-    const fromPiece = state.board[action.from.row][action.from.col];
-    if (!fromPiece || fromPiece.owner !== state.currentPlayer) {
-      return false;
-    }
+  // Helper function for capture validation
+  const valCapture = (state: GameState, piece: Piece, from: Position, to: Position): boolean => {
+    // Add capture validation logic here
+    // Check if target is enemy piece
+    // Check if piece values allow capture
+    // Check adjacency/distance rules
+    return true;
+  }
 
-    const rowDiff = action.to.row - action.from.row;
-    const colDiff = Math.abs(action.to.col - action.from.col);
+  // Check if action has required positions
+  if (!action.from || !action.to) return false;
 
-    // Check bounds
-    if (!GameUtils.isInBounds(action.to, state.config.boardWidth, state.config.boardHeight)) {
-      return false;
-    }
-
-    // Check forward direction based on player
-    const correctDirection = state.currentPlayer === 0 ? rowDiff < 0 : rowDiff > 0;
-    if (!correctDirection) {
-      return false;
-    }
-
-    // Regular move: diagonal one square
-    if (Math.abs(rowDiff) === 1 && colDiff === 1) {
-      // Destination must be empty for regular moves
-      if (state.board[action.to.row][action.to.col] !== null) {
-        return false;
-      }
-      return true;
-    }
-
-    // Capture move: diagonal two squares (jump)
-    if (Math.abs(rowDiff) === 2 && colDiff === 2) {
-      // Calculate middle position (piece being jumped)
-      const middleRow = action.from.row + Math.sign(rowDiff);
-      const middleCol = action.from.col + Math.sign(action.to.col - action.from.col);
-      const middlePiece = state.board[middleRow][middleCol];
-
-      // Must have opponent piece to jump over
-      if (!middlePiece || middlePiece.owner === state.currentPlayer || middlePiece.isObstacle) {
-        return false;
-      }
-
-      // Destination must be empty
-      if (state.board[action.to.row][action.to.col] !== null) {
-        return false;
-      }
-
-      return true;
-    }
-
+  // Basic validation (bounds, ownership, obstacles)
+  if (!gameEngine.isValidBasicMove(state, action.from, action.to)) {
     return false;
-  },
+  }
+
+  const piece = gameEngine.getPieceAt(state, action.from);
+  if (!piece || piece.type !== 'pawn') return false;
+
+  switch (action.type) {
+    case 'move':
+      return valMove(state, piece, action.from, action.to);
+    case 'capture':
+      return valCapture(state, piece, action.from, action.to);
+    default:
+      return false;
+  }
+},
 
   executeAction: (state: GameState, action: TurnAction): boolean => {
     if (!gameRules.validateMove(state, action)) {

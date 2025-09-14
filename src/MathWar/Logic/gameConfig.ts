@@ -1,57 +1,60 @@
 import { GameConfig, InitialPieceSetup } from "./types";
 
+// Function to shuffle an array (Fisher-Yates algorithm)
+const shuffleArray = (array: number[]): number[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
 // Create initial checkers board setup
 const createCheckersSetup = (): InitialPieceSetup[] => {
-  const setup: InitialPieceSetup[] = [];
+  // Create shuffled value arrays for each player
+  const baseValues = [2, 2, 3, 3, 3, 4, 4, 4, 5, 5];
+  const player0Values = shuffleArray(baseValues);
+  const player1Values = shuffleArray(baseValues);
   
-  // Player 0 pieces (bottom of board) - rows 5, 6, 7
-  for (let row = 5; row <= 7; row++) {
-    for (let col = 0; col < 8; col++) {
-      // Only place pieces on dark squares (where row + col is odd)
-      if ((row + col) % 2 === 1) {
-        setup.push({
-          type: 'checker',
-          row: row,
-          col: col,
-          owner: 0,
-          data: { isKing: false }
-        });
-      }
-    }
-  }
-  
-  // Player 1 pieces (top of board) - rows 0, 1, 2
-  for (let row = 0; row <= 2; row++) {
-    for (let col = 0; col < 8; col++) {
-      // Only place pieces on dark squares (where row + col is odd)
-      if ((row + col) % 2 === 1) {
-        setup.push({
-          type: 'checker',
-          row: row,
-          col: col,
-          owner: 1,
-          data: { isKing: false }
-        });
-      }
-    }
-  }
-  
+  let setup: InitialPieceSetup[] = [
+    // Player 0 pieces with random values
+    { type: "pawn", owner: 0, row: 0, col: 1, value: player0Values[0] },
+    { type: "pawn", owner: 0, row: 0, col: 2, value: player0Values[1] },
+    { type: "pawn", owner: 0, row: 0, col: 3, value: player0Values[2] },
+    { type: "pawn", owner: 0, row: 0, col: 4, value: player0Values[3] },
+    { type: "pawn", owner: 0, row: 0, col: 5, value: player0Values[4] },
+    { type: "pawn", owner: 0, row: 0, col: 6, value: player0Values[5] },
+    { type: "pawn", owner: 0, row: 1, col: 2, value: player0Values[6] },
+    { type: "pawn", owner: 0, row: 1, col: 3, value: player0Values[7] },
+    { type: "pawn", owner: 0, row: 1, col: 4, value: player0Values[8] },
+    { type: "pawn", owner: 0, row: 1, col: 5, value: player0Values[9] },
+
+    // Player 1 pieces with random values
+    { type: "pawn", owner: 1, row: 7, col: 1, value: player1Values[0] },
+    { type: "pawn", owner: 1, row: 7, col: 2, value: player1Values[1] },
+    { type: "pawn", owner: 1, row: 7, col: 3, value: player1Values[2] },
+    { type: "pawn", owner: 1, row: 7, col: 4, value: player1Values[3] },
+    { type: "pawn", owner: 1, row: 7, col: 5, value: player1Values[4] },
+    { type: "pawn", owner: 1, row: 7, col: 6, value: player1Values[5] },
+    { type: "pawn", owner: 1, row: 6, col: 2, value: player1Values[6] },
+    { type: "pawn", owner: 1, row: 6, col: 3, value: player1Values[7] },
+    { type: "pawn", owner: 1, row: 6, col: 4, value: player1Values[8] },
+    { type: "pawn", owner: 1, row: 6, col: 5, value: player1Values[9] },
+  ];
+
   return setup;
 };
 
 export const gameConfig: GameConfig = {
-  // Board dimensions
   boardWidth: 8,
   boardHeight: 8,
-  
-  // Game setup
   players: 2,
   initialSetup: createCheckersSetup(),
-  
-  // Turn rules
-  movesPerTurn: 1, // One move per turn
-  
-  // Game metadata
-  name: "Checkers",
-  description: "Classic checkers game with diagonal movement"
+  movesPerTurn: 1,
+  name: "Math War",
+  description: "Board game with dice and math",
+  useDice: true,
+  diceCount: 2,
+  diceSides: 5,
 };

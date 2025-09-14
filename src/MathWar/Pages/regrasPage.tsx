@@ -9,7 +9,7 @@ function MathWarRegras() {
   const [MandatoryCapture, setMandatoryCapture] = useState<MandatoryCapture>(false);
   
   function jogarStop() {
-    navigate("/baseGame", { state: { MandatoryCapture } });
+    navigate("/mathwarPg", { state: { MandatoryCapture } });
   }
   
   return (
