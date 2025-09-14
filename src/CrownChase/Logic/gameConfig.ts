@@ -2,47 +2,35 @@ import { GameConfig, InitialPieceSetup } from "./types";
 
 // Create initial checkers board setup
 const createCheckersSetup = (): InitialPieceSetup[] => {
-  const setup: InitialPieceSetup[] = [];
+  let setup: InitialPieceSetup[] = [];
   
-  // Player 0 pieces (bottom of board) - rows 5, 6, 7
-  for (let row = 5; row <= 7; row++) {
-    for (let col = 0; col < 8; col++) {
-      // Only place pieces on dark squares (where row + col is odd)
-      if ((row + col) % 2 === 1) {
-        setup.push({
-          type: 'checker',
-          row: row,
-          col: col,
-          owner: 0,
-          data: { isKing: false }
-        });
-      }
-    }
-  }
-  
-  // Player 1 pieces (top of board) - rows 0, 1, 2
-  for (let row = 0; row <= 2; row++) {
-    for (let col = 0; col < 8; col++) {
-      // Only place pieces on dark squares (where row + col is odd)
-      if ((row + col) % 2 === 1) {
-        setup.push({
-          type: 'checker',
-          row: row,
-          col: col,
-          owner: 1,
-          data: { isKing: false }
-        });
-      }
-    }
-  }
+  setup = [
+    { type: "pawn", owner: 1, row: 2, col: 0,},
+    { type: "pawn", owner: 0, row: 1, col: 3, },
+    { type: "pawn", owner: 0, row: 2, col: 4, },
+    { type: "pawn", owner: 1, row: 3, col: 1, },
+    { type: "pawn", owner: 1, row: 4, col: 2, },
+    { type: "king", owner: 0, row: 0, col: 4, },
+    { type: "king", owner: 1, row: 4, col: 0, }, 
+
+    { type: "rook", owner: 1, row: 4, col: 1, }, //Nota: o rook é o killer por enquanto
+    { type: "rook", owner: 1, row: 3, col: 0, },
+    { type: "rook", owner: 0, row: 0, col: 3, },
+    { type: "rook", owner: 0, row: 1, col: 4, },
+    { type: "pawn", owner: 0, row: 0, col: 2, },
+
+
+  ]
   
   return setup;
 };
+  
+
 
 export const gameConfig: GameConfig = {
   // Board dimensions
-  boardWidth: 8,
-  boardHeight: 8,
+  boardWidth: 5,
+  boardHeight: 5,
   
   // Game setup
   players: 2,

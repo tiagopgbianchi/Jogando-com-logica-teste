@@ -1,62 +1,70 @@
 import { GameConfig, GameRules, GameState, TurnAction, Position, Piece, WinResult } from './types';
 import { GameUtils, MovementPatterns } from './types';
+import { gameEngine } from './gameEngine';
 
 export const gameRules: GameRules = {
-  validateMove: (state: GameState, action: TurnAction): boolean => {
-    if ((action.type !== 'move' && action.type !== 'capture') || !action.from || !action.to) {
-      return false;
-    }
+validateMove: (state, action) => {
+  // Check if action has required positions
+  if (!action.from || !action.to) return false;
 
-    const fromPiece = state.board[action.from.row][action.from.col];
-    if (!fromPiece || fromPiece.owner !== state.currentPlayer) {
-      return false;
-    }
-
-    const rowDiff = action.to.row - action.from.row;
-    const colDiff = Math.abs(action.to.col - action.from.col);
-
-    // Check bounds
-    if (!GameUtils.isInBounds(action.to, state.config.boardWidth, state.config.boardHeight)) {
-      return false;
-    }
-
-    // Check forward direction based on player
-    const correctDirection = state.currentPlayer === 0 ? rowDiff < 0 : rowDiff > 0;
-    if (!correctDirection) {
-      return false;
-    }
-
-    // Regular move: diagonal one square
-    if (Math.abs(rowDiff) === 1 && colDiff === 1) {
-      // Destination must be empty for regular moves
-      if (state.board[action.to.row][action.to.col] !== null) {
-        return false;
-      }
-      return true;
-    }
-
-    // Capture move: diagonal two squares (jump)
-    if (Math.abs(rowDiff) === 2 && colDiff === 2) {
-      // Calculate middle position (piece being jumped)
-      const middleRow = action.from.row + Math.sign(rowDiff);
-      const middleCol = action.from.col + Math.sign(action.to.col - action.from.col);
-      const middlePiece = state.board[middleRow][middleCol];
-
-      // Must have opponent piece to jump over
-      if (!middlePiece || middlePiece.owner === state.currentPlayer || middlePiece.isObstacle) {
-        return false;
-      }
-
-      // Destination must be empty
-      if (state.board[action.to.row][action.to.col] !== null) {
-        return false;
-      }
-
-      return true;
-    }
-
+  // Basic validation (bounds, ownership, obstacles)
+  if (!gameEngine.isValidBasicMove(state, action.from, action.to)) {
     return false;
-  },
+  }
+
+  const piece = gameEngine.getPieceAt(state, action.from);
+  if (!piece) return false;
+
+  // First check piece type
+  switch (piece.type) {
+    case 'pawn':
+      // Then check action type for pawns
+      switch (action.type) {
+        case 'move':
+          // Pawn move validation
+          break;
+        case 'capture':
+          // Pawn capture validation
+          break;
+        default:
+          return false;
+      }
+      break;
+
+    case 'rook':
+      // Check action type for rooks
+      switch (action.type) {
+        case 'move':
+          // Rook move validation
+          break;
+        case 'capture':
+          // Rook capture validation
+          break;
+        default:
+          return false;
+      }
+      break;
+
+    case 'king':
+      // Check action type for kings
+      switch (action.type) {
+        case 'move':
+          // King move validation
+          break;
+        case 'capture':
+          // King capture validation
+          break;
+        default:
+          return false;
+      }
+      break;
+
+    default:
+      return false;
+  }
+
+  return true; // If all validation passed
+},
 
   executeAction: (state: GameState, action: TurnAction): boolean => {
     if (!gameRules.validateMove(state, action)) {
