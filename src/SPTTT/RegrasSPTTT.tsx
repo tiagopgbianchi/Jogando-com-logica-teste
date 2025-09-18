@@ -7,6 +7,7 @@ type WinCondition = "line" | "majority";
 function JogoStop() {
   const navigate = useNavigate();
   const [winCondition, setWinCondition] = useState<WinCondition>("line");
+  const [showDetailedRules, setShowDetailedRules] = useState(false);
 
   function jogarStop() {
     navigate("/jogospttt", { state: { winCondition } });
@@ -80,8 +81,34 @@ function JogoStop() {
             />
             Maioria dos Tabuleiros
           </label>
-        </div>
+        </div>                      
       </div>
+      <button 
+  className={styles.detailedRulesButton}
+  onClick={() => setShowDetailedRules(true)}
+>
+  Regras Completas
+</button>
+{showDetailedRules && (
+  <div className={styles.modalOverlay} onClick={() => setShowDetailedRules(false)}>
+    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+      <button 
+        className={styles.closeButton}
+        onClick={() => setShowDetailedRules(false)}
+      >
+        X
+      </button>
+      
+      <div className={styles.detailedRules}>
+        <h2>Regras Completas do Super Jogo da Velha</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 }

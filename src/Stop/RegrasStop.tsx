@@ -133,6 +133,7 @@ function JogoStop() {
           )}
         </div>
       </div>
+      
     </div>
   );
 }

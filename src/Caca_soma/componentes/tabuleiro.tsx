@@ -66,8 +66,8 @@ function Tabuleiro({
             style={{
               background:
                 cell === false
-                  ? "radial-gradient(circle, #404341, #774caf)"
-                  : "radial-gradient(circle, #404341, #2e7d32)", // cores variáveis
+                  ? "radial-gradient(circle, #b48c8c, #955858)"
+                  : "radial-gradient(circle, #c07171ff, #a83737ff)", // cores variáveis
             }}
             onClick={() => toggleCell(rIdx, cIdx, rIdx * 10 + cIdx + 1)}
           >

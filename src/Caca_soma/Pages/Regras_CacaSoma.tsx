@@ -6,10 +6,10 @@ type MandatoryCapture = true | false;
 
 function CacaSomaRegras() {
   const navigate = useNavigate();
-  const [MandatoryCapture, setMandatoryCapture] = useState<MandatoryCapture>(false);
   
+  const [showDetailedRules, setShowDetailedRules] = useState(false);
   function jogarStop() {
-    navigate("/cacaSoma", { state: { MandatoryCapture } });
+    navigate("/cacaSoma" );
   }
   
   return (
@@ -20,7 +20,7 @@ function CacaSomaRegras() {
           
           <ul className={styles.regras}>
             <li>
-              <h3>Regra 1: Como jogar Caça Coroa</h3>
+              <h3>Um número vai ser sorteado</h3>
               <img
                 src={`${import.meta.env.BASE_URL}ComoJogarStop1.png`}
                 className={`${styles.como} ${styles.c1}`}
@@ -59,30 +59,34 @@ function CacaSomaRegras() {
           <span>Jogar</span>
         </button>
         
-        {/* Win mode selector */}
-        <div className={styles['mode-select-rules']}>
-          <label>
-            <input
-              type="radio"
-              name="winMode"
-              value="line"
-              checked={MandatoryCapture === true}
-              onChange={() => setMandatoryCapture(true)}
-            />
-            Captura obrigatória
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="winMode"
-              value="majority"
-              checked={MandatoryCapture === false}
-              onChange={() => setMandatoryCapture(false)}
-            />
-            Captura não obrigatória
-          </label>
-        </div>
+
       </div>
+       <button 
+  className={styles.detailedRulesButton}
+  onClick={() => setShowDetailedRules(true)}
+>
+  Regras Completas
+</button>
+{showDetailedRules && (
+  <div className={styles.modalOverlay} onClick={() => setShowDetailedRules(false)}>
+    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+      <button 
+        className={styles.closeButton}
+        onClick={() => setShowDetailedRules(false)}
+      >
+        X
+      </button>
+      
+      <div className={styles.detailedRules}>
+        <h2>Regras Completas do Super Jogo da Velha</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 }

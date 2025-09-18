@@ -16,7 +16,7 @@ function Jogos() {
         <GameButton
           pagina="mathwarRg"
           label="Guerra Matemática"
-          imageSrc={`${import.meta.env.BASE_URL}damasLogo.png`}
+          imageSrc={`${import.meta.env.BASE_URL}ComoJogarStop1.png`}
         />
         <GameButton
           pagina="spttt"
@@ -37,6 +37,16 @@ function Jogos() {
           pagina="dimensions"
           label="Cubo Mágico"
           imageSrc={`${import.meta.env.BASE_URL}3x3.png`}
+        />
+        <GameButton
+          pagina="baseGame"
+          label="BAse game"
+          imageSrc={`${import.meta.env.BASE_URL}vite.svg`}
+        />
+        <GameButton
+          pagina="damas"
+          label="DAMAS"
+          imageSrc={`${import.meta.env.BASE_URL}damasLogo.png`}
         />
       </div>
     </div>

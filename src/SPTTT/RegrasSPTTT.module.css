@@ -116,7 +116,7 @@
   text-align: center;
   padding: 0.3vw 2.5vw 2vw 2.5vw;
   line-height: 1;
-  box-shadow: inset 0 0 3vw #00000070;
+  box-shadow: 0 0 3vw rgba(0, 0, 0, 0.3), inset 0 0 1vw rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: all 0.3s;
   margin-bottom: 2vw;
@@ -159,9 +159,9 @@
 .button:hover {
   border: 0.8vw solid #0a1929;
   background: radial-gradient(circle, #2196f3, #1976d2);
-  transform: scale(1.03);
+  transform: scale(1.05) translateY(-1dvh);
   -webkit-text-stroke: 0.42vw #0a1929;
-  box-shadow: 0 0 2vw rgba(33, 150, 243, 0.5);
+  box-shadow: 0 0 3vw rgba(249, 251, 253, 0.3), inset 0 0 1vw rgba(255, 255, 255, 0.3);
 }
 
 /* Mobile responsive */
@@ -187,5 +187,141 @@
   .regras h3 {
     font-size: 3vw;
     width: 30vw;
+  }
+}
+
+
+.detailedRulesButton {
+  position: fixed;
+  bottom: 2vw;
+  right: 2vw;
+  border: 0.2vw solid #0a1929;
+  background: radial-gradient(circle, #2e5984, #1a3a5c);
+  border-radius: 1vw;
+  padding: 0.1vw 0.7vw 0.3vw 0.7vw;
+  color: #4fc3f7;
+  -webkit-text-stroke: 0.1vw #0a1929;
+  font-size: 1.5vw;
+  font-family: "Cherry Bomb One", system-ui;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.detailedRulesButton:hover {
+  transform: scale(1.03);
+  background: radial-gradient(circle, #437497, #386389);
+}
+
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: radial-gradient(circle, #5a8db8, #3d6f96);
+  border: 0.6vw solid #0c2d50;
+  border-radius: 3.3vw;
+  padding: 2vw 3vw;
+  margin-top: 5dvh;;
+  max-width: 90%;
+  max-height: 92dvh; /* Changed from top: 13vw to max-height */
+  overflow-y: auto; /* Ensure scrolling is enabled */
+  color: #e3f2fd;
+  -webkit-text-stroke: 0.1vw #000000;
+  font-size: 1.5vw;
+  position: relative;
+
+}
+
+
+.closeButton {
+  position: absolute;
+  top: 1.5dvh;
+  right: 1.5dvh;
+  background: radial-gradient(circle, #1e88e5, #1565c0);
+  border: 0.3vw solid #0a1929;
+  border-radius: 50%;
+  padding: 0 0 0.1vw 0;
+  width: 4vw;
+  height: 4vw;
+  color: #4fc3f7;
+  -webkit-text-stroke: 0.2vw #0a1929;
+  font-size: 2.5vw;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeButton:hover {
+  transform: scale(2);
+  transform: translateY(-0.1vw);
+  background: radial-gradient(circle, #2791ee, #1e6fcb);
+}
+.detailedRules {
+  max-height: 100%; /* Allow content to expand but be constrained by parent */
+  overflow-y: visible; /* Let the parent handle scrolling */
+}
+
+.detailedRules p {
+  font-size: 1.8vw;
+  color: #29b6f6;
+  -webkit-text-stroke: 0.13vw #0a1929;
+  margin-bottom: 1.5vw; /* Add some spacing between paragraphs */
+}
+
+.detailedRules h2 {
+  font-size: 4vw;
+  color: #78d0f8;
+  -webkit-text-stroke: 0.25vw #0a1929;
+  text-align: center;
+  margin-bottom: 2vw;
+}
+
+@media (max-width: 768px) {
+  .detailedRulesButton {
+    font-size: 3.5vw;
+    padding: 1.5vw 2.5vw;
+    bottom: 3vw;
+    right: 3vw;
+    border-radius: 2vw;
+    border-width: 0.3vw;
+  }
+  
+  .modalContent {
+    font-size: 2.8vw;
+    padding: 4vw;
+    max-width: 95%;
+    max-height: 85dvh;
+    margin-top: 3dvh;
+    border-width: 0.8vw;
+  }
+  
+  .closeButton {
+    width: 8vw;
+    height: 8vw;
+    font-size: 5vw;
+    top: 1vw;
+    right: 1vw;
+  }
+  
+  .detailedRules p {
+    font-size: 3.2vw;
+    margin-bottom: 2vw;
+  }
+  
+  .detailedRules h2 {
+    font-size: 5.5vw;
+    margin-bottom: 3vw;
   }
 }
