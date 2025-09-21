@@ -5,18 +5,18 @@ const createCheckersSetup = (): InitialPieceSetup[] => {
   let setup: InitialPieceSetup[] = [];
 
   setup = [
-    { type: "pawn", owner: 0, row: 1, col: 3 },
-    { type: "pawn", owner: 0, row: 0, col: 2 },
-    { type: "pawn", owner: 0, row: 2, col: 4 },
-    { type: "rook", owner: 0, row: 0, col: 3 },
-    { type: "rook", owner: 0, row: 1, col: 4 },
+     { type: "jumper", owner: 0, row: 1, col: 3 },
+    { type: "jumper", owner: 0, row: 0, col: 2 },
+    { type: "jumper", owner: 0, row: 2, col: 4 },
+    { type: "killer", owner: 0, row: 0, col: 3 },
+    { type: "killer", owner: 0, row: 1, col: 4 },
     { type: "king", owner: 0, row: 0, col: 4 },
 
-    { type: "pawn", owner: 1, row: 2, col: 0 },
-    { type: "pawn", owner: 1, row: 3, col: 1 },
-    { type: "pawn", owner: 1, row: 4, col: 2 },
-    { type: "rook", owner: 1, row: 4, col: 1 }, //Nota: o rook é o killer por enquanto
-    { type: "rook", owner: 1, row: 3, col: 0 },
+    { type: "jumper", owner: 1, row: 2, col: 0 },
+    { type: "jumper", owner: 1, row: 3, col: 1 },
+    { type: "jumper", owner: 1, row: 4, col: 2 },
+    { type: "killer", owner: 1, row: 4, col: 1 },
+    { type: "killer", owner: 1, row: 3, col: 0 },
     { type: "king", owner: 1, row: 4, col: 0 },
   ];
 
