@@ -57,4 +57,5 @@ export const gameConfig: GameConfig = {
   useDice: true,
   diceCount: 2,
   diceSides: 5,
+  energyPerTurn: 0, 
 };

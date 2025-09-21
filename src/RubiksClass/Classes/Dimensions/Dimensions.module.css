@@ -7,6 +7,7 @@
   color: white;
   -webkit-text-stroke: 0.1vw black;
   min-height: 100dvh;
+  max-height: 100dvh;
 }
 
 .container h2{
@@ -33,7 +34,16 @@
   letter-spacing: 0.1vw;
 }
 
-.imagesRow, .boxesRow {
+.boxesRow {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3vw;
+  margin: 2vh 0;
+  position: relative;
+}
+
+.imagesRow {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -76,7 +86,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4dvh;
+  gap: 0.3dvh;
   position: relative;
 }
 
@@ -96,6 +106,7 @@
 }
 
 .dropArea:hover {
+  transform: scale(1.03);
   background: rgba(255, 255, 255, 0.2);
 }
 
@@ -145,6 +156,7 @@
   font-size: 1.5vw;
   font-family: "Cherry Bomb One", system-ui;
   -webkit-text-stroke: 0.2vw black;
+
 }
 
 .removeButton:hover {
@@ -153,26 +165,26 @@
 }
 
 .submitContainer {
+  position: absolute;
+  bottom: 5vw;
+  right: 0vw;
+  z-index: 100;
   display: flex;
   justify-content: center;
   margin: 0vh 0;
 }
 
 .submitButton {
-  padding: 2vh 6vw;
+  padding: 0.7vw 1.7vw 1vw 1.7vw;
   background: #27ae60;
   color: white;
-  border: 0.3vw solid black;
-  border-radius: 4vw;
+  border: 0.2vw solid black;
+  border-radius: 2vw;
   cursor: pointer;
-  font-size: 3vw;
+  font-size: 2vw;
   font-weight: bold;
   font-family: "Cherry Bomb One", system-ui;
-  text-shadow: 
-    -0.1vw -0.1vw 0 #000,  
-     0.1vw -0.1vw 0 #000,
-    -0.1vw  0.1vw 0 #000,
-     0.1vw  0.1vw 0 #000;
+  -webkit-text-stroke: 0.13vw black;
   box-shadow: 0 0.5vw 1.5vw rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   letter-spacing: 0.1vw;
@@ -180,12 +192,12 @@
 
 .submitButton:hover:not(:disabled) {
   background: #219653;
-  transform: translateY(-0.3vw);
+  transform: translateY(-0.3vw) scale(1.05);
   box-shadow: 0 0.8vw 2vw rgba(0, 0, 0, 0.4);
 }
 
 .submitButton:disabled {
-  background: #95a5a6;
+  background: #3a855a;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;

@@ -26,16 +26,25 @@ const Dimensions: React.FC = () => {
   const getCubeImage = (size: CubeSize) => {
     return `${import.meta.env.BASE_URL}${size}.png`;
   };
+  const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
 
   // Available cube images to drag in the desired order: 4x4, 2x2, 6x6, 3x3, 5x5
-  const [cubeImages] = useState<CubeImage[]>([
+  const [cubeImages, setCubeImages] = useState<CubeImage[]>(() => 
+  shuffleArray([
     { id: 1, size: "4x4" },
     { id: 2, size: "2x2" },
     { id: 3, size: "6x6" },
     { id: 4, size: "3x3" },
     { id: 5, size: "5x5" },
-  ]);
-
+  ])
+);
   // Dimension boxes where images can be dropped
   const [dimensionBoxes, setDimensionBoxes] = useState<DimensionBox[]>([
     { id: 1, size: "2x2", droppedImage: null },
@@ -116,14 +125,21 @@ const Dimensions: React.FC = () => {
 
   // Reset the game
   const resetGame = () => {
-    setDimensionBoxes((prev) =>
-      prev.map((box) => ({ ...box, droppedImage: null }))
-    );
-    setScore(null);
-    setIsChecking(false);
-    setCorrections([]);
-    setShowCorrections(false);
-  };
+  setCubeImages(shuffleArray([
+    { id: 1, size: "4x4" },
+    { id: 2, size: "2x2" },
+    { id: 3, size: "6x6" },
+    { id: 4, size: "3x3" },
+    { id: 5, size: "5x5" },
+  ]));
+  setDimensionBoxes((prev) =>
+    prev.map((box) => ({ ...box, droppedImage: null }))
+  );
+  setScore(null);
+  setIsChecking(false);
+  setCorrections([]);
+  setShowCorrections(false);
+};
 
   // Close corrections but keep the results
   const closeCorrections = () => {
@@ -312,13 +328,11 @@ const Dimensions: React.FC = () => {
                     </div>
                   )}
                 </div>
+                
                 <div className={styles.dimensionLabel}>{box.size}</div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {!isChecking && (
+            {!isChecking && (
           <div className={styles.submitContainer}>
             <button
               onClick={checkAnswers}
@@ -329,6 +343,10 @@ const Dimensions: React.FC = () => {
             </button>
           </div>
         )}
+          </div>
+        </div>
+
+        
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Lightbulb } from "lucide-react";
 interface HintProps {
   title: string;
   hint1: React.ReactNode;
@@ -72,14 +72,14 @@ const Hint: React.FC<HintProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         className={styles.hintToggle}
       >
-        💡 Dicas
+        Dicas <Lightbulb className={styles.lightbulb} />
       </button>
 
       {isOpen && (
         <div className={styles.hintModalOverlay}>
           <div className={styles.hintModal}>
             <div className={styles.hintHeader}>
-              <h3>{title}</h3>
+              
               <button onClick={closeHints} className={styles.closeButton}>
                 ×
               </button>
@@ -96,17 +96,6 @@ const Hint: React.FC<HintProps> = ({
             </div>
             
             <div className={styles.hintNavigation}>
-              <button 
-                onClick={showPreviousHint}
-                disabled={currentHint === 1}
-                className={styles.navButton}
-              >
-                Anterior
-              </button>
-              
-              <span className={styles.hintCounter}>
-                Dica {currentHint} de {totalHints}
-              </span>
               
               <button 
                 onClick={showNextHint}
