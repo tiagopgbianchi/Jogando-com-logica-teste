@@ -15,8 +15,8 @@ export const gameRules: GameRules = {
   const piece = gameEngine.getPieceAt(state, action.from);
   if (!piece || piece.owner !== state.currentPlayer) return false;
 
- 
-
+  // Get piece-specific energy from action data
+  const pieceEnergy = action.data?.pieceEnergy || 0;
 
   // Math War specific: All pieces are Sum pieces (pawns) that move orthogonally
   if (piece.type !== 'pawn') return false;
@@ -47,14 +47,9 @@ export const gameRules: GameRules = {
 
   // Check energy cost using our calculateActionCost function
   const cost = gameRules.calculateActionCost ? gameRules.calculateActionCost(state, action) : 1;
-   const diceTotal = state.lastDiceRoll ? state.lastDiceRoll.reduce((sum, num) => sum + num, 0) : 0;
-const availableEnergy = diceTotal + (piece.value || 0);
-
-// Then use this in your energy check:
-if (cost > availableEnergy) {
-  return false;
-}
-  if (state.remainingEnergy === undefined || state.remainingEnergy < cost) {
+   
+  // Use piece-specific energy instead of state.remainingEnergy
+  if (cost > pieceEnergy) {
     return false;
   }
 
@@ -109,6 +104,9 @@ if (cost > availableEnergy) {
   getAvailableActions: (state: GameState, position?: Position): TurnAction[] => {
   const actions: TurnAction[] = [];
 
+  // Calculate dice total once
+  const diceTotal = state.lastDiceRoll ? state.lastDiceRoll.reduce((sum, die) => sum + die, 0) : 0;
+
   const getPossibleMovesForPiece = (piecePosition: Position): TurnAction[] => {
     const moves: TurnAction[] = [];
     const piece = state.board[piecePosition.row][piecePosition.col];
@@ -116,6 +114,12 @@ if (cost > availableEnergy) {
     if (!piece || piece.owner !== state.currentPlayer) {
       return moves;
     }
+
+    // Calculate energy for this specific piece
+    const pieceEnergy = diceTotal + (piece.value || 0);
+    
+    // Store piece energy in action data for validation
+    const pieceEnergyData = { pieceEnergy };
 
     // Math War: All pieces move orthogonally in any direction
     // Generate moves in all 4 orthogonal directions
@@ -139,11 +143,12 @@ if (cost > availableEnergy) {
           break; // Stop exploring this direction
         }
 
-        // Create potential action
+        // Create potential action with piece-specific energy data
         const action: TurnAction = {
           type: 'move', // Will be updated to 'capture' by validateMove if needed
           from: piecePosition,
-          to: targetPos
+          to: targetPos,
+          data: { ...pieceEnergyData } // Include piece energy in action data
         };
 
         // Check if this move is valid
@@ -258,8 +263,8 @@ shouldEndTurn: (state: GameState, action: TurnAction): boolean => {
 onTurnStart: (state: GameState): void => {
   if (state.config.useDice) {
     state.lastDiceRoll = GameUtils.rollDice(2, 5);
-    // Don't set energy here - it should be calculated when a piece is selected
-    state.remainingEnergy = state.lastDiceRoll[0]+state.lastDiceRoll[1]; // Reset to 0 until a piece is selected
+    // Don't set energy here - it will be calculated per piece
+    state.remainingEnergy = 0;
   }
 },
 
