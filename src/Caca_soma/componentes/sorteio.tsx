@@ -7,7 +7,7 @@ interface Properties {
 }
 
 const NumGenerator = () => {
-  return Math.floor(Math.random() * 200);
+  return Math.floor(Math.random() * 147 + 3);
 };
 
 function Girar({ mudarJogar, clicar, mudarSorteado }: Properties) {

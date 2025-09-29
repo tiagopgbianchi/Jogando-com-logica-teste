@@ -11,12 +11,13 @@ function Caca_soma() {
   const [qualRodada, setQualRodada] = useState(0);
   const [sorteado, setSorteado] = useState(0);
   const [soma, setSoma] = useState(0);
+  const [quantos, setQuantos] = useState(0);
 
   const mudarRodada = () => setQualRodada(qualRodada + 1);
   const mudarClicar = () => setClicar(!clicar);
   const mudarJogar = () => setJogar(!jogar);
   const mudarSorteado = (x: number) => setSorteado(x);
-  const mudarSoma = (y: boolean, x: number) => setSoma(soma + x);
+  const mudarSoma = (x: number) => setSoma(soma + x);
 
   const [pontu_1, setPontu_1] = useState(0);
   const [pontu_2, setPontu_2] = useState(0);
@@ -89,6 +90,9 @@ function Caca_soma() {
         mudarSoma={mudarSoma}
         soma={soma}
         qualRodada={qualRodada}
+        setQuantos={setQuantos}
+        quantos={quantos}
+        sorteado={sorteado}
         //styles={styles} // se quiser passar styles para Tabuleiro
       />
 

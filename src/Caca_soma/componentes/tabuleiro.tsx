@@ -5,11 +5,14 @@ interface Prop {
   mudarClicar: () => void;
   mudarJogar: () => void;
   mudarRodada: () => void;
-  mudarSoma: (y: boolean, x: number) => void;
+  mudarSoma: (x: number) => void;
   addTempo: (x: number) => void;
   soma: number;
   jogar: boolean;
   qualRodada: number;
+  quantos: number;
+  setQuantos: (x: number) => void;
+  sorteado: number;
 }
 
 function Tabuleiro({
@@ -21,61 +24,83 @@ function Tabuleiro({
   soma,
   addTempo,
   qualRodada,
+  quantos,
+  setQuantos,
+  sorteado,
 }: Prop) {
   // 10x10 matrix filled with false
   const [board, setBoard] = useState(
-    Array.from({ length: 10 }, () => Array(10).fill(false))
+    Array.from({ length: 10 }, () => Array(10).fill(0))
   );
+
+  const okay = () => {
+    if (quantos >= 2) {
+      setQuantos(0);
+      mudarSoma(0);
+      mudarClicar();
+      mudarJogar();
+      mudarRodada();
+      setBoard((prev) =>
+        prev.map((r, rIdx) =>
+          r.map((cell, cIdx) =>
+            cell === 1 ? (sorteado === soma ? 2 : 0) : cell
+          )
+        )
+      );
+    }
+  };
 
   useEffect(() => {
     if (qualRodada === 0) {
-      setBoard(Array.from({ length: 10 }, () => Array(10).fill(false)));
+      setBoard(Array.from({ length: 10 }, () => Array(10).fill(0)));
     }
   }, [qualRodada]);
 
   const toggleCell = (row: number, col: number, valor: number) => {
-    if (board[row][col] === false && jogar) {
-      if (soma > 0) {
-        mudarSoma(true, valor);
-        mudarClicar();
-        mudarJogar();
-        mudarRodada();
-      } else {
-        mudarSoma(false, valor);
+    if (board[row][col] === 0 && jogar && quantos < 3) {
+      if (quantos < 3) {
+        setQuantos(quantos + 1);
+        mudarSoma(valor);
       }
-    }
 
-    setBoard((prev) =>
-      prev.map((r, rIdx) =>
-        r.map((cell, cIdx) =>
-          rIdx === row && cIdx === col && jogar ? true : cell
+      setBoard((prev) =>
+        prev.map((r, rIdx) =>
+          r.map((cell, cIdx) =>
+            rIdx === row && cIdx === col && jogar ? 1 : cell
+          )
         )
-      )
-    );
+      );
+    }
   };
-
   // Paleta de cores para as células clicadas
 
   return (
-    <div className={styles.board}>
-      {board.map((row, rIdx) =>
-        row.map((cell, cIdx) => (
-          <div
-            key={`${rIdx}-${cIdx}`}
-            className={styles.celula}
-            style={{
-              background:
-                cell === false
-                  ? "radial-gradient(circle, #b48c8c, #955858)"
-                  : "radial-gradient(circle, #c07171ff, #a83737ff)", // cores variáveis
-            }}
-            onClick={() => toggleCell(rIdx, cIdx, rIdx * 10 + cIdx + 1)}
-          >
-            {rIdx * 10 + cIdx + 1}
-          </div>
-        ))
-      )}
-    </div>
+    <>
+      <div className={styles.board}>
+        {board.map((row, rIdx) =>
+          row.map((cell, cIdx) => (
+            <div
+              key={`${rIdx}-${cIdx}`}
+              className={styles.celula}
+              style={{
+                background:
+                  cell === 0
+                    ? "radial-gradient(circle, #b48c8c, #955858)" // cor para 0
+                    : cell === 1
+                    ? "radial-gradient(circle, #c07171ff, #a83737ff)" // cor para 1
+                    : "radial-gradient(circle, #7189c0, #374fa8)", // cor para 2
+              }}
+              onClick={() => toggleCell(rIdx, cIdx, rIdx * 10 + cIdx + 1)}
+            >
+              {rIdx * 10 + cIdx + 1}
+            </div>
+          ))
+        )}
+      </div>
+      <div>
+        <button onClick={() => okay()}>OK</button>
+      </div>
+    </>
   );
 }
 
