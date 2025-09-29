@@ -1,6 +1,6 @@
-import React from 'react';
-import { Piece, GameConfig } from '../Logic/types';
-import styles from '../styles/piece.module.css';
+import React from "react";
+import { Piece, GameConfig } from "../Logic/types";
+import styles from "../styles/piece.module.css";
 
 interface PieceProps {
   piece: Piece;
@@ -9,100 +9,137 @@ interface PieceProps {
   onPieceClick: () => void;
 }
 
-const PieceComponent: React.FC<PieceProps> = ({ 
-  piece, 
-  gameConfig, 
-  isSelected, 
-  onPieceClick 
+const PieceComponent: React.FC<PieceProps> = ({
+  piece,
+  gameConfig,
+  isSelected,
+  onPieceClick,
 }) => {
-  
-  const getPlayerColor = (owner: number) => {
-    const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6', '#e67e22'];
+  const getPlayerColor = (owner: number, isCaptain: boolean = false) => {
+    const colors = [
+      "#e74c3c", // Player 0 - red
+      "#3498db", // Player 1 - blue
+      "#2ecc71", // Player 2 - green
+      "#f39c12", // Player 3 - orange
+      "#9b59b6", // Player 4 - purple
+      "#e67e22", // Player 5 - dark orange
+    ];
+
+    const captainColors = [
+      "#ceb01eff", // Player 0 - red
+      "#3e009aff", // Player 1 - blue
+      "#2ecc71", // Player 2 - green
+      "#f39c12", // Player 3 - orange
+      "#9b59b6", // Player 4 - purple
+      "#e67e22", // Player 5 - dark orange
+    ];
+
+    if (isCaptain) {
+      return captainColors[owner % captainColors.length];
+    }
+
     return colors[owner % colors.length];
   };
 
   const getPieceDisplay = () => {
+    const isCaptain = piece.data?.isCaptain;
     // Handle different piece types
     switch (piece.type) {
-      case 'barrier':
+      case "barrier":
         return {
-          symbol: '■',
-          backgroundColor: '#7f8c8d',
-          textColor: '#2c3e50',
-          shape: 'square'
+          symbol: "■",
+          backgroundColor: "#7f8c8d",
+          textColor: "#2c3e50",
+          shape: "square",
         };
-      
-      case 'pawn':
+
+      case "pawn":
         return {
-          symbol: '♟',
+          symbol: "♟",
           backgroundColor: getPlayerColor(piece.owner),
-          textColor: 'white',
-          shape: 'circle'
+          textColor: "white",
+          shape: "circle",
         };
-      
-      case 'king':
+
+      case "sum":
+        const isCaptain = piece.data?.isCaptain;
         return {
-          symbol: piece.data?.isKing || piece.data?.isPromoted ? '♚' : '♔',
-          backgroundColor: getPlayerColor(piece.owner),
-          textColor: 'white',
-          shape: 'circle'
+          symbol: `+${piece.value || 0}`,
+          backgroundColor: getPlayerColor(piece.owner, isCaptain),
+          textColor: isCaptain ? "black" : "white", // Black text for better contrast on light captain colors
+          shape: "circle",
         };
-      
-      case 'queen':
+
+      case "king":
         return {
-          symbol: '♛',
+          symbol: piece.data?.isKing || piece.data?.isPromoted ? "♚" : "♔",
           backgroundColor: getPlayerColor(piece.owner),
-          textColor: 'white',
-          shape: 'circle'
+          textColor: "white",
+          shape: "circle",
         };
-      
-      case 'rook':
+
+      case "queen":
         return {
-          symbol: '♜',
+          symbol: "♛",
           backgroundColor: getPlayerColor(piece.owner),
-          textColor: 'white',
-          shape: 'circle'
+          textColor: "white",
+          shape: "circle",
         };
-      
-      case 'bishop':
+
+      case "rook":
         return {
-          symbol: '♝',
+          symbol: "♜",
           backgroundColor: getPlayerColor(piece.owner),
-          textColor: 'white',
-          shape: 'circle'
+          textColor: "white",
+          shape: "circle",
         };
-      
-      case 'knight':
+
+      case "bishop":
         return {
-          symbol: '♞',
+          symbol: "♝",
           backgroundColor: getPlayerColor(piece.owner),
-          textColor: 'white',
-          shape: 'circle'
+          textColor: "white",
+          shape: "circle",
         };
-      
-      case 'captain':
+
+      case "knight":
         return {
-          symbol: '⚔',
+          symbol: "♞",
           backgroundColor: getPlayerColor(piece.owner),
-          textColor: 'white',
-          shape: 'circle'
+          textColor: "white",
+          shape: "circle",
         };
-      
-      case 'checker':
-      case 'regular':
+
+      case "captain":
+        return {
+          symbol: "⚔",
+          backgroundColor: getPlayerColor(piece.owner),
+          textColor: "white",
+          shape: "circle",
+        };
+
+      case "checker":
+      case "regular":
       default:
         // Default checker piece
         return {
-          symbol: piece.data?.isKing || piece.data?.isPromoted ? '♚' : '●',
+          symbol: piece.data?.isKing || piece.data?.isPromoted ? "♚" : "●",
           backgroundColor: getPlayerColor(piece.owner),
-          textColor: 'white',
-          shape: 'circle'
+          textColor: "white",
+          shape: "circle",
+        };
+      case "killer":
+        return {
+          symbol: "X",
+          backgroundColor: getPlayerColor(piece.owner),
+          textColor: "white",
+          shape: "circle",
         };
     }
   };
 
   const display = getPieceDisplay();
-  
+
   // Special states from piece.data
   const hasMoved = piece.data?.hasMoved;
   const isPromoted = piece.data?.isKing || piece.data?.isPromoted;
@@ -111,6 +148,9 @@ const PieceComponent: React.FC<PieceProps> = ({
 
   const getPieceTitle = () => {
     let title = `${piece.type}`;
+    if (piece.data?.isCaptain) {
+      title += " - Captain";
+    }
     if (piece.owner >= 0) {
       title += ` (Player ${piece.owner + 1})`;
     }
@@ -118,13 +158,13 @@ const PieceComponent: React.FC<PieceProps> = ({
       title += ` - Value: ${piece.value}`;
     }
     if (isPromoted) {
-      title += ' - Promoted';
+      title += " - Promoted";
     }
     if (isSpecial) {
-      title += ' - Special';
+      title += " - Special";
     }
     if (hasMoved) {
-      title += ' - Moved';
+      title += " - Moved";
     }
     return title;
   };
@@ -132,22 +172,22 @@ const PieceComponent: React.FC<PieceProps> = ({
   return (
     <div
       className={`${styles.piece} ${
-        display.shape === 'square' ? styles.pieceSquare : styles.pieceCircle
-      } ${isSelected ? styles.pieceSelected : ''} ${
-        isSpecial ? styles.pieceSpecial : ''
-      } ${isPromoted ? styles.piecePromoted : ''} ${
-        hasMoved ? styles.pieceMoved : ''
-      } ${piece.type === 'barrier' ? styles.pieceBarrier : ''}`}
+        display.shape === "square" ? styles.pieceSquare : styles.pieceCircle
+      } ${isSelected ? styles.pieceSelected : ""} ${
+        isSpecial ? styles.pieceSpecial : ""
+      } ${isPromoted ? styles.piecePromoted : ""} ${
+        hasMoved ? styles.pieceMoved : ""
+      } ${piece.type === "barrier" ? styles.pieceBarrier : ""}`}
       style={{
-        width: display.shape === 'square' ? '70%' : '75%',
-        height: display.shape === 'square' ? '70%' : '75%',
+        width: display.shape === "square" ? "70%" : "75%",
+        height: display.shape === "square" ? "70%" : "75%",
         backgroundColor: display.backgroundColor,
-        fontSize: hasValue ? '12px' : '18px',
+        fontSize: hasValue ? "12px" : "18px",
         color: display.textColor,
       }}
       onClick={(e) => {
         e.stopPropagation();
-        if (piece.type !== 'barrier') {
+        if (piece.type !== "barrier") {
           onPieceClick();
         }
       }}
@@ -155,34 +195,39 @@ const PieceComponent: React.FC<PieceProps> = ({
     >
       {/* Main piece symbol */}
       <div className={styles.pieceContent}>
-        <div style={{ fontSize: hasValue ? '10px' : 'inherit' }}>
+        <div style={{ fontSize: hasValue ? "18px" : "inherit" }}>
           {display.symbol}
         </div>
-        
+
         {/* Show value for Math War pieces */}
-        {hasValue && (
-          <div className={styles.pieceValue}>
-            {piece.value}
-          </div>
-        )}
+        {hasValue && <div className={styles.pieceValue}></div>}
       </div>
-      
+
+      {/* Captain indicator */}
+      {piece.data?.isCaptain && (
+        <div className={styles.pieceCaptainIndicator}>C</div>
+      )}
+
       {/* Promotion indicator */}
       {isPromoted && (
-        <div className={`${styles.pieceIndicator} ${styles.piecePromotedIndicator}`}>
+        <div
+          className={`${styles.pieceIndicator} ${styles.piecePromotedIndicator}`}
+        >
           ★
         </div>
       )}
-      
+
       {/* Special piece indicator */}
       {isSpecial && !isPromoted && (
-        <div className={`${styles.pieceIndicator} ${styles.pieceSpecialIndicator}`}>
+        <div
+          className={`${styles.pieceIndicator} ${styles.pieceSpecialIndicator}`}
+        >
           ◆
         </div>
       )}
-      
+
       {/* Movement indicator */}
-      {hasMoved && gameConfig.name === 'Chess' && (
+      {hasMoved && gameConfig.name === "Chess" && (
         <div className={styles.pieceMovementIndicator} />
       )}
     </div>

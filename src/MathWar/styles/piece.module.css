@@ -83,3 +83,24 @@
   border-radius: 50%;
   background-color: #e67e22;
 }
+
+.pieceCaptain {
+  border: 2px solid gold;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.pieceCaptainIndicator {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: gold;
+  color: #000;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}

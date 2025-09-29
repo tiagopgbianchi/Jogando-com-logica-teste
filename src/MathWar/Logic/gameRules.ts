@@ -15,11 +15,22 @@ export const gameRules: GameRules = {
   const piece = gameEngine.getPieceAt(state, action.from);
   if (!piece || piece.owner !== state.currentPlayer) return false;
 
-  // Get piece-specific energy from action data
-  const pieceEnergy = action.data?.pieceEnergy || 0;
+  // Get piece-specific energy from piece data
+  const diceTotal = state.lastDiceRoll ? state.lastDiceRoll.reduce((sum, die) => sum + die, 0) : 0;
+const pieceEnergy = diceTotal + (piece.value || 0);
+
+// Update the piece's data with current energy
+piece.data = {
+  ...piece.data,
+  pieceEnergy: pieceEnergy,
+  diceTotal: diceTotal
+};
+
+// Also update state.remainingEnergy for UI display
+state.remainingEnergy = pieceEnergy;
 
   // Math War specific: All pieces are Sum pieces (pawns) that move orthogonally
-  if (piece.type !== 'pawn') return false;
+  if (piece.type !== 'sum') return false;
 
   // Check if move is orthogonal only (no diagonal moves allowed)
   if (!MovementPatterns.orthogonal(action.from, action.to)) {
@@ -48,7 +59,7 @@ export const gameRules: GameRules = {
   // Check energy cost using our calculateActionCost function
   const cost = gameRules.calculateActionCost ? gameRules.calculateActionCost(state, action) : 1;
    
-  // Use piece-specific energy instead of state.remainingEnergy
+  // Use piece-specific energy
   if (cost > pieceEnergy) {
     return false;
   }
@@ -104,9 +115,6 @@ export const gameRules: GameRules = {
   getAvailableActions: (state: GameState, position?: Position): TurnAction[] => {
   const actions: TurnAction[] = [];
 
-  // Calculate dice total once
-  const diceTotal = state.lastDiceRoll ? state.lastDiceRoll.reduce((sum, die) => sum + die, 0) : 0;
-
   const getPossibleMovesForPiece = (piecePosition: Position): TurnAction[] => {
     const moves: TurnAction[] = [];
     const piece = state.board[piecePosition.row][piecePosition.col];
@@ -114,12 +122,6 @@ export const gameRules: GameRules = {
     if (!piece || piece.owner !== state.currentPlayer) {
       return moves;
     }
-
-    // Calculate energy for this specific piece
-    const pieceEnergy = diceTotal + (piece.value || 0);
-    
-    // Store piece energy in action data for validation
-    const pieceEnergyData = { pieceEnergy };
 
     // Math War: All pieces move orthogonally in any direction
     // Generate moves in all 4 orthogonal directions
@@ -143,12 +145,11 @@ export const gameRules: GameRules = {
           break; // Stop exploring this direction
         }
 
-        // Create potential action with piece-specific energy data
+        // Create potential action
         const action: TurnAction = {
           type: 'move', // Will be updated to 'capture' by validateMove if needed
           from: piecePosition,
-          to: targetPos,
-          data: { ...pieceEnergyData } // Include piece energy in action data
+          to: targetPos
         };
 
         // Check if this move is valid
@@ -169,6 +170,7 @@ export const gameRules: GameRules = {
 
     return moves;
   };
+
 
   if (position) {
     // Get moves for specific piece
@@ -262,19 +264,34 @@ shouldEndTurn: (state: GameState, action: TurnAction): boolean => {
 
 onTurnStart: (state: GameState): void => {
   if (state.config.useDice) {
-    state.lastDiceRoll = GameUtils.rollDice(2, 5);
-    // Don't set energy here - it will be calculated per piece
+    // Only roll dice on Player 0's turn (every other turn)
+    if (state.currentPlayer === 0) {
+      state.lastDiceRoll = GameUtils.rollDice(2, 5);
+    }
+    // On Player 1's turn, keep the same dice roll from Player 0's turn
+    
+    // Reset energy to 0 - it will be calculated when pieces are selected
     state.remainingEnergy = 0;
   }
 },
 
 onGameStart: (state: GameState): void => {
   // Initialize captain selection for each player
-  // In the actual game, players would choose their captains
-  // For now, we'll randomly assign captains
+  // Captains can only be assigned to back row pieces (row 0 for player 0, row 7 for player 1)
   for (let player = 0; player < state.players; player++) {
     const playerPieces = gameEngine.getPlayerPieces(state, player);
-    if (playerPieces.length > 0) {
+    
+    // Filter pieces to only include back row pieces
+    const backRowPieces = playerPieces.filter(({ position }) => {
+      return (player === 0 && position.row === 0) || (player === 1 && position.row === 7);
+    });
+    
+    if (backRowPieces.length > 0) {
+      const randomIndex = Math.floor(Math.random() * backRowPieces.length);
+      const captainPiece = backRowPieces[randomIndex].piece;
+      captainPiece.data = { ...captainPiece.data, isCaptain: true };
+    } else {
+      // Fallback: if no back row pieces exist, use any piece (shouldn't happen in Math War)
       const randomIndex = Math.floor(Math.random() * playerPieces.length);
       const captainPiece = playerPieces[randomIndex].piece;
       captainPiece.data = { ...captainPiece.data, isCaptain: true };

@@ -18,7 +18,7 @@ import DamasRegras from "./AA_baseGame/Pages/regrasPage";
 import CrownChasePage from "./CrownChase/Pages/baseGamePage";
 import CrownChaseRegras from "./CrownChase/Pages/regrasPage";
 import CacaSomaRegras from "./Caca_soma/Pages/Regras_CacaSoma";
-import Dimensions from "./RubiksClass/Classes/Dimensions/Dimensions";
+import Dimensions from "./RubiksClass/Classes/Dimensions/class1";
 import MathWarRegras from "./MathWar/Pages/regrasPage"
 import MathWarPage from "./MathWar/Pages/baseGamePage"
 
