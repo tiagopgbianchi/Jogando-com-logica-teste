@@ -21,6 +21,7 @@ import CacaSomaRegras from "./Caca_soma/Pages/Regras_CacaSoma";
 import Dimensions from "./RubiksClass/Classes/Dimensions/class1";
 import MathWarRegras from "./MathWar/Pages/regrasPage"
 import MathWarPage from "./MathWar/Pages/baseGamePage"
+import Manual from "./Main/Pages/manual"
 
 function BackButton() {
   const location = useLocation();
@@ -65,6 +66,7 @@ function App() {
         <Route path="/dimensions" element={<Dimensions />} />
         <Route path="/mathwarRg" element={<MathWarRegras />} />
         <Route path="/mathwarPg" element={<MathWarPage />} />
+        <Route path="/manual" element={<Manual />} />
       </Routes>
     </main>
   );

@@ -15,7 +15,7 @@ function Home() {
         <img src={`${import.meta.env.BASE_URL}imagemCubo.png`} className="imagemCubo" />
       </div>
       <div className="logo">
-        <picture>
+        {/* <picture>
           <source
             srcSet={`${import.meta.env.BASE_URL}logoEscritaVertical.png`}
             media="(orientation: portrait)"
@@ -25,7 +25,12 @@ function Home() {
             className="logoTexto"
             alt="Logo"
           />
-        </picture>
+        </picture> */}
+        <h1 className="logoTitle">
+          <span className="jogando">JOGANDO</span>
+          <span className="com">com</span>
+          <span className="logica">LÓGICA</span>
+        </h1>
       </div>
       <div className="buttonsHome">
         <button className="buttonJogar" onClick={() => mudar_pagina("jogos")}>
@@ -46,6 +51,10 @@ function Home() {
           </button>
         </div>
       </div>
+      <button className="buttonManual" onClick={() => mudar_pagina("manual")}>
+        {" "}
+        Para Professores
+      </button>
     </div>
   );
 }
