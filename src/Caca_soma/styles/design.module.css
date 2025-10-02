@@ -1,176 +1,210 @@
-/* design.css - Green Themed Game Style com tabuleiro 10x10 */
-
 .container {
   font-family: "Cherry Bomb One", system-ui;
   font-weight: 200;
   display: flex;
-  flex-direction: row; /* horizontal */
-  align-items: flex-start; /* início do eixo vertical */
   justify-content: center;
+  align-items: center;
+  gap: 5vw;
   min-height: 100dvh;
   width: 100vw;
   background: radial-gradient(circle, #eacdcd, #716262);
   padding: 2vw;
   box-sizing: border-box;
+}
+
+/* Left Panel - Container only */
+.leftPanel {
+  margin-left: 5vw;
+  margin-top: 3.7dvh;
+  display: flex;
+  flex-direction: column;
   gap: 2vw;
 }
 
-/* ===== Colunas internas ===== */
-.coluna-placar {
+/* Game Controls Panel */
+.gameControlsPanel {
+  width: 35vw;
   display: flex;
   flex-direction: column;
-  gap: 1vw;
-  align-items: center;
+  gap: 2vw;
+  padding: 1.5vw;
+  background: radial-gradient(circle, #8a8a8a, #5e5e5e);
+  border-radius: 1.5vw;
+  border: 0.3vw solid #b71c1c;
 }
 
-.coluna-tabuleiro {
+/* Score Panel */
+.scorePanel {
+  width: 35vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1vw;
+  gap: 2vw;
+  padding: 1.5vw;
+  background: radial-gradient(circle, #8a8a8a, #5e5e5e);
+  border-radius: 1.5vw;
+  border: 0.3vw solid #b71c1c;
 }
 
-.coluna-sorteio {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1vw;
-}
-
-/* ===== Placar ===== */
-.num-pontu-1,
-.num-pontu-2 {
-  font-size: 4vw;
-  color: #c8e6c9;
-  -webkit-text-stroke: 0.3vw #0d4f14;
-  border: 0.5vw solid #4f3d0d;
-  border-radius: 3vw;
-  background: radial-gradient(circle, #4caf50, #388e3c);
-  padding: 1vw 2vw;
-  box-shadow: inset 0 0 1.5vw #00000080, 0 0 0.5vw #000a;
-}
-
-.num-tempo {
-  font-size: 3vw;
-  color: #a5d6a7;
-  -webkit-text-stroke: 0.15vw #0d4f14;
-  border: 0.3vw solid #4f3d0d;
-  border-radius: 2vw;
-  background: radial-gradient(circle, #b48c8c, #955858);
-  padding: 0.5vw 1.5vw;
+/* Score Header */
+.scoreHeader {
+  font-size: 1.8vw;
+  font-weight: bold;
   text-align: center;
-  box-shadow: 0 0 0.8vw #000a;
+  color: #ffffff;
+  margin-bottom: 1vw;
+  text-shadow: 0.2vw 0.2vw 0.4vw #000000;
 }
 
-/* ===== Tabuleiro 10x10 ===== */
+/* Players Row Container */
+.playersRow {
+  display: flex;
+  gap: 2vw;
+  justify-content: space-between;
+}
+
+/* Player Section (side by side) */
+.playerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8vw;
+  padding: 1vw;
+  background: radial-gradient(circle, #9a9a9a, #6e6e6e);
+  border-radius: 1vw;
+  border: 0.2vw solid #b71c1c;
+  flex: 1;
+}
+
+/* Player Label */
+.playerLabel {
+  font-size: 1.4vw;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 0.5vw;
+  text-shadow: 0.1vw 0.1vw 0.3vw #000000;
+}
+
+/* Player Info Row Container */
+.playerInfoRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vw;
+}
+
+/* Player Info Container */
+.playerInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.2vw 0;
+}
+
+/* Info Label */
+.infoLabel {
+  font-size: 1.1vw;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0.1vw 0.1vw 0.2vw #000000;
+}
+
+/* Numbers styling (reusing existing classes) */
+.numPontu1, .numPontu2, .numTempo {
+  font-size: 1.3vw;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0.1vw 0.1vw 0.3vw #000000;
+}
+
+/* Right Panel - Game Board */
+.gameBoard {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1vw;
+}
+
+/* Score Container */
+.placarContainer {
+  display: flex;
+  justify-content: space-around;
+  gap: 1vw;
+  margin-bottom: 1vw;
+}
+
+/* Board Styles */
 .board {
   display: grid;
-  grid-template-columns: repeat(10, 4vw);
-  grid-template-rows: repeat(10, 4vw);
-  gap: 0.5vw;
-  border: 0.5vw solid #b71c1c;
-  border-radius: 2vw;
-  background: radial-gradient(circle, #a9a9a9, #6e6e6e); 
-  padding: 1vw;
-  box-shadow: 0 0 1vw #000a;
+  grid-template-columns: repeat(10, 7.5dvh);
+  grid-template-rows: repeat(10, 7.5dvh);
+  gap: 0.6dvh;
+  border: 0.8dvh solid #b71c1c;
+  border-radius: 3dvh;
+  background: radial-gradient(circle, #a9a9a9, #6e6e6e);
+  padding: 1.5dvh;
+  box-shadow: 0 0 1.5dvh #000a;
+  max-width: 100dvh;
+  max-height: 100dvh;
 }
 
+/* Cell Styles */
 .celula {
+  border-radius: 1dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8vw;
-  font-family: "Cherry Bomb One", system-ui;
-  border-radius: 0.8vw;
-  border: 0.2vw solid #b71c1c;
-  color: #c8e6c9;
-  -webkit-text-stroke: 0.1vw #501010;
+  font-weight: bold;
+  font-size: 1.7vw;
   cursor: pointer;
-  transition: all 0.2s;
-  background: radial-gradient(circle, #b48c8c, #955858);
+  transition: transform 0.1s ease;
 }
 
 .celula:hover {
-  transform: scale(1.1);
-  background: radial-gradient(circle, #43a047, #2e7d32);
-}
-
-/* ===== Sorteio e Texto ===== */
-.texto-sorte {
-  font-size: 2.5vw;
-  color: #81c784;
-  -webkit-text-stroke: 0.12vw #0d4f14;
-}
-
-.num-sorte {
-  font-size: 4vw;
-  border: 0.4vw solid #0d4f14;
-  border-radius: 2vw;
-  padding: 1vw 2vw;
-  background: radial-gradient(circle, #43a04780, #388e3c80);
-  color: #c8e6c9;
-  box-shadow: inset 0 0 1.5vw #00000070;
-}
-
-/* ===== Botão Iniciar ===== */
-.botao-ini {
-  margin-top: 1vw;
-}
-
-.botao-ini button {
-  border: 0.6vw solid #0d4f14;
-  background: radial-gradient(circle, #4caf50, #388e3c);
-  border-radius: 5vw;
-  font-size: 4vw;
-  color: #c8e6c9;
-  -webkit-text-stroke: 0.35vw #0d4f14;
-  padding: 0.5vw 2vw;
-  cursor: pointer;
-  box-shadow: inset 0 0 2vw #00000070;
-  transition: all 0.3s;
-}
-
-.botao-ini button:hover {
   transform: scale(1.05);
-  background: radial-gradient(circle, #66bb6a, #43a047);
-  box-shadow: 0 0 1.5vw rgba(102, 187, 106, 0.5);
 }
 
-/* ===== Responsividade ===== */
+/* Cell State Styles */
+.cellDefault {
+  background: radial-gradient(circle, #b48c8c, #955858);
+}
+
+.cellSelected {
+  background: radial-gradient(circle, #c07171ff, #a83737ff);
+}
+
+.cellCorrect {
+  background: radial-gradient(circle, #7189c0, #374fa8);
+}
+
+/* Sorte Container */
+.sorteContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1vw;
+  margin-top: 0vw;
+}
+
+/* Responsive Design */
 @media (max-width: 1024px) {
   .container {
-    flex-direction: column;
-    align-items: center;
-    gap: 2vw;
+    grid-template-columns: 1fr;
   }
 
   .board {
-    grid-template-columns: repeat(10, 6vw);
-    grid-template-rows: repeat(10, 6vw);
-    gap: 0.5vw;
+    grid-template-columns: repeat(10, 7dvh);
+    grid-template-rows: repeat(10, 7dvh);
+    gap: 0.5dvh;
+    max-width: 80dvh;
+    max-height: 80dvh;
+    border: 0.6dvh solid #b71c1c;
+    border-radius: 2.5dvh;
+    padding: 1.2dvh;
+    box-shadow: 0 0 1.2dvh #000a;
   }
 
   .celula {
-    font-size: 3vw;
-  }
-
-  .num-pontu-1,
-  .num-pontu-2 {
-    font-size: 8vw;
-    padding: 1.5vw 3vw;
-  }
-
-  .num-tempo {
-    font-size: 5vw;
-    padding: 0.8vw 2vw;
-  }
-
-  .num-sorte {
-    font-size: 6vw;
-  }
-
-  .botao-ini button {
-    font-size: 6vw;
-    padding: 1vw 3vw;
+    font-size: 2dvh;
+    border-radius: 0.8dvh;
   }
 }

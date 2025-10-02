@@ -13,29 +13,30 @@ const shuffleArray = (array: number[]): number[] => {
 // Create initial checkers board setup
 const createCheckersSetup = (): InitialPieceSetup[] => {
   // Create shuffled value arrays for each player
-  const baseValues = [2, 2, 3, 3, 3, 4, 4, 4, 5, 5];
+  const baseValues = [2, 2, 2, 2, 3, 3, 3, 4, 4, 4];
   const player0Values = shuffleArray(baseValues);
   const player1Values = shuffleArray(baseValues);
-  
+
+  // Create pieces with mixed types - some move orthogonally, some diagonally
   let setup: InitialPieceSetup[] = [
-    // Player 0 pieces with random values
+    // Player 0 pieces with random values and mixed types
     { type: 'sum', owner: 0, row: 0, col: 1, value: player0Values[0] },
-    { type: "sum", owner: 0, row: 0, col: 2, value: player0Values[1] },
+    { type: "sumDiag", owner: 0, row: 0, col: 2, value: player0Values[1] },
     { type: "sum", owner: 0, row: 0, col: 3, value: player0Values[2] },
     { type: "sum", owner: 0, row: 0, col: 4, value: player0Values[3] },
-    { type: "sum", owner: 0, row: 0, col: 5, value: player0Values[4] },
+    { type: "sumDiag", owner: 0, row: 0, col: 5, value: player0Values[4] },
     { type: "sum", owner: 0, row: 0, col: 6, value: player0Values[5] },
     { type: "sum", owner: 0, row: 1, col: 2, value: player0Values[6] },
     { type: "sum", owner: 0, row: 1, col: 3, value: player0Values[7] },
     { type: "sum", owner: 0, row: 1, col: 4, value: player0Values[8] },
     { type: "sum", owner: 0, row: 1, col: 5, value: player0Values[9] },
 
-    // Player 1 pieces with random values
+    // Player 1 pieces with random values and mixed types
     { type: "sum", owner: 1, row: 7, col: 1, value: player1Values[0] },
-    { type: "sum", owner: 1, row: 7, col: 2, value: player1Values[1] },
+    { type: "sumDiag", owner: 1, row: 7, col: 2, value: player1Values[1] },
     { type: "sum", owner: 1, row: 7, col: 3, value: player1Values[2] },
     { type: "sum", owner: 1, row: 7, col: 4, value: player1Values[3] },
-    { type: "sum", owner: 1, row: 7, col: 5, value: player1Values[4] },
+    { type: "sumDiag", owner: 1, row: 7, col: 5, value: player1Values[4] },
     { type: "sum", owner: 1, row: 7, col: 6, value: player1Values[5] },
     { type: "sum", owner: 1, row: 6, col: 2, value: player1Values[6] },
     { type: "sum", owner: 1, row: 6, col: 3, value: player1Values[7] },

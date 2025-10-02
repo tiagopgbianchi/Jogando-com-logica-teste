@@ -64,57 +64,88 @@ function Caca_soma() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.placarContainer}>
-        <div className={styles.numPontu1}>{pontu_1}</div>
-        <div className={styles.numPontu2}>{pontu_2}</div>
-        <div className={styles.numTempo}>
-          {tempo_1 === 10000 ? "X" : tempo_1}
+      <div className={styles.leftPanel}>
+        <div className={styles.gameControlsPanel}>
+          <div className={styles.sorteContainer}>
+            <div className={styles.textoSorte}>Número sorteado</div>
+            <div className={styles.numSorte}>
+              <Girar
+                mudarSorteado={mudarSorteado}
+                clicar={clicar}
+                mudarJogar={mudarJogar}
+              />
+            </div>
+          </div>
+
+          <div className={styles.botaoIni}>
+            <Iniciar
+              mudarClicar={mudarClicar}
+              clicar={clicar}
+              mudarRodada={mudarRodada}
+            />
+          </div>
         </div>
-        <div className={styles.numTempo}>
-          {tempo_2 === 10000 ? "X" : tempo_2}
+
+        <div className={styles.scorePanel}>
+          <div className={styles.scoreHeader}>PLACAR</div>
+
+          <div className={styles.playersRow}>
+            <div className={styles.playerSection}>
+              <div className={styles.playerLabel}>Jogador 1</div>
+              <div className={styles.playerInfoRow}>
+                <div className={styles.playerInfo}>
+                  <span className={styles.infoLabel}>Pontos:</span>
+                  <span className={styles.numPontu1}>{pontu_1}</span>
+                </div>
+                <div className={styles.playerInfo}>
+                  <span className={styles.infoLabel}>Tempo:</span>
+                  <span className={styles.numTempo}>
+                    {tempo_1 === 10000 ? "X" : tempo_1 + "s"}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.playerSection}>
+              <div className={styles.playerLabel}>Jogador 2</div>
+              <div className={styles.playerInfoRow}>
+                <div className={styles.playerInfo}>
+                  <span className={styles.infoLabel}>Pontos:</span>
+                  <span className={styles.numPontu2}>{pontu_2}</span>
+                </div>
+                <div className={styles.playerInfo}>
+                  <span className={styles.infoLabel}>Tempo:</span>
+                  <span className={styles.numTempo}>
+                    {tempo_2 === 10000 ? "X" : tempo_2 + "s"}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {qualRodada === 10 && (
+            <button className={styles.button} onClick={reiniciar}>
+              REINICIAR
+            </button>
+          )}
         </div>
       </div>
 
-      {qualRodada === 10 && (
-        <button className={styles.button} onClick={reiniciar}>
-          REINICIAR
-        </button>
-      )}
-
-      <Tabuleiro
-        addTempo={addTempo}
-        mudarClicar={mudarClicar}
-        jogar={jogar}
-        mudarJogar={mudarJogar}
-        mudarRodada={mudarRodada}
-        mudarSoma={mudarSoma}
-        soma={soma}
-        qualRodada={qualRodada}
-        setQuantos={setQuantos}
-        quantos={quantos}
-        sorteado={sorteado}
-        //styles={styles} // se quiser passar styles para Tabuleiro
-      />
-
-      <div className={styles.sorteContainer}>
-        <div className={styles.textoSorte}>Número sorteado</div>
-        <div className={styles.numSorte}>
-          <Girar
-            mudarSorteado={mudarSorteado}
-            clicar={clicar}
-            mudarJogar={mudarJogar}
-          />
-        </div>
-        <div className={styles.botaoIni}>
-          <Iniciar
-            mudarClicar={mudarClicar}
-            clicar={clicar}
-            mudarRodada={mudarRodada}
-          />
-        </div>
-        <div>
-          <Timer jogar={jogar} addTempo={addTempo} />
-        </div>
+      <div className={styles.gameBoard}>
+        <Tabuleiro
+          addTempo={addTempo}
+          mudarClicar={mudarClicar}
+          jogar={jogar}
+          mudarJogar={mudarJogar}
+          mudarRodada={mudarRodada}
+          mudarSoma={mudarSoma}
+          soma={soma}
+          qualRodada={qualRodada}
+          setQuantos={setQuantos}
+          quantos={quantos}
+          sorteado={sorteado}
+          //styles={styles} // se quiser passar styles para Tabuleiro
+        />
       </div>
     </div>
   );

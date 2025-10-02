@@ -1,4 +1,4 @@
-import styles from "./manual.module.css";
+import styles from "../CSS/manual.module.css";
 
 function Manual() {
   return (

@@ -23,35 +23,46 @@ const pieceEnergy = diceTotal + (piece.value || 0);
 piece.data = {
   ...piece.data,
   pieceEnergy: pieceEnergy,
-  diceTotal: diceTotal
+ 
 };
 
 // Also update state.remainingEnergy for UI display
 state.remainingEnergy = pieceEnergy;
 
-  // Math War specific: All pieces are Sum pieces (pawns) that move orthogonally
-  if (piece.type !== 'sum') return false;
+  // Math War specific: Handle different piece types
+  if (piece.type !== 'sum' && piece.type !== 'sumDiag') return false;
 
-  // Check if move is orthogonal only (no diagonal moves allowed)
-  if (!MovementPatterns.orthogonal(action.from, action.to)) {
+  let isValidMovement = false;
+  if (piece.type === 'sum') {
+    // Sum pieces move orthogonally only
+    isValidMovement = MovementPatterns.orthogonal(action.from, action.to);
+  } else if (piece.type === 'sumDiag') {
+    // SumDiag pieces move diagonally only
+    isValidMovement = MovementPatterns.diagonal(action.from, action.to);
+  }
+
+  if (!isValidMovement) {
     return false;
   }
 
   // Check path is clear (no jumping over pieces)
-  const distance = MovementPatterns.distance(action.from, action.to);
+  const rowDiff = Math.abs(action.to.row - action.from.row);
+  const colDiff = Math.abs(action.to.col - action.from.col);
+  const distance = Math.max(rowDiff, colDiff);
+
   if (distance > 1) {
     const rowStep = action.to.row > action.from.row ? 1 : action.to.row < action.from.row ? -1 : 0;
     const colStep = action.to.col > action.from.col ? 1 : action.to.col < action.from.col ? -1 : 0;
-    
+
     let currentPos = { row: action.from.row + rowStep, col: action.from.col + colStep };
-    
+
     while (currentPos.row !== action.to.row || currentPos.col !== action.to.col) {
       if (gameEngine.getPieceAt(state, currentPos) !== null) {
         return false; // Path is blocked
       }
-      currentPos = { 
-        row: currentPos.row + rowStep, 
-        col: currentPos.col + colStep 
+      currentPos = {
+        row: currentPos.row + rowStep,
+        col: currentPos.col + colStep
       };
     }
   }
@@ -123,14 +134,26 @@ state.remainingEnergy = pieceEnergy;
       return moves;
     }
 
-    // Math War: All pieces move orthogonally in any direction
-    // Generate moves in all 4 orthogonal directions
-    const directions = [
-      { row: -1, col: 0 },  // up
-      { row: 1, col: 0 },   // down
-      { row: 0, col: -1 },  // left
-      { row: 0, col: 1 }    // right
-    ];
+    // Generate moves based on piece type
+    let directions: { row: number, col: number }[] = [];
+
+    if (piece.type === 'sum') {
+      // Sum pieces move orthogonally
+      directions = [
+        { row: -1, col: 0 },  // up
+        { row: 1, col: 0 },   // down
+        { row: 0, col: -1 },  // left
+        { row: 0, col: 1 }    // right
+      ];
+    } else if (piece.type === 'sumDiag') {
+      // SumDiag pieces move diagonally
+      directions = [
+        { row: -1, col: -1 }, // up-left
+        { row: -1, col: 1 },  // up-right
+        { row: 1, col: -1 },  // down-left
+        { row: 1, col: 1 }    // down-right
+      ];
+    }
 
     for (const direction of directions) {
       // Try different distances (1, 2, 3... squares) until we hit something or go out of bounds
@@ -245,15 +268,20 @@ state.remainingEnergy = pieceEnergy;
   },
   calculateActionCost: (state: GameState, action: TurnAction): number => {
   if (!action.from || !action.to) return 0;
-  
-  const distance = MovementPatterns.distance(action.from, action.to);
-  const baseCost = distance * 2; // 2 energy per orthogonal step
-  
+
+  const rowDiff = Math.abs(action.to.row - action.from.row);
+  const colDiff = Math.abs(action.to.col - action.from.col);
+
+  // For diagonal moves, use the maximum distance (not sum)
+  // This ensures diagonal moves cost the same as orthogonal moves for the same distance
+  const distance = Math.max(rowDiff, colDiff);
+  const baseCost = distance * 2; // 2 energy per step
+
   // Add 2 extra energy for captures
   if (action.type === 'capture') {
     return baseCost + 2;
   }
-  
+
   return baseCost;
 },
 
@@ -269,7 +297,7 @@ onTurnStart: (state: GameState): void => {
       state.lastDiceRoll = GameUtils.rollDice(2, 5);
     }
     // On Player 1's turn, keep the same dice roll from Player 0's turn
-    
+
     // Reset energy to 0 - it will be calculated when pieces are selected
     state.remainingEnergy = 0;
   }
@@ -280,12 +308,12 @@ onGameStart: (state: GameState): void => {
   // Captains can only be assigned to back row pieces (row 0 for player 0, row 7 for player 1)
   for (let player = 0; player < state.players; player++) {
     const playerPieces = gameEngine.getPlayerPieces(state, player);
-    
+
     // Filter pieces to only include back row pieces
     const backRowPieces = playerPieces.filter(({ position }) => {
       return (player === 0 && position.row === 0) || (player === 1 && position.row === 7);
     });
-    
+
     if (backRowPieces.length > 0) {
       const randomIndex = Math.floor(Math.random() * backRowPieces.length);
       const captainPiece = backRowPieces[randomIndex].piece;
@@ -297,7 +325,7 @@ onGameStart: (state: GameState): void => {
       captainPiece.data = { ...captainPiece.data, isCaptain: true };
     }
   }
-  
+
   // Initialize game timer (30 minutes total)
   state.gameData.gameStartTime = Date.now();
   state.gameData.gameTimeLimit = 30 * 60 * 1000; // 30 minutes in milliseconds

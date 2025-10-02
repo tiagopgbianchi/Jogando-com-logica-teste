@@ -81,15 +81,13 @@ function Tabuleiro({
           row.map((cell, cIdx) => (
             <div
               key={`${rIdx}-${cIdx}`}
-              className={styles.celula}
-              style={{
-                background:
-                  cell === 0
-                    ? "radial-gradient(circle, #b48c8c, #955858)" // cor para 0
-                    : cell === 1
-                    ? "radial-gradient(circle, #c07171ff, #a83737ff)" // cor para 1
-                    : "radial-gradient(circle, #7189c0, #374fa8)", // cor para 2
-              }}
+              className={`${styles.celula} ${
+                cell === 0
+                  ? styles.cellDefault
+                  : cell === 1
+                  ? styles.cellSelected
+                  : styles.cellCorrect
+              }`}
               onClick={() => toggleCell(rIdx, cIdx, rIdx * 10 + cIdx + 1)}
             >
               {rIdx * 10 + cIdx + 1}

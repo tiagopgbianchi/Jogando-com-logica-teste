@@ -61,12 +61,20 @@ const PieceComponent: React.FC<PieceProps> = ({
           shape: "circle",
         };
 
-      case "sum":
+      case "sumDiag":
         const isCaptain = piece.data?.isCaptain;
         return {
-          symbol: `+${piece.value || 0}`,
+          symbol: `+${piece.value || 0}`, // Different symbol to indicate diagonal movement
           backgroundColor: getPlayerColor(piece.owner, isCaptain),
           textColor: isCaptain ? "black" : "white", // Black text for better contrast on light captain colors
+          shape: "square", // Square shape to distinguish from circular sum pieces
+        };
+
+      case "sum":
+        return {
+          symbol: `+${piece.value || 0}`,
+          backgroundColor: getPlayerColor(piece.owner, piece.data?.isCaptain),
+          textColor: piece.data?.isCaptain ? "black" : "white", // Black text for better contrast on light captain colors
           shape: "circle",
         };
 
