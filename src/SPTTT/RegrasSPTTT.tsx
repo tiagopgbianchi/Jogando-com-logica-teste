@@ -93,24 +93,59 @@ function JogoStop() {
   <div className={styles.modalOverlay} onClick={() => setShowDetailedRules(false)}>
     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
       <button 
-        className={styles.closeButton}
+      className={styles.closeButton}
         onClick={() => setShowDetailedRules(false)}
       >
         X
       </button>
       
       <div className={styles.detailedRules}>
-        <h2>Regras Completas do Super Jogo da Velha</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique facere quos blanditiis ut ex, laborum natus, quis nostrum recusandae molestias aliquid perspiciatis. Fugiat animi aliquam consectetur nulla in laborum.</p>
+        <h2>Regras do Super Jogo da Velha</h2>
+
+        
+          <h3 className={styles.rulesTitle}>Como Jogar</h3>
+          <p className={styles.rulesText}>Início: O jogador <strong>X</strong> começa a partida.</p>
+          <p className={styles.rulesText}>Jogada: Em seu turno, o jogador escolhe uma casa em um dos <strong>tabuleiros menores</strong> disponíveis e coloca o seu símbolo ("X" ou "O").</p>
+          <p className={styles.rulesText}>Direcionamento o próximo movimento: A localização da casa escolhida <em>dentro</em> do tabuleiro menor determina em <em>qual tabuleiro menor o próximo jogador deve jogar</em>.</p>
+          <p className={styles.rulesText}>Exemplo:Se você jogar no quadrado central (posição 5) de um tabuleiro menor, o próximo jogador será enviado para o tabuleiro menor que está na posição central do tabuleiro principal.</p>
+       
+
+   
+          <h3 className={styles.rulesTitle}>Jogando em Tabuleiros Já Decididos</h3>
+          <p className={styles.rulesText}>Se o próximo jogador for direcionado para um tabuleiro menor que já foi <strong>vencido ou empatado</strong>, ele ganha a liberdade de jogar em <strong>qualquer outro tabuleiro menor</strong> que ainda esteja em andamento (aberto).</p>
+        
+
+        
+          <h3 className={styles.rulesTitle}>Vencendo um Tabuleiro Menor</h3>
+          <p className={styles.rulesText}>Um tabuleiro menor é vencido quando um jogador consegue alinhar 3 dos seus símbolos (em linha, coluna ou diagonal).</p>
+          <p className={styles.rulesText}>Esse tabuleiro é então marcado no tabuleiro principal com um <strong>X grande</strong> ou <strong>O grande</strong> e não pode mais ser jogado.</p>
+      
+
+        
+          <h3 className={styles.rulesTitle}>Vencendo o Jogo Geral</h3>
+          <p className={styles.rulesText}>Existem <strong>duas maneiras</strong> de vencer a partida. O jogo termina imediatamente quando um jogador atinge uma delas:</p>
+
+          
+            <h4 className={styles.winTitle}>Vitória Estratégica (Três em Linha)</h4>
+            <p className={styles.winText}>Conquistar <strong>3 tabuleiros menores em sequência</strong> no tabuleiro gigante (em linha, coluna ou diagonal).</p>
+      
+
+        
+            <h4 className={styles.winTitle}>Vitória por Pontos (Maioria)</h4>
+            <p className={styles.winText}>Conquistar a <strong>maior quantidade de tabuleiros menores</strong>. Este é o critério de desempate final se ninguém conseguir uma vitória estratégica. O jogador com mais tabuleiros conquistados ao final da partida é declarado vencedor.</p>
+      
+        
+
+        
+          <h3 className={styles.rulesTitle}>Empate</h3>
+          <p className={styles.rulesText}>O jogo termina em empate se todos os tabuleiros menores forem preenchidos ou decididos e <strong>nenhum jogador</strong> tiver conseguido uma <strong>Vitória Estratégica (três em linha)</strong>. Em caso de empate na quantidade de tabuleiros, a partida é considerada empatada.</p>
+        
       </div>
     </div>
   </div>
 )}
-    </div>
-  );
-}
+
+  </div>
+);}
 
 export default JogoStop;

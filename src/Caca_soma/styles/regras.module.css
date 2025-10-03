@@ -284,17 +284,23 @@
   max-height: 100%;
   overflow-y: visible;
 }
+.detailedRules h3{
+  color: #ffa0a0;
+  -webkit-text-stroke: 0.18vw #821616; 
+  font-size: 2.4vw;
+}
 
 .detailedRules p {
   font-size: 1.8vw;
-  color: #eee; /* White text */
-  -webkit-text-stroke: 0.13vw #7b1b1b; /* Dark gray stroke */
+  -webkit-text-stroke: 0.13vw #821616; /* Dark gray stroke */
   margin-bottom: 1.5vw;
+  color: #e9e9e9;;
 }
 
 .detailedRules h2 {
   font-size: 4vw;
   color: #eee; /* Bright red text */
+
   -webkit-text-stroke: 0.25vw #a11313;  /* Dark gray stroke */
   text-align: center;
   margin-bottom: 2vw;
@@ -328,9 +334,8 @@
     right: 1vw;
   }
   
-  .detailedRules p {
-    font-size: 3.2vw;
-    margin-bottom: 2vw;
+  .rulesText {
+    font-size: 3vw;
   }
   
   .detailedRules h2 {
