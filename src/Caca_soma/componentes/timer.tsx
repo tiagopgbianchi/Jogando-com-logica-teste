@@ -2,9 +2,11 @@ import { useState, useEffect, useRef } from "react";
 
 interface prop {
   jogar: boolean;
-  addTempo: (x: number) => void;
+  addTempo: (x: number, currentSoma?: number) => void;
+  soma: number;
+  onTimeUpdate?: (tempo: number) => void; // Add callback for time updates
 }
-function Timer({ jogar, addTempo }: prop) {
+function Timer({ jogar, addTempo, soma, onTimeUpdate }: prop) {
   const [tempo, setTempo] = useState(0); // tempo final armazenado
   const [tempoAtual, setTempoAtual] = useState<number>(0); // tempo em tempo real
   const intervalRef = useRef<number | null>(null);
@@ -20,7 +22,11 @@ function Timer({ jogar, addTempo }: prop) {
 
     intervalRef.current = window.setInterval(() => {
       if (inicioRef.current) {
-        setTempoAtual(Date.now() - inicioRef.current);
+        const currentTime = Date.now() - inicioRef.current;
+        setTempoAtual(currentTime);
+        if (onTimeUpdate) {
+          onTimeUpdate(currentTime / 1000); // Pass time in seconds
+        }
       }
     }, 100);
   };
@@ -30,7 +36,7 @@ function Timer({ jogar, addTempo }: prop) {
     if (inicioRef.current) {
       const tempoPassado = Date.now() - inicioRef.current;
       setTempo(tempoPassado);
-      addTempo(tempoPassado / 1000);
+      addTempo(tempoPassado / 1000, soma); // Pass soma value when calling addTempo
       inicioRef.current = null;
 
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -53,8 +59,8 @@ function Timer({ jogar, addTempo }: prop) {
   }, [jogar]);
 
   return (
-    <div>
-      <p>Tempo atual: {(tempoAtual / 1000).toFixed(1)} segundos</p>
+    <div style={{ display: 'none' }}>
+      {/* Hidden timer display - time now shown in score box */}
     </div>
   );
 }

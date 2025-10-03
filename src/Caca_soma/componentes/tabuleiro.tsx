@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/design.module.css"; // CSS Modules
+import Timer from "./timer";
 
 interface Prop {
   mudarClicar: () => void;
   mudarJogar: () => void;
   mudarRodada: () => void;
   mudarSoma: (x: number) => void;
-  addTempo: (x: number) => void;
+  addTempo: (x: number, currentSoma?: number) => void;
   soma: number;
   jogar: boolean;
   qualRodada: number;
   quantos: number;
   setQuantos: (x: number) => void;
   sorteado: number;
+  onTimeUpdate?: (tempo: number) => void; // Add time update callback
 }
 
 function Tabuleiro({
@@ -27,6 +29,7 @@ function Tabuleiro({
   quantos,
   setQuantos,
   sorteado,
+  onTimeUpdate,
 }: Prop) {
   // 10x10 matrix filled with false
   const [board, setBoard] = useState(
@@ -35,18 +38,23 @@ function Tabuleiro({
 
   const okay = () => {
     if (quantos >= 2) {
+      // Capture current soma value before resetting
+      const currentSoma = soma;
+      const wasCorrect = sorteado === currentSoma;
+
+      setBoard((prev) =>
+        prev.map((r, rIdx) =>
+          r.map((cell, cIdx) =>
+            cell === 1 ? (wasCorrect ? 2 : 0) : cell
+          )
+        )
+      );
+
       setQuantos(0);
       mudarSoma(0);
       mudarClicar();
       mudarJogar();
       mudarRodada();
-      setBoard((prev) =>
-        prev.map((r, rIdx) =>
-          r.map((cell, cIdx) =>
-            cell === 1 ? (sorteado === soma ? 2 : 0) : cell
-          )
-        )
-      );
     }
   };
 
@@ -76,6 +84,7 @@ function Tabuleiro({
 
   return (
     <>
+      <Timer jogar={jogar} addTempo={addTempo} soma={soma} onTimeUpdate={onTimeUpdate} />
       <div className={styles.board}>
         {board.map((row, rIdx) =>
           row.map((cell, cIdx) => (

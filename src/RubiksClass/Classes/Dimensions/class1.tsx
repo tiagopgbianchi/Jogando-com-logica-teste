@@ -233,6 +233,14 @@ const Dimensions: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
+        <div className={styles.menuButtonContainer}>
+          <button
+            onClick={() => navigate("/classMenu")}
+            className={styles.menuButton}
+          >
+            Aulas
+          </button>
+        </div>
         <h2>Tipos de Cubos Mágicos</h2>
         <h3>Arraste os cubos para as caixas com os tamanhos</h3>
 

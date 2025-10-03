@@ -18,10 +18,12 @@ import DamasRegras from "./AA_baseGame/Pages/regrasPage";
 import CrownChasePage from "./CrownChase/Pages/baseGamePage";
 import CrownChaseRegras from "./CrownChase/Pages/regrasPage";
 import CacaSomaRegras from "./Caca_soma/Pages/Regras_CacaSoma";
+import ClassMenu from "./RubiksClass/Classes/ClassMenu";
 import Dimensions from "./RubiksClass/Classes/Dimensions/class1";
 import MathWarRegras from "./MathWar/Pages/regrasPage"
 import MathWarPage from "./MathWar/Pages/baseGamePage"
 import Manual from "./Main/Pages/manual"
+import Class2 from "./RubiksClass/Classes/FaceArea/class2.tsx"
 
 function BackButton() {
   const location = useLocation();
@@ -64,9 +66,11 @@ function App() {
         <Route path="/crownchaseRg" element={<CrownChaseRegras />} />
         <Route path="/cacasomaRg" element={<CacaSomaRegras />} />
         <Route path="/dimensions" element={<Dimensions />} />
+        <Route path="/classMenu" element={<ClassMenu />} />
         <Route path="/mathwarRg" element={<MathWarRegras />} />
         <Route path="/mathwarPg" element={<MathWarPage />} />
         <Route path="/manual" element={<Manual />} />
+        <Route path="/class2" element={<Class2 />} />
       </Routes>
     </main>
   );

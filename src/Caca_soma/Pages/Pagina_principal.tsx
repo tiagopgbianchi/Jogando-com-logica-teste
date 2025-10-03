@@ -28,12 +28,19 @@ function Caca_soma() {
 
   const [tempo_1, setTempo_1] = useState(0.0);
   const [tempo_2, setTempo_2] = useState(0.0);
-  const addTempo = (aumento: number) => {
+  const [liveTime, setLiveTime] = useState(0.0);
+
+  const handleTimeUpdate = (tempo: number) => {
+    setLiveTime(tempo);
+  };
+
+  const addTempo = (aumento: number, currentSoma?: number) => {
+    const somaToCheck = currentSoma !== undefined ? currentSoma : soma;
     if (qualRodada % 2 !== 0) {
-      if (soma === sorteado) setTempo_1(aumento);
+      if (somaToCheck === sorteado) setTempo_1(aumento);
       else setTempo_1(10000);
     } else {
-      if (soma === sorteado) setTempo_2(aumento);
+      if (somaToCheck === sorteado) setTempo_2(aumento);
       else setTempo_2(10000);
     }
     setSoma(0);
@@ -49,7 +56,7 @@ function Caca_soma() {
           }
           setTempo_1(0);
           setTempo_2(0);
-        }, 1000);
+        }, 2000);
 
         return () => clearTimeout(delay);
       }
@@ -90,37 +97,44 @@ function Caca_soma() {
           <div className={styles.scoreHeader}>PLACAR</div>
 
           <div className={styles.playersRow}>
-            <div className={styles.playerSection}>
+          <div className={styles.playerSection}>
               <div className={styles.playerLabel}>Jogador 1</div>
               <div className={styles.playerInfoRow}>
                 <div className={styles.playerInfo}>
                   <span className={styles.infoLabel}>Pontos:</span>
-                  <span className={styles.numPontu1}>{pontu_1}</span>
+                  <span className={styles.numPontu2}>{pontu_1}</span>
                 </div>
                 <div className={styles.playerInfo}>
                   <span className={styles.infoLabel}>Tempo:</span>
                   <span className={styles.numTempo}>
-                    {tempo_1 === 10000 ? "X" : tempo_1 + "s"}
+                    {qualRodada % 2 === 0 && jogar ?
+                      `${liveTime.toFixed(1)}s` :
+                      tempo_1 === 10000 ? "X" : tempo_1 > 0 ? `${tempo_1}s` : "0.0s"
+                    }
                   </span>
                 </div>
               </div>
             </div>
-
             <div className={styles.playerSection}>
               <div className={styles.playerLabel}>Jogador 2</div>
               <div className={styles.playerInfoRow}>
                 <div className={styles.playerInfo}>
                   <span className={styles.infoLabel}>Pontos:</span>
-                  <span className={styles.numPontu2}>{pontu_2}</span>
+                  <span className={styles.numPontu1}>{pontu_2}</span>
                 </div>
                 <div className={styles.playerInfo}>
                   <span className={styles.infoLabel}>Tempo:</span>
                   <span className={styles.numTempo}>
-                    {tempo_2 === 10000 ? "X" : tempo_2 + "s"}
+                    {qualRodada % 2 !== 0 && jogar ?
+                      `${liveTime.toFixed(1)}s` :
+                      tempo_2 === 10000 ? "X" : tempo_2 > 0 ? `${tempo_2}s` : "0.0s"
+                    }
                   </span>
                 </div>
               </div>
             </div>
+
+            
           </div>
 
           {qualRodada === 10 && (
@@ -144,6 +158,7 @@ function Caca_soma() {
           setQuantos={setQuantos}
           quantos={quantos}
           sorteado={sorteado}
+          onTimeUpdate={handleTimeUpdate}
           //styles={styles} // se quiser passar styles para Tabuleiro
         />
       </div>
