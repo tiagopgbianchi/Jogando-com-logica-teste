@@ -6,7 +6,7 @@ export default defineConfig(({ command }) => {
   // command === 'build' when running `vite build` or `npm run build`
 
   return {
-    base: command === "build" ? "/Jogando-com-logica-teste/" : "/",
+    base: "/Jogando-com-logica-teste/",
     plugins: [react()],
   };
 });
