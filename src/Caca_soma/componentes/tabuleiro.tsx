@@ -44,9 +44,7 @@ function Tabuleiro({
 
       setBoard((prev) =>
         prev.map((r, rIdx) =>
-          r.map((cell, cIdx) =>
-            cell === 1 ? (wasCorrect ? 2 : 0) : cell
-          )
+          r.map((cell, cIdx) => (cell === 1 ? (wasCorrect ? 2 : 0) : cell))
         )
       );
 
@@ -79,12 +77,28 @@ function Tabuleiro({
         )
       );
     }
+    if (board[row][col] === 1 && jogar && quantos <= 3) {
+      setQuantos(quantos - 1);
+      mudarSoma(-valor);
+      setBoard((prev) =>
+        prev.map((r, rIdx) =>
+          r.map((cell, cIdx) =>
+            rIdx === row && cIdx === col && jogar ? 0 : cell
+          )
+        )
+      );
+    }
   };
   // Paleta de cores para as células clicadas
 
   return (
     <>
-      <Timer jogar={jogar} addTempo={addTempo} soma={soma} onTimeUpdate={onTimeUpdate} />
+      <Timer
+        jogar={jogar}
+        addTempo={addTempo}
+        soma={soma}
+        onTimeUpdate={onTimeUpdate}
+      />
       <div className={styles.board}>
         {board.map((row, rIdx) =>
           row.map((cell, cIdx) => (

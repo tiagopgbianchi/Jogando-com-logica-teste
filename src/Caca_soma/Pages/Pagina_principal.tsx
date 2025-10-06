@@ -77,6 +77,7 @@ function Caca_soma() {
             <div className={styles.textoSorte}>Número sorteado</div>
             <div className={styles.numSorte}>
               <Girar
+                rodada={qualRodada}
                 mudarSorteado={mudarSorteado}
                 clicar={clicar}
                 mudarJogar={mudarJogar}
@@ -97,7 +98,7 @@ function Caca_soma() {
           <div className={styles.scoreHeader}>PLACAR</div>
 
           <div className={styles.playersRow}>
-          <div className={styles.playerSection}>
+            <div className={styles.playerSection}>
               <div className={styles.playerLabel}>Jogador 1</div>
               <div className={styles.playerInfoRow}>
                 <div className={styles.playerInfo}>
@@ -107,10 +108,13 @@ function Caca_soma() {
                 <div className={styles.playerInfo}>
                   <span className={styles.infoLabel}>Tempo:</span>
                   <span className={styles.numTempo}>
-                    {qualRodada % 2 === 0 && jogar ?
-                      `${liveTime.toFixed(1)}s` :
-                      tempo_1 === 10000 ? "X" : tempo_1 > 0 ? `${tempo_1}s` : "0.0s"
-                    }
+                    {qualRodada % 2 === 0 && jogar
+                      ? `${liveTime.toFixed(1)}s`
+                      : tempo_1 === 10000
+                      ? "X"
+                      : tempo_1 > 0
+                      ? `${tempo_1}s`
+                      : "0.0s"}
                   </span>
                 </div>
               </div>
@@ -125,16 +129,17 @@ function Caca_soma() {
                 <div className={styles.playerInfo}>
                   <span className={styles.infoLabel}>Tempo:</span>
                   <span className={styles.numTempo}>
-                    {qualRodada % 2 !== 0 && jogar ?
-                      `${liveTime.toFixed(1)}s` :
-                      tempo_2 === 10000 ? "X" : tempo_2 > 0 ? `${tempo_2}s` : "0.0s"
-                    }
+                    {qualRodada % 2 !== 0 && jogar
+                      ? `${liveTime.toFixed(1)}s`
+                      : tempo_2 === 10000
+                      ? "X"
+                      : tempo_2 > 0
+                      ? `${tempo_2}s`
+                      : "0.0s"}
                   </span>
                 </div>
               </div>
             </div>
-
-            
           </div>
 
           {qualRodada === 10 && (

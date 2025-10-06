@@ -4,16 +4,19 @@ interface Properties {
   mudarJogar: () => void;
   clicar: boolean;
   mudarSorteado: (x: number) => void;
+  rodada: number;
 }
 
-const NumGenerator = () => {
-  return Math.floor(Math.random() * 147 + 3);
-};
-
-function Girar({ mudarJogar, clicar, mudarSorteado }: Properties) {
+function Girar({ mudarJogar, clicar, mudarSorteado, rodada }: Properties) {
   const [displayedNumber, setDisplayedNumber] = useState(0);
   const interval = useRef<ReturnType<typeof setInterval> | null>(null);
   const stop = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const NumGenerator = () => {
+    return Math.floor(
+      Math.random() * (150 - rodada * 3 + 3) + (rodada * 3 + 3)
+    );
+  };
 
   useEffect(() => {
     if (clicar === false) {
