@@ -6,10 +6,11 @@ type MandatoryCapture = true | false;
 
 function MathWarRegras() {
   const navigate = useNavigate();
-  const [MandatoryCapture, setMandatoryCapture] = useState<MandatoryCapture>(false);
+  const [showDetailedRules, setShowDetailedRules] = useState(false);
+ 
   
   function jogarStop() {
-    navigate("/mathwarPg", { state: { MandatoryCapture } });
+    navigate("/mathwarPg");
   }
   
   return (
@@ -58,31 +59,91 @@ function MathWarRegras() {
         <button className={styles.button} onClick={jogarStop}>
           <span>Jogar</span>
         </button>
-        
-        {/* Win mode selector */}
-        <div className={styles['mode-select-rules']}>
-          <label>
-            <input
-              type="radio"
-              name="winMode"
-              value="line"
-              checked={MandatoryCapture === true}
-              onChange={() => setMandatoryCapture(true)}
-            />
-            Captura obrigatória
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="winMode"
-              value="majority"
-              checked={MandatoryCapture === false}
-              onChange={() => setMandatoryCapture(false)}
-            />
-            Captura não obrigatória
-          </label>
-        </div>
       </div>
+      <button
+        className={styles.detailedRulesButton}
+        onClick={() => setShowDetailedRules(true)}
+      >
+        Regras Completas
+      </button>
+      {showDetailedRules && (
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setShowDetailedRules(false)}
+        >
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className={styles.closeButton}
+              onClick={() => setShowDetailedRules(false)}
+            >
+              X
+            </button>
+
+            <div className={styles.detailedRules}>
+              <h2>Como Jogar - Caça Soma</h2>
+
+              <h3 className={styles.rulesTitle}>Início da Partida:</h3>
+              <p className={styles.rulesText}>
+                O Jogador 1 começa a partida. O jogo é disputado em rodadas.
+              </p>
+
+              <h3 className={styles.rulesTitle}>Sorteio do Número:</h3>
+              <p className={styles.rulesText}>
+                Em cada rodada, o sistema sorteia um número aleatório (de 3 a
+                150) para o jog da vez.
+              </p>
+
+              <h3 className={styles.rulesTitle}>Formando a Soma:</h3>
+              <p className={styles.rulesText}>
+                O jog deve selecionar <strong>2 ou 3 números</strong> da
+                tabela disponível que, quando somados, resultem exatamente no
+                número sorteado.
+              </p>
+
+              <h3 className={styles.rulesTitle}>Ação:</h3>
+              <p className={styles.rulesText}>
+                O jog clica em "Iniciar" para começar a rodada, seleciona os
+                números na tabela e depois clica em "Enviar" para submeter a sua
+                resposta.
+              </p>
+
+              <h3 className={styles.rulesTitle}>Sequência de Turnos:</h3>
+              <p className={styles.rulesText}>
+                O Jogador 2 recebe então um novo número sorteado e repete o
+                processo, tentando formar a sua própria soma.
+              </p>
+
+              <h3 className={styles.rulesTitle}>Números Usados:</h3>
+              <p className={styles.rulesText}>
+                Os números utilizados em somas corretas são{" "}
+                <strong>riscados da tabela</strong> e não podem ser usados
+                novamente por nenhum jog no restante da partida.
+              </p>
+
+              <h3 className={styles.rulesTitle}>
+                Pontuação e Vencedor da Rodada:
+              </h3>
+              <p className={styles.rulesText}>
+                A cada rodada, o jog que encontrar e enviar uma soma correta
+                em <strong>menos tempo</strong> vence a rodada e ganha{" "}
+                <strong>1 ponto</strong>.
+              </p>
+
+              <h3 className={styles.rulesTitle}>Vencendo o Jogo:</h3>
+              <p className={styles.rulesText}>
+                O jogo termina quando um jog alcançar{" "}
+                <strong>5 pontos</strong>.
+              </p>
+              <p className={styles.rulesText}>
+                Esse jog será declarado o vencedor da partida.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
